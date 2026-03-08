@@ -47,12 +47,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const login = (token: string) => {
     localStorage.setItem('token', token);
     setUser({ token });
+    setIsAuthenticated(true);
     router.push('/'); // Redirect to dashboard after login
   };
 
   const logout = () => {
     localStorage.removeItem('token');
     setUser(null);
+    setIsAuthenticated(false);
     router.push('/login');
   };
 
