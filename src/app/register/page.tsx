@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { register } from '@/services/authService';
+import { register as serviceRegister } from '@/services/authService';
+import { useAuth } from '@/context/AuthContext';
 import Link from 'next/link';
 
 export default function RegisterPage() {
@@ -11,7 +11,7 @@ export default function RegisterPage() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
-    const router = useRouter();
+    const { login: authLogin } = useAuth();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -19,9 +19,9 @@ export default function RegisterPage() {
         setError('');
 
         try {
-            await register(name, email, password);
-            // Redirect to POS dashboard after successful registration
-            router.push('/');
+            const data = await serviceRegister(name, email, password);
+            // Update global auth state which handles redirection
+            authLogin(data.token);
         } catch (err: any) {
             setError(err.message || 'Registration failed. Please try again.');
         } finally {
