@@ -98,7 +98,7 @@ const TransactionDetailsModal: React.FC<TransactionDetailsModalProps> = ({ sale,
                                 <p className="text-sm font-black uppercase tracking-wider">Standard Payment Transaction - No Items</p>
                             </div>
                         ) : (
-                            <div className="rounded-2xl border border-card-border overflow-hidden shadow-sm">
+                            <div className="rounded-2xl border border-card-border overflow-x-auto shadow-sm">
                                 <table className="min-w-full divide-y divide-card-border">
                                     <thead className="bg-sidebar">
                                         <tr>

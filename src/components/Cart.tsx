@@ -67,7 +67,7 @@ export default function Cart({ cart, onRemove, onUpdateQuantity, total }: CartPr
                   {/* Remove Button */}
                   <button
                     onClick={() => item.product?._id && onRemove(item.product._id)}
-                    className="w-8 h-8 flex items-center justify-center text-red-300 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all opacity-0 group-hover:opacity-100"
+                    className="w-8 h-8 flex items-center justify-center text-red-300 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all md:opacity-0 md:group-hover:opacity-100 opacity-100"
                   >
                     🗑️
                   </button>

@@ -103,32 +103,32 @@ export default function AllCustomersPage() {
     return (
         <ProtectedRoute>
             <div className="min-h-screen bg-background p-4 sm:p-8">
-                <header className="mb-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                    <div className="flex items-center space-x-4">
-                        <div className="w-14 h-14 bg-pos-accent rounded-xl flex items-center justify-center text-white font-black text-2xl shadow-lg shadow-pos-accent/20">👥</div>
+                <header className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div className="flex items-center space-x-3">
+                        <div className="w-10 h-10 sm:w-14 sm:h-14 bg-pos-accent rounded-xl flex items-center justify-center text-white font-black text-xl sm:text-2xl shadow-lg shadow-pos-accent/20">👥</div>
                         <div>
-                            <h1 className="text-3xl font-black italic tracking-tighter uppercase text-foreground">All Customers</h1>
-                            <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest mt-1">View and manage all registered customers.</p>
+                            <h1 className="text-xl sm:text-3xl font-black italic tracking-tighter uppercase text-foreground">Customers</h1>
+                            <p className="text-[9px] sm:text-[11px] font-bold text-muted-foreground uppercase tracking-widest mt-0.5">Directory & Ledger</p>
                         </div>
                     </div>
-                    <div className="flex items-center gap-4">
+                    <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
                         <button
                             onClick={() => router.push('/')}
-                            className="px-6 py-3 bg-sidebar border border-sidebar-border text-foreground rounded-xl transition-all font-black text-[11px] uppercase tracking-wider shadow-sm hover:bg-card-border hover:-translate-y-0.5 flex items-center gap-2"
+                            className="w-full sm:w-auto px-4 py-2 sm:px-6 sm:py-3 bg-sidebar border border-sidebar-border text-foreground rounded-xl transition-all font-black text-[10px] sm:text-[11px] uppercase tracking-wider shadow-sm hover:bg-card-border flex items-center justify-center gap-2"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                                 <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
                             </svg>
-                            Back to POS
+                            Back
                         </button>
                         <button
                             onClick={() => setIsAddModalOpen(true)}
-                            className="px-6 py-3 bg-pos-accent text-white rounded-xl transition-all font-black text-[11px] uppercase tracking-wider shadow-lg hover:bg-blue-600 shadow-pos-accent/20 hover:shadow-pos-accent/40 hover:-translate-y-0.5 flex items-center gap-2"
+                            className="w-full sm:w-auto px-4 py-2 sm:px-6 sm:py-3 bg-pos-accent text-white rounded-xl transition-all font-black text-[10px] sm:text-[11px] uppercase tracking-wider shadow-lg hover:bg-blue-600 flex items-center justify-center gap-2"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                                 <path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" />
                             </svg>
-                            Add Customer
+                            New Customer
                         </button>
                     </div>
                 </header>
@@ -182,8 +182,8 @@ export default function AllCustomersPage() {
                                                 Customer Name {getSortIndicator('name')}
                                             </div>
                                         </th>
-                                        <th scope="col" className="px-6 py-4 text-left text-[10px] font-black text-muted-foreground uppercase tracking-widest">Phone</th>
-                                        <th scope="col" className="px-6 py-4 text-left text-[10px] font-black text-muted-foreground uppercase tracking-widest">Address</th>
+                                        <th scope="col" className="px-6 py-4 text-left text-[10px] font-black text-muted-foreground uppercase tracking-widest hidden sm:table-cell">Phone</th>
+                                        <th scope="col" className="px-6 py-4 text-left text-[10px] font-black text-muted-foreground uppercase tracking-widest hidden md:table-cell">Address</th>
                                         <th
                                             scope="col"
                                             className="px-6 py-4 text-right text-[10px] font-black text-muted-foreground uppercase tracking-widest cursor-pointer hover:text-foreground transition-colors group/header"
@@ -205,10 +205,10 @@ export default function AllCustomersPage() {
                                             <td className="px-6 py-4 whitespace-nowrap">
                                                 <div className="text-sm font-black text-foreground group-hover:text-pos-accent transition-colors">{customer.name}</div>
                                             </td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-xs font-bold text-muted-foreground uppercase tracking-widest">
+                                            <td className="px-6 py-4 whitespace-nowrap text-xs font-bold text-muted-foreground uppercase tracking-widest hidden sm:table-cell">
                                                 {customer.phone || 'N/A'}
                                             </td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-xs font-bold text-muted-foreground max-w-xs truncate uppercase tracking-widest">
+                                            <td className="px-6 py-4 whitespace-nowrap text-xs font-bold text-muted-foreground max-w-xs truncate uppercase tracking-widest hidden md:table-cell">
                                                 {customer.address || 'N/A'}
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-black">

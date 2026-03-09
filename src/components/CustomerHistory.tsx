@@ -187,11 +187,11 @@ export default function CustomerHistory({
                 <table className="min-w-full divide-y divide-card-border">
                   <thead className="bg-muted/5">
                     <tr>
-                      <th className="px-6 py-3 text-left text-[8px] font-black text-muted-foreground uppercase tracking-[0.2em]">Ref ID</th>
+                      <th className="px-6 py-3 text-left text-[8px] font-black text-muted-foreground uppercase tracking-[0.2em] hidden sm:table-cell">Ref ID</th>
                       <th className="px-6 py-3 text-left text-[8px] font-black text-muted-foreground uppercase tracking-[0.2em]">Date</th>
                       <th className="px-6 py-3 text-left text-[8px] font-black text-muted-foreground uppercase tracking-[0.2em]">Activity</th>
-                      <th className="px-6 py-3 text-right text-[8px] font-black text-muted-foreground uppercase tracking-[0.2em]">Debit</th>
-                      <th className="px-6 py-3 text-right text-[8px] font-black text-muted-foreground uppercase tracking-[0.2em]">Credit</th>
+                      <th className="px-6 py-3 text-right text-[8px] font-black text-muted-foreground uppercase tracking-[0.2em] hidden md:table-cell">Debit</th>
+                      <th className="px-6 py-3 text-right text-[8px] font-black text-muted-foreground uppercase tracking-[0.2em] hidden md:table-cell">Credit</th>
                       <th className="px-6 py-3 text-right text-[8px] font-black text-muted-foreground uppercase tracking-[0.2em]">Balance</th>
                     </tr>
                   </thead>
@@ -205,7 +205,7 @@ export default function CustomerHistory({
                           onClick={() => onRowClick && onRowClick(sale)}
                           className={`group transition-all cursor-pointer ${isPaymentOnly ? "bg-success/[0.02] hover:bg-success/[0.05]" : "hover:bg-pos-accent/[0.03]"}`}
                         >
-                          <td className="px-6 py-3.5 whitespace-nowrap font-mono text-[9px] font-bold text-muted-foreground/50 group-hover:text-foreground transition-colors">
+                          <td className="px-6 py-3.5 whitespace-nowrap font-mono text-[9px] font-bold text-muted-foreground/50 group-hover:text-foreground transition-colors hidden sm:table-cell">
                             #{sale.receiptId?.slice(-6).toUpperCase() || sale._id.slice(-6).toUpperCase()}
                           </td>
                           <td className="px-6 py-3.5 whitespace-nowrap text-[10px] font-bold text-foreground/70">
@@ -228,16 +228,16 @@ export default function CustomerHistory({
                                 <span className={`text-[10px] font-black uppercase tracking-tight ${isPaymentOnly ? "text-success" : "text-foreground/90"}`}>
                                   {isPaymentOnly ? "Payment" : "Sale"}
                                 </span>
-                                <span className="text-[8px] font-bold text-muted-foreground truncate max-w-[150px] uppercase">
+                                <span className="text-[8px] font-bold text-muted-foreground truncate max-w-[100px] sm:max-w-[150px] uppercase">
                                   {isPaymentOnly ? `via ${sale.paymentMethod}` : sale.cartItems.map(i => i.name).join(', ')}
                                 </span>
                               </div>
                             </div>
                           </td>
-                          <td className="px-6 py-3.5 whitespace-nowrap text-right text-[11px] font-black text-foreground/80">
+                          <td className="px-6 py-3.5 whitespace-nowrap text-right text-[11px] font-black text-foreground/80 hidden md:table-cell">
                             {isPaymentOnly ? <span className="text-muted-foreground/20">---</span> : `Rs. ${sale.totalAmount?.toLocaleString()}`}
                           </td>
-                          <td className={`px-6 py-3.5 whitespace-nowrap text-right text-[11px] font-black ${isPaymentOnly ? "text-success" : "text-muted-foreground"}`}>
+                          <td className={`px-6 py-3.5 whitespace-nowrap text-right text-[11px] font-black ${isPaymentOnly ? "text-success" : "text-muted-foreground"} hidden md:table-cell`}>
                             {(sale.amountPaid || 0) > 0 ? `Rs. ${(sale.amountPaid || 0).toLocaleString()}` : <span className="text-muted-foreground/20">---</span>}
                           </td>
                           <td className={`px-6 py-3.5 whitespace-nowrap text-right text-[12px] font-black ${(sale.balanceDue || 0) > 0 ? "text-danger" : "text-success"}`}>

@@ -95,17 +95,17 @@ export default function ProductsPage() {
     return (
         <ProtectedRoute>
             <div className="min-h-screen bg-background p-4 sm:p-8 flex flex-col">
-                <header className="mb-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                    <div className="flex items-center space-x-4">
-                        <div className="w-14 h-14 bg-pos-accent rounded-xl flex items-center justify-center text-white font-black text-2xl shadow-lg shadow-pos-accent/20">📦</div>
+                <header className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div className="flex items-center space-x-3">
+                        <div className="w-10 h-10 sm:w-14 sm:h-14 bg-pos-accent rounded-xl flex items-center justify-center text-white font-black text-xl sm:text-2xl shadow-lg shadow-pos-accent/20">📦</div>
                         <div>
-                            <h1 className="text-3xl font-black italic tracking-tighter uppercase text-foreground">Products Manager</h1>
-                            <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest mt-1">Manage inventory, add items, and clear stock.</p>
+                            <h1 className="text-xl sm:text-3xl font-black italic tracking-tighter uppercase text-foreground">Products</h1>
+                            <p className="text-[9px] sm:text-[11px] font-bold text-muted-foreground uppercase tracking-widest mt-0.5">Inventory Management</p>
                         </div>
                     </div>
                     <button
                         onClick={() => router.push('/')}
-                        className="px-6 py-3 bg-sidebar border border-sidebar-border text-foreground rounded-xl transition-all font-black text-[11px] uppercase tracking-wider shadow-sm hover:bg-card-border hover:-translate-y-0.5 flex items-center gap-2"
+                        className="w-full sm:w-auto px-4 py-2 sm:px-6 sm:py-3 bg-sidebar border border-sidebar-border text-foreground rounded-xl transition-all font-black text-[10px] sm:text-[11px] uppercase tracking-wider shadow-sm hover:bg-card-border flex items-center justify-center gap-2"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                             <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />

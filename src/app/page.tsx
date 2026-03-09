@@ -44,6 +44,10 @@ export default function POSDashboard() {
   const { logout } = useAuth();
   const router = useRouter();
 
+  // Mobile responsiveness states
+  const [mobileTab, setMobileTab] = useState<'products' | 'cart'>('products');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   // Check for offline status
   useEffect(() => {
     const handleOnline = () => {
@@ -317,10 +321,57 @@ export default function POSDashboard() {
 
   return (
     <ProtectedRoute>
-      <div className="flex h-screen w-full bg-background text-foreground overflow-hidden">
+      <div className="flex flex-col lg:flex-row h-screen w-full bg-background text-foreground overflow-hidden">
+        {/* Mobile Header */}
+        <header className="lg:hidden flex items-center justify-between p-4 border-b border-sidebar-border bg-sidebar sticky top-0 z-[60]">
+          <button
+            onClick={() => setIsSidebarOpen(true)}
+            className="p-2 -ml-2 text-2xl"
+          >
+            ☰
+          </button>
+
+          <div className="flex items-center space-x-2">
+            <div className="w-8 h-8 bg-pos-accent rounded-lg flex items-center justify-center text-white font-black text-sm">
+              K
+            </div>
+            <h1 className="text-sm font-black italic">Karobar Sahulat</h1>
+          </div>
+
+          <button
+            onClick={() => setMobileTab(mobileTab === 'products' ? 'cart' : 'products')}
+            className="relative p-2"
+          >
+            {mobileTab === 'products' ? '🛒' : '📦'}
+            {mobileTab === 'products' && cart.length > 0 && (
+              <span className="absolute top-0 right-0 w-4 h-4 bg-pos-accent text-white text-[10px] flex items-center justify-center rounded-full font-bold">
+                {cart.reduce((acc, curr) => acc + curr.quantity, 0)}
+              </span>
+            )}
+          </button>
+        </header>
+
+        {/* Backdrop for mobile sidebar */}
+        {isSidebarOpen && (
+          <div
+            className="lg:hidden fixed inset-0 bg-black/50 z-[100] backdrop-blur-sm"
+            onClick={() => setIsSidebarOpen(false)}
+          />
+        )}
+
         {/* Modern Sidebar (220px) */}
-        <aside className="w-[220px] bg-sidebar border-r border-sidebar-border flex flex-col justify-between py-8 px-4 shadow-sm relative z-50 transition-all duration-300">
+        <aside className={`
+          fixed lg:relative inset-y-0 left-0 w-[220px] bg-sidebar border-r border-sidebar-border flex flex-col justify-between py-8 px-4 shadow-sm z-[110] transition-transform duration-300 lg:translate-x-0
+          ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+        `}>
           <div className="space-y-10">
+            {/* Mobile Close Button */}
+            <button
+              className="lg:hidden absolute top-4 right-4 text-xl"
+              onClick={() => setIsSidebarOpen(false)}
+            >
+              ✕
+            </button>
             {/* Logo/Brand */}
             <div
               className="flex items-center space-x-3 px-2 group cursor-pointer"
@@ -430,9 +481,12 @@ export default function POSDashboard() {
 
         {/* Main Content Area */}
         <div className="flex-1 flex flex-col overflow-hidden bg-background">
-          <div className="flex-1 flex overflow-hidden">
+          <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
             {/* Center Area: Product Selection (55%) */}
-            <main className="flex-[0.55] overflow-hidden flex flex-col border-r border-sidebar-border">
+            <main className={`
+              flex-1 lg:flex-[0.55] overflow-hidden flex flex-col border-r border-sidebar-border
+              ${mobileTab === 'products' ? 'flex' : 'hidden lg:flex'}
+            `}>
               <div className="flex-1 overflow-y-auto custom-scrollbar p-6">
                 <ProductSearch
                   onAddToCart={addToCart}
@@ -444,7 +498,11 @@ export default function POSDashboard() {
 
             {/* Right Aside: Cart & Customer (45%) */}
             <aside
-              className={`flex-[0.45] bg-card flex flex-col overflow-hidden shadow-sm border-l border-sidebar-border transition-all duration-200 ${isDraggingOverCart ? 'ring-4 ring-pos-accent/20 bg-pos-accent/5' : ''}`}
+              className={`
+                flex-1 lg:flex-[0.45] bg-card flex flex-col overflow-hidden shadow-sm border-l border-sidebar-border transition-all duration-200 
+                ${mobileTab === 'cart' ? 'flex' : 'hidden lg:flex'}
+                ${isDraggingOverCart ? 'ring-4 ring-pos-accent/20 bg-pos-accent/5' : ''}
+              `}
               onDragOver={handleDragOver}
               onDragEnter={handleDragEnter}
               onDragLeave={handleDragLeave}
