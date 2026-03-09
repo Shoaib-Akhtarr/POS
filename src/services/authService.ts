@@ -7,7 +7,7 @@ const isBrowser = (): boolean => {
 };
 
 // Login user
-export const login = async (email: string, password: string): Promise<{ token: string }> => {
+export const login = async (email: string, password: string): Promise<{ token: string; role: string; shopId?: string }> => {
   try {
     const response = await api.post('/auth/login', { email, password });
     // Token is stored by the interceptors or manually if needed
@@ -26,9 +26,21 @@ export const login = async (email: string, password: string): Promise<{ token: s
 };
 
 // Register user
-export const register = async (name: string, email: string, password: string): Promise<{ token: string }> => {
+export const register = async (
+  name: string,
+  email: string,
+  shopName: string,
+  businessType: string,
+  plan: string = 'free'
+): Promise<{ token: string; role: string; shopId?: string }> => {
   try {
-    const response = await api.post('/auth/register', { name, email, password });
+    const response = await api.post('/auth/register', {
+      name,
+      email,
+      shopName,
+      businessType,
+      plan
+    });
     // Store token in localStorage
     if (response.data.token && isBrowser()) {
       localStorage.setItem('token', response.data.token);
@@ -44,10 +56,73 @@ export const register = async (name: string, email: string, password: string): P
   }
 };
 
+// Send OTP
+export const sendOTP = async (email: string): Promise<{ message: string }> => {
+  try {
+    const response = await api.post('/auth/send-otp', { email });
+    return response.data;
+  } catch (error: any) {
+    const errorMessage = error.response?.data?.message || 'Failed to send verification code';
+    throw new Error(errorMessage);
+  }
+};
+
+// Verify OTP
+export const verifyOTP = async (email: string, otp: string): Promise<{ message: string }> => {
+  try {
+    const response = await api.post('/auth/verify-otp', { email, otp });
+    return response.data;
+  } catch (error: any) {
+    const errorMessage = error.response?.data?.message || 'Invalid or expired code';
+    throw new Error(errorMessage);
+  }
+};
+
+// Store Temp Password
+export const storeTempPassword = async (email: string, password: string): Promise<{ message: string }> => {
+  try {
+    const response = await api.post('/auth/store-temp-password', { email, password });
+    return response.data;
+  } catch (error: any) {
+    const errorMessage = error.response?.data?.message || 'Failed to store password';
+    throw new Error(errorMessage);
+  }
+};
+
 // Logout user
 export const logout = (): void => {
   if (isBrowser()) {
     localStorage.removeItem('token');
+  }
+};
+
+// Get User Profile
+export const getProfile = async (): Promise<any> => {
+  try {
+    const response = await api.get('/user/profile');
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || 'Failed to fetch profile');
+  }
+};
+
+// Update User Profile
+export const updateProfile = async (data: { name: string; phoneNumber?: string; address?: string }): Promise<any> => {
+  try {
+    const response = await api.put('/user/profile', data);
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || 'Failed to update profile');
+  }
+};
+
+// Change Password
+export const changePassword = async (currentPassword: string, newPassword: string): Promise<any> => {
+  try {
+    const response = await api.put('/user/change-password', { currentPassword, newPassword });
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || 'Failed to change password');
   }
 };
 
@@ -77,16 +152,5 @@ export const verifySession = async (token: string): Promise<any> => {
       localStorage.removeItem('token');
     }
     return null;
-  }
-};
-
-// Change Password
-export const changePassword = async (currentPassword: string, newPassword: string): Promise<any> => {
-  try {
-    const response = await api.post('/auth/change-password', { currentPassword, newPassword });
-    return response.data;
-  } catch (error: any) {
-    const errorMessage = error.response?.data?.message || 'Failed to change password';
-    throw new Error(errorMessage);
   }
 };

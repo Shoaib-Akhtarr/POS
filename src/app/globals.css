@@ -1,73 +1,125 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Geist';
+  src: url('https://cdn.jsdelivr.net/font-geist/1.0.0/Geist-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
-  --sidebar: #ffffff;
-  --sidebar-border: #e2e8f0;
-  --card: #ffffff;
-  --card-border: #e2e8f0;
-  --accent: #3b82f6;
+  --background: #ffffff;
+  --foreground: #020617;
+  
+  /* SaaS Premium Palette */
+  --primary: #4f46e5; /* Indigo 600 */
+  --primary-glow: rgba(79, 70, 229, 0.15);
+  --accent: #0ea5e9; /* Sky 500 */
   --success: #10b981;
+  --warning: #f59e0b;
   --danger: #ef4444;
+  
+  --sidebar: #f8fafc;
+  --sidebar-border: #f1f5f9;
+  
+  --card: rgba(255, 255, 255, 0.7);
+  --card-border: rgba(226, 232, 240, 0.8);
+  
   --muted: #64748b;
   --muted-foreground: #94a3b8;
 }
 
 .dark {
-  --background: #0b0b1a;
-  /* Deep Navy Base */
-  --foreground: #f1f5f9;
-  --sidebar: #0f0f23;
-  --sidebar-border: rgba(255, 255, 255, 0.08);
-  --card: rgba(255, 255, 255, 0.03);
+  --background: #020617;
+  --foreground: #f8fafc;
+  
+  --primary: #818cf8; /* Indigo 400 */
+  --primary-glow: rgba(129, 140, 248, 0.1);
+  --accent: #38bdf8;
+  
+  --sidebar: #0f172a;
+  --sidebar-border: rgba(255, 255, 255, 0.05);
+  
+  --card: rgba(15, 23, 42, 0.6);
   --card-border: rgba(255, 255, 255, 0.08);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-border: var(--sidebar-border);
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
   --color-card: var(--card);
   --color-card-border: var(--card-border);
-  --color-pos-accent: var(--accent);
   --color-success: var(--success);
   --color-danger: var(--danger);
   --color-muted: var(--muted);
-
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  
+  --font-sans: 'Geist', 'Inter', var(--font-geist-sans);
+  --font-display: 'Geist', 'Inter', sans-serif;
+  
+  --radius-3xl: 1.5rem;
+  --radius-4xl: 2rem;
+  --radius-5xl: 2.5rem;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: 'Outfit', 'Inter', sans-serif;
+  font-family: var(--font-sans);
   min-height: 100vh;
   transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
 }
 
-.dark body {
-  background-image:
-    radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.03) 0%, transparent 40%),
-    radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.03) 0%, transparent 40%);
-}
-
-.glass-card {
+/* Premium Utilities */
+.glass {
   background: var(--card);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--card-border);
-  box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.05);
 }
 
-.dark .glass-card {
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+.glass-morphic {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+}
+
+.text-gradient {
+  background: linear-gradient(to right, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bg-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+}
+
+.dark .bg-grid {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+.animate-glow {
+  animation: glow 4s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 20px var(--primary-glow); }
+  to { box-shadow: 0 0 40px var(--primary-glow); }
 }
 
 .custom-scrollbar::-webkit-scrollbar {
-  width: 5px;
+  width: 6px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
@@ -75,7 +127,8 @@ body {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: var(--sidebar-border);
+  background: var(--muted-foreground);
+  opacity: 0.2;
   border-radius: 20px;
 }
 
@@ -89,8 +142,4 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
   appearance: textfield;
-}
-
-.pos-accent-glow {
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
 }

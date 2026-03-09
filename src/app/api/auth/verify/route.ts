@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { requireAuth } from '@/lib/auth';
+import { ADMIN_EMAILS } from '@/config/adminEmails';
+import generateToken from '@/lib/generateToken';
 
 export async function GET(req: NextRequest) {
     try {
@@ -12,18 +14,29 @@ export async function GET(req: NextRequest) {
             );
         }
 
+        // Determine role based on whitelist or database field
+        const role = ADMIN_EMAILS.includes(user.email.toLowerCase()) ? 'admin' : (user.role || 'user');
+
         return NextResponse.json(
             {
-                id: user._id,
+                _id: user.id, // Changed from user._id to user.id as per instruction snippet
+                name: user.name,
                 email: user.email,
-                name: user.name
+                role: role,
+                shopId: user.shop,
+                // Assuming generateToken function is available in scope
+                token: generateToken(user._id.toString(), user.email, role),
             },
             { status: 200 }
         );
     } catch (error: any) {
-        console.error('Verify token error:', error);
+        console.error('[Verify API ERROR]:', error);
         return NextResponse.json(
-            { message: 'Server Error during verification' },
+            {
+                message: 'Server Error during verification',
+                error: error?.message,
+                detail: error?.stack
+            },
             { status: 500 }
         );
     }

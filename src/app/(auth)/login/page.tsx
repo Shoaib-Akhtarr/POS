@@ -19,7 +19,7 @@ export default function LoginPage() {
 
     try {
       const data = await serviceLogin(email, password);
-      authLogin(data.token);
+      authLogin(data.token, data.role, data.shopId);
     } catch (err) {
       setError('Invalid email or password. Please try again.');
       console.error('Login error:', err);

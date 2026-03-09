@@ -21,10 +21,35 @@ const UserSchema = new mongoose.Schema(
             minlength: 6,
             select: false,
         },
+        phoneNumber: {
+            type: String,
+            trim: true,
+        },
+        address: {
+            type: String,
+            trim: true,
+        },
+        avatar: {
+            type: String,
+        },
+        role: {
+            type: String,
+            enum: ['admin', 'user'],
+            default: 'user',
+        },
+        shop: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Shop'
+        }
     },
     {
         timestamps: true,
     }
 );
 
-export default mongoose.models.User || mongoose.model('User', UserSchema);
+// Force schema refresh in development
+if (mongoose.models.User) {
+    delete mongoose.models.User;
+}
+
+export default mongoose.model('User', UserSchema);

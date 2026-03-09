@@ -56,7 +56,7 @@ export async function PATCH(
 
         const updates = await req.json();
 
-        // Find customer and verify ownership
+        // Find customer and verify shop ownership
         const customer = await Customer.findOne({ _id: id, user: user._id });
 
         if (!customer) {

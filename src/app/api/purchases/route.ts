@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
 
         if (productId) {
             // Case 1: Existing Product
-            targetProduct = await Product.findOne({ _id: productId, user: user.id });
+            targetProduct = await Product.findOne({ _id: productId, user: user._id });
             if (!targetProduct) {
                 return NextResponse.json({ error: 'Product not found' }, { status: 404 });
             }
@@ -43,8 +43,9 @@ export async function POST(req: NextRequest) {
                     sellingPrice,
                     costPrice, // Store initial cost
                     quantity: 0, // Will be updated by the purchase logic below
-                    user: user.id
+                    user: user._id
                 });
+                console.log('[Purchases API] New product created successfully:', targetProduct._id);
             } catch (err: any) {
                 if (err.code === 11000) {
                     return NextResponse.json({ error: 'A product with this name already exists. Please select it from the list.' }, { status: 400 });
@@ -64,13 +65,14 @@ export async function POST(req: NextRequest) {
             costPrice,
             quantity,
             totalCost,
-            user: user.id,
+            user: user._id,
         });
+        console.log('[Purchases API] Purchase record created successfully:', purchase._id);
 
         // 2. Update Product Stock
         const newQuantity = (targetProduct.quantity || 0) + quantity;
         targetProduct.quantity = newQuantity;
-        targetProduct.stock = newQuantity; // Sync
+        targetProduct.quantity = newQuantity; // Already updated above, but keeping for clarity if logic changes
         await targetProduct.save();
 
         return NextResponse.json(purchase, { status: 201 });
@@ -97,13 +99,13 @@ export async function GET(req: NextRequest) {
         const limit = parseInt(url.searchParams.get('limit') || '50');
         const skip = (page - 1) * limit;
 
-        const purchases = await Purchase.find({ user: user.id })
+        const purchases = await Purchase.find({ user: user._id })
             .sort({ purchaseDate: -1, createdAt: -1 })
             .skip(skip)
             .limit(limit)
             .lean();
 
-        const total = await Purchase.countDocuments({ user: user.id });
+        const total = await Purchase.countDocuments({ user: user._id });
 
         return NextResponse.json({
             purchases,

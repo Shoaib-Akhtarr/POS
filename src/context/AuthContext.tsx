@@ -5,9 +5,9 @@ import { useRouter } from 'next/navigation';
 import { getCurrentUser, verifySession } from '@/services/authService';
 
 interface AuthContextType {
-  user: { token: string } | null;
+  user: { token: string; shopId?: string; name?: string; email?: string; role?: string } | null;
   loading: boolean;
-  login: (token: string) => void;
+  login: (token: string, role: string, shopId?: string) => void;
   logout: () => void;
   isAuthenticated: boolean;
 }
@@ -15,7 +15,7 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<{ token: string } | null>(null);
+  const [user, setUser] = useState<{ token: string; shopId?: string; name?: string; email?: string; role?: string } | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
@@ -27,13 +27,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         // Asynchronously verify this token against the backend
         const verifiedUser = await verifySession(currentUser.token);
         if (verifiedUser) {
-          setUser(currentUser);
+          setUser({
+            token: currentUser.token,
+            shopId: verifiedUser.shopId,
+            name: verifiedUser.name,
+            email: verifiedUser.email,
+            role: verifiedUser.role
+          });
           setIsAuthenticated(true);
         } else {
           // Token was spoofed or expired
           setUser(null);
           setIsAuthenticated(false);
-          router.push('/login');
+          // router.push('/login'); // Don't redirect here, let components handle it
         }
       } else {
         setIsAuthenticated(false);
@@ -44,11 +50,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     checkAuthStatus();
   }, [router]);
 
-  const login = (token: string) => {
+  const login = (token: string, role: string, shopId?: string) => {
     localStorage.setItem('token', token);
-    setUser({ token });
+    setUser({ token, role, shopId });
     setIsAuthenticated(true);
-    router.push('/'); // Redirect to dashboard after login
+
+    // Role route handling: Admin/User -> Dashboard, Demo -> Demo
+    if (role === 'admin' || role === 'user') {
+      router.push('/dashboard');
+    } else {
+      router.push('/demo');
+    }
   };
 
   const logout = () => {

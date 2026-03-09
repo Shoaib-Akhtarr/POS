@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs';
 import connectToDatabase from '@/lib/db';
 import User from '@/models/User';
 import generateToken from '@/lib/generateToken';
+import { ADMIN_EMAILS } from '@/config/adminEmails';
 
 export async function POST(req: NextRequest) {
     try {
@@ -18,12 +19,32 @@ export async function POST(req: NextRequest) {
 
         const user = await User.findOne({ email }).select('+password');
 
-        if (user && (await bcrypt.compare(password, user.password))) {
+        console.log(`[LOGIN ATTEMPT] Email: ${email}`);
+        if (!user) {
+            console.log(`[LOGIN FAILED] User not found: ${email}`);
+            return NextResponse.json(
+                { message: 'Invalid email or password' },
+                { status: 401 }
+            );
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        console.log(`[LOGIN DEBUG] User found. Password Match: ${isMatch}`);
+        if (!isMatch) {
+            console.log(`[LOGIN FAILED] Password mismatch for: ${email}`);
+            console.log(`[LOGIN DEBUG] Stored hash prefix: ${user.password.substring(0, 7)}`);
+        }
+
+        if (isMatch) {
+            // Check if user is admin via whitelist or stored role
+            const role = ADMIN_EMAILS.includes(email.toLowerCase()) ? 'admin' : (user.role || 'user');
+
             return NextResponse.json({
                 _id: user.id,
                 name: user.name,
                 email: user.email,
-                token: generateToken(user._id),
+                role: role,
+                token: generateToken(user._id, user.email, role),
             });
         } else {
             return NextResponse.json(

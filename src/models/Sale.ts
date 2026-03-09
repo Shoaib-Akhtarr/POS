@@ -7,6 +7,10 @@ const SaleSchema = new mongoose.Schema(
             ref: 'User',
             required: true,
         },
+        shop: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Shop'
+        },
         cartItems: [
             {
                 name: { type: String, required: true },

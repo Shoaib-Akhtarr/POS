@@ -13,17 +13,11 @@ export async function GET(req: NextRequest) {
         await connectToDatabase();
 
         // Dues are sales where payment is pending (Credit that is not paid)
-        const query = {
-            user: user._id,
-            paymentMethod: 'Credit',
-            isPaid: false
-        };
-
-        const dues = await Sale.find(query)
-            .populate('cartItems.product', 'name price')
+        const sales = await Sale.find({ user: user._id, isPaid: false })
+            .populate('customer', 'name')
             .sort({ createdAt: -1 });
 
-        return NextResponse.json(dues);
+        return NextResponse.json(sales);
     } catch (error: any) {
         console.error('Error fetching dues:', error);
         return NextResponse.json(

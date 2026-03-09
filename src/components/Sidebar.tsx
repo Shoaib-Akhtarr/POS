@@ -29,15 +29,18 @@ export default function Sidebar({
     const searchParams = useSearchParams();
     const { logout } = useAuth();
 
-    const currentView = pathname === '/' ? (searchParams.get('view') === 'pos' ? 'pos' : 'analytics') : pathname.substring(1);
+    const currentView = pathname === '/dashboard'
+        ? (searchParams.get('view') === 'pos' ? 'pos' : 'analytics')
+        : pathname.includes('subscription') ? 'subscription' : pathname.replace('/dashboard', '').slice(1);
 
     const navItems = [
-        { id: 'analytics', label: 'Home', icon: '📊', path: '/' },
-        { id: 'pos', label: 'POS / Sales', icon: '💰', path: '/?view=pos' },
+        { id: 'analytics', label: 'Home', icon: '📊', path: '/dashboard' },
+        { id: 'pos', label: 'POS / Sales', icon: '💰', path: '/dashboard?view=pos' },
         { id: 'products', label: 'Products', icon: '📦', path: '/products' },
         { id: 'purchases', label: 'Purchases', icon: '🛒', path: '/purchases' },
         { id: 'customers', label: 'Customers', icon: '👥', path: '/customers' },
         { id: 'transactions', label: 'Transactions', icon: '📄', path: '/transactions' },
+        { id: 'profile', label: 'Profile', icon: '👤', path: '/settings/profile' },
         { id: 'settings', label: 'Settings', icon: '⚙️', isAction: true }
     ];
 
@@ -77,7 +80,7 @@ export default function Sidebar({
                     {/* Logo/Brand */}
                     <div
                         className="flex items-center space-x-3 px-2 group cursor-pointer"
-                        onClick={() => router.push('/')}
+                        onClick={() => router.push('/dashboard')}
                     >
                         <div className="w-10 h-10 bg-pos-accent rounded-xl flex items-center justify-center text-white font-black text-xl shadow-lg shadow-pos-accent/20 group-hover:scale-110 transition-transform duration-300">
                             K
@@ -125,14 +128,6 @@ export default function Sidebar({
                             )}
                         </div>
                     </div>
-
-                    <button
-                        onClick={onLogoutClick}
-                        className="flex items-center space-x-3 w-full p-4 rounded-xl text-red-500 font-bold text-[11px] uppercase tracking-wider hover:bg-red-500/5 transition-all duration-200 group border border-transparent hover:border-red-500/10"
-                    >
-                        <span className="text-lg leading-none group-hover:rotate-12 transition-transform">↪️</span>
-                        <span>Log out</span>
-                    </button>
                 </div>
             </aside>
         </>

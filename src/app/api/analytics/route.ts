@@ -19,7 +19,7 @@ export async function GET(req: NextRequest) {
         today.setHours(0, 0, 0, 0);
 
         const stats = await Sale.aggregate([
-            { $match: { user: user._id } },
+            { $match: { user: new mongoose.Types.ObjectId(user.id) } },
             {
                 $group: {
                     _id: null,
@@ -37,7 +37,7 @@ export async function GET(req: NextRequest) {
         const salesTrend = await Sale.aggregate([
             {
                 $match: {
-                    user: user._id,
+                    user: new mongoose.Types.ObjectId(user.id),
                     createdAt: { $gte: sevenDaysAgo }
                 }
             },
@@ -52,7 +52,7 @@ export async function GET(req: NextRequest) {
 
         // 3. Category Distribution
         const categoryData = await Sale.aggregate([
-            { $match: { user: user._id } },
+            { $match: { user: new mongoose.Types.ObjectId(user.id) } },
             { $unwind: "$cartItems" },
             {
                 $lookup: {

@@ -32,6 +32,10 @@ const CustomerSchema = new mongoose.Schema(
             ref: 'User',
             required: true,
         },
+        shop: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Shop'
+        },
     },
     {
         timestamps: true,
@@ -42,4 +46,9 @@ const CustomerSchema = new mongoose.Schema(
 // but a single user cannot have multiple customers with the same phone number
 CustomerSchema.index({ phone: 1, user: 1 }, { unique: true, partialFilterExpression: { phone: { $gt: "" } } });
 
-export default mongoose.models.Customer || mongoose.model('Customer', CustomerSchema);
+// Force schema refresh in development
+if (mongoose.models.Customer) {
+    delete mongoose.models.Customer;
+}
+
+export default mongoose.model('Customer', CustomerSchema);

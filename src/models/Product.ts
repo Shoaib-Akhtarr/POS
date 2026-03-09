@@ -36,6 +36,10 @@ const ProductSchema = new mongoose.Schema(
             ref: 'User',
             required: true,
         },
+        shop: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Shop'
+        },
     },
     {
         timestamps: true,
@@ -45,4 +49,9 @@ const ProductSchema = new mongoose.Schema(
 // Compound index for unique product name per user
 ProductSchema.index({ name: 1, user: 1 }, { unique: true });
 
-export default mongoose.models.Product || mongoose.model('Product', ProductSchema);
+// Force schema refresh in development
+if (mongoose.models.Product) {
+    delete mongoose.models.Product;
+}
+
+export default mongoose.model('Product', ProductSchema);

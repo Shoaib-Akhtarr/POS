@@ -46,6 +46,7 @@ export async function POST(req: NextRequest) {
 
         const product = await Product.create({
             user: user._id,
+            shop: user.shop || undefined,
             name,
             costPrice,
             sellingPrice,

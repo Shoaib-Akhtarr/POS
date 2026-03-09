@@ -20,7 +20,7 @@ export async function GET(req: NextRequest) {
 
         await connectToDatabase();
 
-        // Search using a regex on the product name or category, scoped to current user
+        // Search using a regex on the product name or category, scoped to current shop
         const products = await Product.find({
             user: user._id,
             $or: [

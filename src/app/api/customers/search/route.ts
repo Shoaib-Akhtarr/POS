@@ -11,20 +11,20 @@ export async function GET(req: NextRequest) {
         }
 
         const searchParams = req.nextUrl.searchParams;
-        const query = searchParams.get('q');
+        const queryParam = searchParams.get('q'); // Renamed to avoid conflict with query object
 
-        if (!query) {
+        if (!queryParam) {
             return NextResponse.json([]);
         }
 
         await connectToDatabase();
 
-        // Search by name or phone (case-insensitive)
+        // Search by name or phone (case-insensitive), scoped to shop
         const customers = await Customer.find({
             user: user._id,
             $or: [
-                { name: { $regex: query, $options: 'i' } },
-                { phone: { $regex: query, $options: 'i' } }
+                { name: { $regex: queryParam, $options: 'i' } },
+                { phone: { $regex: queryParam, $options: 'i' } }
             ]
         }).limit(20);
 

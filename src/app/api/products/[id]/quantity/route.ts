@@ -13,7 +13,7 @@ export async function PATCH(
         // Some routes might allow updating without strict auth in a completely offline
         // trust model, but ideally we check auth:
         const user = await requireAuth(req);
-        // if (!user) return NextResponse.json({ message: 'Not authorized' }, { status: 401 });
+        if (!user) return NextResponse.json({ message: 'Not authorized' }, { status: 401 });
 
         await connectToDatabase();
 
@@ -27,7 +27,7 @@ export async function PATCH(
             return NextResponse.json({ message: 'Please provide quantity' }, { status: 400 });
         }
 
-        const product = await Product.findById(id);
+        const product = await Product.findOne({ _id: id, user: user._id });
 
         if (!product) {
             return NextResponse.json({ message: 'Product not found' }, { status: 404 });

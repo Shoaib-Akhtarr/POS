@@ -39,6 +39,10 @@ const PurchaseSchema = new mongoose.Schema(
             ref: 'User',
             required: true,
         },
+        shop: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Shop'
+        },
     },
     {
         timestamps: true,
@@ -49,4 +53,9 @@ const PurchaseSchema = new mongoose.Schema(
 PurchaseSchema.index({ user: 1, purchaseDate: -1 });
 PurchaseSchema.index({ user: 1, supplierName: 1 });
 
-export default mongoose.models.Purchase || mongoose.model('Purchase', PurchaseSchema);
+// Force schema refresh in development
+if (mongoose.models.Purchase) {
+    delete mongoose.models.Purchase;
+}
+
+export default mongoose.model('Purchase', PurchaseSchema);
