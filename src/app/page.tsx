@@ -256,28 +256,24 @@ function POSContent() {
       {editingProduct && <EditProductModal product={editingProduct} onClose={() => setEditingProduct(null)} onSuccess={() => { setEditingProduct(null); setProductRefreshTrigger(prev => prev + 1); }} />}
 
       {showPrintPreview && (
-        <div className="relative z-[300]">
-          <ReceiptPreview cart={cart} customerName={customerName} paymentMethod={paymentMethod} total={calculateTotal()} discount={parseFloat(discountAmount) || 0} onClose={() => setShowPrintPreview(false)} onPrint={() => setShowPrintPreview(false)} />
-        </div>
+        <ReceiptPreview cart={cart} customerName={customerName} paymentMethod={paymentMethod} total={calculateTotal()} discount={parseFloat(discountAmount) || 0} onClose={() => setShowPrintPreview(false)} onPrint={() => setShowPrintPreview(false)} />
       )}
       {completedSaleData && (
-        <div className="relative z-[300]">
-          <ReceiptPreview
-            cart={completedSaleData.cartItems.map((item: any) => ({
-              product: { _id: item.product, name: item.name, costPrice: item.price, sellingPrice: item.price, price: item.price, category: 'General', description: '', salesCount: 0, user: 'system', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
-              quantity: item.quantity
-            }))}
-            customerName={completedSaleData.customerName || ''}
-            paymentMethod={completedSaleData.paymentMethod}
-            total={completedSaleData.totalAmount}
-            discount={completedSaleData.discount}
-            previousDues={completedSaleData.previousDues}
-            amountPaid={completedSaleData.amountPaid}
-            balanceDue={completedSaleData.balanceDue}
-            onClose={() => { setCompletedSaleData(null); clearCart(); }}
-            onPrint={() => { setCompletedSaleData(null); clearCart(); }}
-          />
-        </div>
+        <ReceiptPreview
+          cart={completedSaleData.cartItems.map((item: any) => ({
+            product: { _id: item.product, name: item.name, costPrice: item.price, sellingPrice: item.price, price: item.price, category: 'General', description: '', salesCount: 0, user: 'system', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
+            quantity: item.quantity
+          }))}
+          customerName={completedSaleData.customerName || ''}
+          paymentMethod={completedSaleData.paymentMethod}
+          total={completedSaleData.totalAmount}
+          discount={completedSaleData.discount}
+          previousDues={completedSaleData.previousDues}
+          amountPaid={completedSaleData.amountPaid}
+          balanceDue={completedSaleData.balanceDue}
+          onClose={() => { setCompletedSaleData(null); clearCart(); }}
+          onPrint={() => { setCompletedSaleData(null); clearCart(); }}
+        />
       )}
     </AuthenticatedLayout>
   );
