@@ -44,7 +44,8 @@ export async function POST(req: NextRequest) {
                 name: user.name,
                 email: user.email,
                 role: role,
-                token: generateToken(user._id.toString(), user.email, role),
+                // Cache-buster: Forced build at 2026-03-10
+                token: generateToken(user.id, user.email, role),
             });
         } else {
             return NextResponse.json(

@@ -25,7 +25,8 @@ export async function GET(req: NextRequest) {
                 role: role,
                 shopId: user.shop,
                 // Assuming generateToken function is available in scope
-                token: generateToken(user._id.toString(), user.email, role),
+                // Cache-buster: Forced build at 2026-03-10
+                token: generateToken(user.id, user.email, role),
             },
             { status: 200 }
         );
