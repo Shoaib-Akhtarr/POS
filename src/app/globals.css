@@ -6,26 +6,22 @@
   --sidebar: #ffffff;
   --sidebar-border: #e2e8f0;
   --card: #ffffff;
-  --card-border: #e5e7eb;
-  --accent: #2563eb;
-  --accent-foreground: #ffffff;
-  --success: #16a34a;
+  --card-border: #e2e8f0;
+  --accent: #3b82f6;
+  --success: #10b981;
   --danger: #ef4444;
   --muted: #64748b;
   --muted-foreground: #94a3b8;
 }
 
 .dark {
-  --background: #0f0f1d;
-  --foreground: #f8fafc;
-  --sidebar: #15152a;
-  --sidebar-border: rgba(255, 255, 255, 0.05);
+  --background: #0b0b1a;
+  /* Deep Navy Base */
+  --foreground: #f1f5f9;
+  --sidebar: #0f0f23;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
   --card: rgba(255, 255, 255, 0.03);
-  --card-border: rgba(255, 255, 255, 0.05);
-  --accent: #3b82f6;
-  --accent-foreground: #ffffff;
-  --muted: #94a3b8;
-  --muted-foreground: #64748b;
+  --card-border: rgba(255, 255, 255, 0.08);
 }
 
 @theme inline {
@@ -47,12 +43,31 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Outfit', 'Inter', sans-serif;
+  min-height: 100vh;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.dark body {
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.03) 0%, transparent 40%);
+}
+
+.glass-card {
+  background: var(--card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.05);
+}
+
+.dark .glass-card {
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
 .custom-scrollbar::-webkit-scrollbar {
-  width: 4px;
+  width: 5px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
@@ -61,18 +76,7 @@ body {
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background: var(--sidebar-border);
-  border-radius: 10px;
-}
-
-.pos-gradient-bg {
-  background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.03), transparent),
-    radial-gradient(circle at bottom left, rgba(59, 130, 246, 0.03), transparent);
-}
-
-.glass-card {
-  background: var(--card);
-  backdrop-filter: blur(12px);
-  border: 1px solid var(--card-border);
+  border-radius: 20px;
 }
 
 /* Hide number input spinners */
@@ -84,4 +88,9 @@ input::-webkit-inner-spin-button {
 
 input[type=number] {
   -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.pos-accent-glow {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
 }

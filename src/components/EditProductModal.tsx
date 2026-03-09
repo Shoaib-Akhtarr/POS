@@ -61,7 +61,7 @@ const EditProductModal: React.FC<EditProductModalProps> = ({ product, onClose, o
     };
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-[200] p-4 animate-in fade-in duration-200">
+        <div className="absolute inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-[200] p-4 animate-in fade-in duration-200">
             <div className="bg-sidebar border border-sidebar-border rounded-[32px] shadow-2xl max-w-md w-full p-8 relative animate-in zoom-in-95 duration-200">
                 <div className="flex justify-between items-center mb-6">
                     <div className="flex items-center space-x-3">

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Sale } from '@/types';
 import { getSales } from '@/services/salesService';
-import ProtectedRoute from '@/components/ProtectedRoute';
+import AuthenticatedLayout from '@/components/AuthenticatedLayout';
 import TransactionDetailsModal from '@/components/TransactionDetailsModal';
 
 export default function AllTransactionsPage() {
@@ -199,8 +199,8 @@ export default function AllTransactionsPage() {
     };
 
     return (
-        <ProtectedRoute>
-            <div className="min-h-screen bg-background p-4 sm:p-8">
+        <AuthenticatedLayout>
+            <div className="h-full bg-background p-4 sm:p-8 flex flex-col overflow-hidden">
                 <header className="mb-8 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
                     <div className="flex items-center space-x-4">
                         <div className="w-14 h-14 bg-pos-accent rounded-xl flex items-center justify-center text-white font-black text-2xl shadow-lg shadow-pos-accent/20">🧾</div>
@@ -229,15 +229,6 @@ export default function AllTransactionsPage() {
                                 <path fillRule="evenodd" d="M5 4v3H4a2 2 0 00-2 2v3a2 2 0 002 2h1v2a2 2 0 002 2h6a2 2 0 002-2v-2h1a2 2 0 002-2V9a2 2 0 00-2-2h-1V4a2 2 0 00-2-2H7a2 2 0 00-2 2zm8 0H7v3h6V4zm0 8H7v4h6v-4z" clipRule="evenodd" />
                             </svg>
                             {exportLoading ? '...' : 'Print All (PDF)'}
-                        </button>
-                        <button
-                            onClick={() => router.push('/')}
-                            className="flex-1 lg:flex-none px-6 py-3 bg-sidebar border border-sidebar-border text-foreground rounded-xl transition-all font-black text-[11px] uppercase tracking-wider shadow-sm hover:bg-card-border hover:-translate-y-0.5 flex items-center justify-center gap-2"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                                <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
-                            </svg>
-                            Back to POS
                         </button>
                     </div>
                 </header>
@@ -374,6 +365,6 @@ export default function AllTransactionsPage() {
                     onClose={() => setSelectedSale(null)}
                 />
             )}
-        </ProtectedRoute>
+        </AuthenticatedLayout>
     );
 }

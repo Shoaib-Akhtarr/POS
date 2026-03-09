@@ -50,7 +50,7 @@ export default function AddCustomerModal({ onClose, onSuccess, initialName = '' 
     };
 
     return (
-        <div className="fixed inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center z-[200] p-4 animate-in fade-in duration-200">
+        <div className="absolute inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center z-[200] p-4 animate-in fade-in duration-200">
             <div className="bg-sidebar border border-sidebar-border rounded-[32px] shadow-2xl max-w-md w-full p-6 sm:p-8 relative animate-in zoom-in-95 duration-200 overflow-y-auto max-h-[90vh] custom-scrollbar">
                 <div className="flex justify-between items-center mb-6">
                     <div className="flex items-center space-x-3">

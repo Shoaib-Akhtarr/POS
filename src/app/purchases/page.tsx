@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import ProtectedRoute from '@/components/ProtectedRoute';
 import AddPurchaseModal from '@/components/AddPurchaseModal';
 import { getPurchases } from '@/services/purchaseService';
 import { Purchase } from '@/types';
+import AuthenticatedLayout from '@/components/AuthenticatedLayout';
 
 export default function PurchasesPage() {
     const router = useRouter();
@@ -52,8 +52,8 @@ export default function PurchasesPage() {
     };
 
     return (
-        <ProtectedRoute>
-            <div className="min-h-screen bg-background p-4 sm:p-8 flex flex-col">
+        <AuthenticatedLayout>
+            <div className="h-full bg-background p-4 sm:p-8 flex flex-col overflow-hidden">
                 <header className="mb-8 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
                     <div className="flex items-center space-x-4">
                         <div className="w-14 h-14 bg-pos-accent rounded-xl flex items-center justify-center text-white font-black text-2xl shadow-lg shadow-pos-accent/20">🛒</div>
@@ -69,12 +69,6 @@ export default function PurchasesPage() {
                         >
                             <span className="text-lg">➕</span>
                             Log New Purchase
-                        </button>
-                        <button
-                            onClick={() => router.push('/')}
-                            className="flex-1 lg:flex-none px-6 py-3 bg-sidebar border border-sidebar-border text-foreground rounded-xl transition-all font-black text-[11px] uppercase tracking-wider shadow-sm hover:bg-card-border hover:-translate-y-0.5 flex items-center justify-center gap-2"
-                        >
-                            🏠 Back to POS
                         </button>
                     </div>
                 </header>
@@ -223,6 +217,6 @@ export default function PurchasesPage() {
                     }}
                 />
             )}
-        </ProtectedRoute>
+        </AuthenticatedLayout>
     );
 }

@@ -37,7 +37,7 @@ export default function ReceivePaymentModal({ customer, onClose, onSuccess }: Re
     };
 
     return (
-        <div className="fixed inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center z-[210] p-4">
+        <div className="absolute inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center z-[210] p-4">
             <div className="bg-card border border-card-border rounded-2xl shadow-xl max-w-sm w-full p-6">
                 <div className="flex justify-between items-center mb-4 leading-none">
                     <h2 className="text-xl font-bold text-foreground">Receive Payment</h2>

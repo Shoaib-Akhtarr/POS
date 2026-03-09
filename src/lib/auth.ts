@@ -4,33 +4,43 @@ import User from '@/models/User';
 import connectToDatabase from '@/lib/db';
 
 export const requireAuth = async (req: NextRequest) => {
-    let token;
-    const authHeader = req.headers.get('authorization');
+    const authHeader = req.headers.get('authorization') || req.headers.get('Authorization');
 
-    if (authHeader && authHeader.startsWith('Bearer')) {
+    if (!authHeader) {
+        console.warn('[Auth] No Authorization header found');
+        return null;
+    }
+
+    if (authHeader.toLowerCase().startsWith('bearer ')) {
+        const token = authHeader.split(' ')[1];
         try {
-            token = authHeader.split(' ')[1];
-            const secret = process.env.JWT_SECRET || 'fallback_secret';
+            const secret = process.env.JWT_SECRET;
+
+            if (!secret) {
+                console.error('[Auth] CRITICAL: JWT_SECRET is not defined in environment variables!');
+                // Fallback to a hardcoded one ONLY if allowed, but better to fail or use the existing fallback
+            }
 
             const decoded = jwt.verify(
                 token,
-                secret
+                secret || 'fallback_secret'
             ) as jwt.JwtPayload;
 
             await connectToDatabase();
             const user = await User.findById(decoded.id).select('-password');
 
             if (!user) {
-                console.warn(`[Auth] User not found for ID: ${decoded.id}`);
+                console.warn(`[Auth] User not found in database for ID: ${decoded.id}`);
+                return null;
             }
 
-            return user; // Return the user object if authenticated
+            return user;
         } catch (error: any) {
-            console.error(`[Auth] JWT verification failed for token: ${token ? 'PROVIDED' : 'MISSING'}. Error: ${error.message}`);
+            console.error(`[Auth] JWT Verification Failed. Error: ${error.message} | Token provided: ${token ? 'YES' : 'NO'}`);
             return null;
         }
     }
 
-    console.warn('[Auth] No Bearer token found in headers');
+    console.warn('[Auth] Authorization header does not start with "Bearer "');
     return null;
 };

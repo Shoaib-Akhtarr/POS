@@ -24,7 +24,7 @@ const TransactionDetailsModal: React.FC<TransactionDetailsModalProps> = ({ sale,
     const isPaymentOnly = sale.totalAmount === 0 && sale.cartItems.length === 0 && (sale.amountPaid || 0) > 0;
 
     return (
-        <div className="fixed inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center z-[200] p-4 animate-in fade-in duration-200">
+        <div className="absolute inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center z-[200] p-4 animate-in fade-in duration-200">
             <div className="bg-sidebar border border-sidebar-border rounded-[32px] shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col relative animate-in zoom-in-95 duration-200">
                 <div className="p-8 border-b border-sidebar-border Shrink-0">
                     <div className="flex justify-between items-start">

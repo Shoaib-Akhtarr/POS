@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { Sale, Customer } from '@/types';
 import { getCustomers } from '@/services/customerService';
 import ProtectedRoute from '@/components/ProtectedRoute';
+import AuthenticatedLayout from '@/components/AuthenticatedLayout';
 import CustomerHistory from '@/components/CustomerHistory';
 import TransactionDetailsModal from '@/components/TransactionDetailsModal';
 import AddCustomerModal from '@/components/AddCustomerModal';
@@ -101,8 +102,8 @@ export default function AllCustomersPage() {
     };
 
     return (
-        <ProtectedRoute>
-            <div className="min-h-screen bg-background p-4 sm:p-8">
+        <AuthenticatedLayout>
+            <div className="h-full bg-background p-4 sm:p-8 flex flex-col overflow-hidden">
                 <header className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div className="flex items-center space-x-3">
                         <div className="w-10 h-10 sm:w-14 sm:h-14 bg-pos-accent rounded-xl flex items-center justify-center text-white font-black text-xl sm:text-2xl shadow-lg shadow-pos-accent/20">👥</div>
@@ -112,15 +113,6 @@ export default function AllCustomersPage() {
                         </div>
                     </div>
                     <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
-                        <button
-                            onClick={() => router.push('/')}
-                            className="w-full sm:w-auto px-4 py-2 sm:px-6 sm:py-3 bg-sidebar border border-sidebar-border text-foreground rounded-xl transition-all font-black text-[10px] sm:text-[11px] uppercase tracking-wider shadow-sm hover:bg-card-border flex items-center justify-center gap-2"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                                <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
-                            </svg>
-                            Back
-                        </button>
                         <button
                             onClick={() => setIsAddModalOpen(true)}
                             className="w-full sm:w-auto px-4 py-2 sm:px-6 sm:py-3 bg-pos-accent text-white rounded-xl transition-all font-black text-[10px] sm:text-[11px] uppercase tracking-wider shadow-lg hover:bg-blue-600 flex items-center justify-center gap-2"
@@ -229,7 +221,7 @@ export default function AllCustomersPage() {
                 </div>
 
                 {selectedCustomerName && (
-                    <div className="fixed inset-0 z-[100] bg-background/80 backdrop-blur-md p-4 sm:p-10 flex items-center justify-center">
+                    <div className="absolute inset-0 z-[100] bg-background/80 backdrop-blur-md p-4 sm:p-10 flex items-center justify-center">
                         <div className="w-full max-w-5xl h-[90vh] sm:h-[80vh] bg-card rounded-[32px] sm:rounded-[40px] border border-card-border overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-300">
                             <CustomerHistory
                                 customerName={selectedCustomerName}
@@ -261,6 +253,6 @@ export default function AllCustomersPage() {
                     />
                 )}
             </div>
-        </ProtectedRoute>
+        </AuthenticatedLayout>
     );
 }

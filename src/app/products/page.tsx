@@ -3,9 +3,9 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Product } from '@/types';
-import ProtectedRoute from '@/components/ProtectedRoute';
 import ProductSearch from '@/components/ProductSearch';
 import { createProduct, getAllProducts, deleteProduct } from '@/services/productService';
+import AuthenticatedLayout from '@/components/AuthenticatedLayout';
 import EditProductModal from '@/components/EditProductModal';
 
 type TabType = 'all' | 'add' | 'outofstock';
@@ -93,8 +93,8 @@ export default function ProductsPage() {
     };
 
     return (
-        <ProtectedRoute>
-            <div className="min-h-screen bg-background p-4 sm:p-8 flex flex-col">
+        <AuthenticatedLayout>
+            <div className="h-full bg-background p-4 sm:p-8 flex flex-col overflow-hidden">
                 <header className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div className="flex items-center space-x-3">
                         <div className="w-10 h-10 sm:w-14 sm:h-14 bg-pos-accent rounded-xl flex items-center justify-center text-white font-black text-xl sm:text-2xl shadow-lg shadow-pos-accent/20">📦</div>
@@ -103,15 +103,6 @@ export default function ProductsPage() {
                             <p className="text-[9px] sm:text-[11px] font-bold text-muted-foreground uppercase tracking-widest mt-0.5">Inventory Management</p>
                         </div>
                     </div>
-                    <button
-                        onClick={() => router.push('/')}
-                        className="w-full sm:w-auto px-4 py-2 sm:px-6 sm:py-3 bg-sidebar border border-sidebar-border text-foreground rounded-xl transition-all font-black text-[10px] sm:text-[11px] uppercase tracking-wider shadow-sm hover:bg-card-border flex items-center justify-center gap-2"
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                            <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
-                        </svg>
-                        Back to POS
-                    </button>
                 </header>
 
                 <div className="bg-card rounded-[32px] shadow-sm border border-card-border overflow-hidden flex-1 flex flex-col">
@@ -202,6 +193,6 @@ export default function ProductsPage() {
                     />
                 )}
             </div>
-        </ProtectedRoute>
+        </AuthenticatedLayout>
     );
 }
