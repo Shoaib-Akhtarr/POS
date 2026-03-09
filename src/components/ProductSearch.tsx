@@ -86,7 +86,7 @@ export default function ProductSearch({ onAddToCart, onEditProduct, refreshTrigg
     }
   };
 
-  const categories = ['All', 'Grocery', 'Fertilizer', 'Seeds', 'Other'];
+  const categories = ['All', ...Array.from(new Set(products.map(p => p.category))).filter(Boolean)];
 
   return (
     <div className="space-y-6">
