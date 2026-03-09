@@ -61,6 +61,13 @@ export async function PUT(
             return NextResponse.json({ message: 'Invalid product ID' }, { status: 400 });
         }
 
+        // 1. Get original product to compare stock
+        const originalProduct = await Product.findOne({ _id: id, user: user._id });
+        if (!originalProduct) {
+            return NextResponse.json({ message: 'Product not found' }, { status: 404 });
+        }
+
+        // 2. Perform Update
         const updatedProduct = await Product.findOneAndUpdate(
             { _id: id, user: user._id },
             { $set: body },
@@ -69,6 +76,31 @@ export async function PUT(
 
         if (!updatedProduct) {
             return NextResponse.json({ message: 'Product not found' }, { status: 404 });
+        }
+
+        // 3. Automated Purchase Logging (ONLY if stock increased)
+        const oldQty = originalProduct.quantity || 0;
+        const newQty = updatedProduct.quantity || 0;
+
+        if (newQty > oldQty) {
+            const diff = newQty - oldQty;
+            try {
+                // Import Purchase model inside to avoid circular deps if any
+                const Purchase = mongoose.models.Purchase || (await import('@/models/Purchase')).default;
+
+                await Purchase.create({
+                    product: updatedProduct._id,
+                    productName: updatedProduct.name,
+                    supplierName: 'Manual Adjustment',
+                    costPrice: 0,
+                    quantity: diff,
+                    totalCost: 0,
+                    user: user.id
+                });
+            } catch (purchaseErr) {
+                console.error('Failed to auto-log purchase improvement:', purchaseErr);
+                // We don't fail the product update if purchase logging fails, but we log it.
+            }
         }
 
         return NextResponse.json(updatedProduct);

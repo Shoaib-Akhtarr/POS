@@ -55,3 +55,17 @@ export interface Sale {
   createdAt?: string;
   updatedAt?: string;
 }
+
+export interface Purchase {
+  _id: string;
+  product: string;
+  productName: string;
+  supplierName: string;
+  costPrice: number;
+  quantity: number;
+  totalCost: number;
+  purchaseDate: string;
+  user: string;
+  createdAt: string;
+  updatedAt: string;
+}

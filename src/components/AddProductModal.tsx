@@ -76,19 +76,6 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ onClose, onSuccess })
 
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-[2px] mb-2">Cost Price *</label>
-                            <input
-                                type="number"
-                                name="costPrice"
-                                required
-                                min="0"
-                                step="0.01"
-                                value={formData.costPrice}
-                                onChange={handleChange}
-                                className="w-full px-4 py-3 bg-card border border-card-border rounded-xl focus:outline-none focus:ring-4 focus:ring-pos-accent/10 focus:border-pos-accent transition-all text-foreground font-bold"
-                            />
-                        </div>
-                        <div>
                             <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-[2px] mb-2">Selling Price *</label>
                             <input
                                 type="number"
@@ -101,21 +88,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ onClose, onSuccess })
                                 className="w-full px-4 py-3 bg-card border border-card-border rounded-xl focus:outline-none focus:ring-4 focus:ring-pos-accent/10 focus:border-pos-accent transition-all text-foreground font-bold"
                             />
                         </div>
-                    </div>
 
-                    <div className="grid grid-cols-2 gap-4">
-                        <div>
-                            <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-[2px] mb-2">Stock *</label>
-                            <input
-                                type="number"
-                                name="quantity"
-                                required
-                                min="0"
-                                value={formData.quantity}
-                                onChange={handleChange}
-                                className="w-full px-4 py-3 bg-card border border-card-border rounded-xl focus:outline-none focus:ring-4 focus:ring-pos-accent/10 focus:border-pos-accent transition-all text-foreground font-bold"
-                            />
-                        </div>
                         <div>
                             <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-[2px] mb-2">Category *</label>
                             <input
@@ -127,17 +100,6 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ onClose, onSuccess })
                                 className="w-full px-4 py-3 bg-card border border-card-border rounded-xl focus:outline-none focus:ring-4 focus:ring-pos-accent/10 focus:border-pos-accent transition-all text-foreground font-bold"
                             />
                         </div>
-                    </div>
-
-                    <div>
-                        <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-[2px] mb-2">Description</label>
-                        <textarea
-                            name="description"
-                            rows={2}
-                            value={formData.description}
-                            onChange={handleChange}
-                            className="w-full px-4 py-3 bg-card border border-card-border rounded-xl focus:outline-none focus:ring-4 focus:ring-pos-accent/10 focus:border-pos-accent transition-all text-foreground font-bold custom-scrollbar"
-                        ></textarea>
                     </div>
 
                     <div className="flex justify-end gap-3 pt-4 border-t border-card-border mt-6">

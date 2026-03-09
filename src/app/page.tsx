@@ -391,6 +391,7 @@ export default function POSDashboard() {
               {[
                 { id: 'pos', label: 'Dashboard', icon: '🏠' },
                 { id: 'products', label: 'Products', icon: '📦', action: () => router.push('/products') },
+                { id: 'purchases', label: 'Purchases', icon: '🛒', action: () => router.push('/purchases') },
                 { id: 'customers', label: 'Customers', icon: '👥', action: () => router.push('/customers') },
                 { id: 'transactions', label: 'Transactions', icon: '📄', action: () => router.push('/transactions') },
                 { id: 'settings', label: 'Settings', icon: '⚙️', isAction: true }

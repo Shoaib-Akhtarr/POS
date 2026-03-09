@@ -115,19 +115,12 @@ export default function ProductsPage() {
                 </header>
 
                 <div className="bg-card rounded-[32px] shadow-sm border border-card-border overflow-hidden flex-1 flex flex-col">
-                    {/* Tabs */}
                     <div className="flex border-b border-card-border bg-sidebar overflow-x-auto no-scrollbar">
                         <button
                             onClick={() => setActiveTab('all')}
                             className={`flex flex-1 items-center justify-center px-6 py-4 text-xs font-black uppercase tracking-widest whitespace-nowrap transition-all ${activeTab === 'all' ? 'text-pos-accent border-b-2 border-pos-accent bg-card' : 'text-muted-foreground hover:text-foreground hover:bg-card-border'}`}
                         >
                             <span className="mr-2 text-lg">📋</span> All Products
-                        </button>
-                        <button
-                            onClick={() => setActiveTab('add')}
-                            className={`flex flex-1 items-center justify-center px-6 py-4 text-xs font-black uppercase tracking-widest whitespace-nowrap transition-all ${activeTab === 'add' ? 'text-pos-accent border-b-2 border-pos-accent bg-card' : 'text-muted-foreground hover:text-foreground hover:bg-card-border'}`}
-                        >
-                            <span className="mr-2 text-lg">➕</span> Add Product
                         </button>
                         <button
                             onClick={() => setActiveTab('outofstock')}
@@ -147,54 +140,6 @@ export default function ProductsPage() {
                                     refreshTrigger={refreshTrigger}
                                     isManagerView={true}
                                 />
-                            </div>
-                        )}
-
-                        {/* Tab 2: Add Product */}
-                        {activeTab === 'add' && (
-                            <div className="max-w-2xl mx-auto py-8">
-                                <div className="bg-sidebar border border-sidebar-border rounded-[32px] p-8">
-                                    <h2 className="text-xl font-black italic tracking-tighter uppercase text-foreground mb-6">Create New Product</h2>
-
-                                    {addError && <div className="mb-6 p-4 bg-danger/10 border border-danger/20 text-danger rounded-xl text-sm font-bold">{addError}</div>}
-                                    {addSuccess && <div className="mb-6 p-4 bg-green-500/10 border border-green-500/20 text-green-500 rounded-xl text-sm font-bold">{addSuccess}</div>}
-
-                                    <form onSubmit={handleAddSubmit} className="space-y-5">
-                                        <div>
-                                            <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-[2px] mb-2">Product Name *</label>
-                                            <input type="text" name="name" required value={formData.name} onChange={handleAddChange} className="w-full px-4 py-3 bg-card border border-card-border rounded-xl focus:outline-none focus:ring-4 focus:ring-pos-accent/10 focus:border-pos-accent transition-all text-foreground font-bold" />
-                                        </div>
-                                        <div className="grid grid-cols-2 gap-4">
-                                            <div>
-                                                <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-[2px] mb-2">Cost Price *</label>
-                                                <input type="number" name="costPrice" required min="0" step="0.01" value={formData.costPrice} onChange={handleAddChange} className="w-full px-4 py-3 bg-card border border-card-border rounded-xl focus:outline-none focus:ring-4 focus:ring-pos-accent/10 focus:border-pos-accent transition-all text-foreground font-bold" />
-                                            </div>
-                                            <div>
-                                                <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-[2px] mb-2">Selling Price *</label>
-                                                <input type="number" name="sellingPrice" required min="0" step="0.01" value={formData.sellingPrice} onChange={handleAddChange} className="w-full px-4 py-3 bg-card border border-card-border rounded-xl focus:outline-none focus:ring-4 focus:ring-pos-accent/10 focus:border-pos-accent transition-all text-foreground font-bold" />
-                                            </div>
-                                        </div>
-                                        <div className="grid grid-cols-2 gap-4">
-                                            <div>
-                                                <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-[2px] mb-2">Initial Stock *</label>
-                                                <input type="number" name="quantity" required min="0" value={formData.quantity} onChange={handleAddChange} className="w-full px-4 py-3 bg-card border border-card-border rounded-xl focus:outline-none focus:ring-4 focus:ring-pos-accent/10 focus:border-pos-accent transition-all text-foreground font-bold" />
-                                            </div>
-                                            <div>
-                                                <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-[2px] mb-2">Category *</label>
-                                                <input type="text" name="category" required value={formData.category} onChange={handleAddChange} className="w-full px-4 py-3 bg-card border border-card-border rounded-xl focus:outline-none focus:ring-4 focus:ring-pos-accent/10 focus:border-pos-accent transition-all text-foreground font-bold" />
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-[2px] mb-2">Description</label>
-                                            <textarea name="description" rows={2} value={formData.description} onChange={handleAddChange} className="w-full px-4 py-3 bg-card border border-card-border rounded-xl focus:outline-none focus:ring-4 focus:ring-pos-accent/10 focus:border-pos-accent transition-all text-foreground font-bold custom-scrollbar"></textarea>
-                                        </div>
-                                        <div className="flex justify-end pt-4 border-t border-card-border mt-6">
-                                            <button type="submit" disabled={addLoading} className={`px-8 py-4 bg-pos-accent text-white rounded-xl transition-all font-black text-[11px] uppercase tracking-wider shadow-lg ${addLoading ? 'opacity-70 cursor-not-allowed' : 'hover:bg-blue-600 shadow-pos-accent/20 hover:-translate-y-0.5'}`}>
-                                                {addLoading ? 'Saving...' : 'Save Product'}
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
                             </div>
                         )}
 

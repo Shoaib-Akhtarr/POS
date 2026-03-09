@@ -9,7 +9,7 @@ const ProductSchema = new mongoose.Schema(
         },
         costPrice: {
             type: Number,
-            required: [true, 'Please add a cost price'],
+            default: 0,
         },
         sellingPrice: {
             type: Number,
