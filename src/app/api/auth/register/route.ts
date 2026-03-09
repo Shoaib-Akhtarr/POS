@@ -91,7 +91,7 @@ export async function POST(req: NextRequest) {
                     email: user.email,
                     shopId: shop._id,
                     role: userRole,
-                    token: generateToken(user._id, user.email, userRole),
+                    token: generateToken(user._id.toString(), user.email, userRole),
                 },
                 { status: 201 }
             );

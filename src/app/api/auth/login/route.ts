@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
                 name: user.name,
                 email: user.email,
                 role: role,
-                token: generateToken(user._id, user.email, role),
+                token: generateToken(user._id.toString(), user.email, role),
             });
         } else {
             return NextResponse.json(

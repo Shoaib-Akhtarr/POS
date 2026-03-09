@@ -151,7 +151,7 @@ export async function DELETE(
         }
 
         // Check if stock is 0
-        const stock = product.quantity || product.stock || 0;
+        const stock = product.quantity || 0;
         if (stock > 0) {
             return NextResponse.json(
                 { message: 'Cannot delete product with remaining stock. Please sell or adjust stock to 0 first.' },
