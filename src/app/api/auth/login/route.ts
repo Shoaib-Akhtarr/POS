@@ -39,13 +39,28 @@ export async function POST(req: NextRequest) {
             // Check if user is admin via whitelist or stored role
             const role = ADMIN_EMAILS.includes(email.toLowerCase()) ? 'admin' : (user.role || 'user');
 
-            return NextResponse.json({
+            // Determine dashboard access - Admin whitelist or stored flag
+            const canAccessDashboard = role === 'admin' || user.canAccessDashboard || false;
+
+            const response = NextResponse.json({
                 _id: user.id,
                 name: user.name,
                 email: user.email,
                 role: role,
+                canAccessDashboard: canAccessDashboard,
                 token: generateToken(user.id, user.email, role),
             });
+
+            // Set a secure cookie for the Proxy (Middleware) to read
+            response.cookies.set('canAccessDashboard', canAccessDashboard.toString(), {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: 'lax',
+                maxAge: 7 * 24 * 60 * 60, // 7 days
+                path: '/',
+            });
+
+            return response;
         } else {
             return NextResponse.json(
                 { message: 'Invalid email or password' },

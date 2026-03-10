@@ -7,7 +7,7 @@ const isBrowser = (): boolean => {
 };
 
 // Login user
-export const login = async (email: string, password: string): Promise<{ token: string; role: string; shopId?: string }> => {
+export const login = async (email: string, password: string): Promise<{ token: string; role: string; shopId?: string; canAccessDashboard: boolean }> => {
   try {
     const response = await api.post('/auth/login', { email, password });
     // Token is stored by the interceptors or manually if needed
@@ -32,7 +32,7 @@ export const register = async (
   shopName: string,
   businessType: string,
   plan: string = 'free'
-): Promise<{ token: string; role: string; shopId?: string }> => {
+): Promise<{ token: string; role: string; shopId?: string; canAccessDashboard: boolean }> => {
   try {
     const response = await api.post('/auth/register', {
       name,

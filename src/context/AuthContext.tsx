@@ -5,9 +5,9 @@ import { useRouter } from 'next/navigation';
 import { getCurrentUser, verifySession } from '@/services/authService';
 
 interface AuthContextType {
-  user: { token: string; shopId?: string; name?: string; email?: string; role?: string } | null;
+  user: { token: string; shopId?: string; name?: string; email?: string; role?: string; canAccessDashboard?: boolean } | null;
   loading: boolean;
-  login: (token: string, role: string, shopId?: string) => void;
+  login: (token: string, role: string, shopId?: string, canAccessDashboard?: boolean) => void;
   logout: () => void;
   isAuthenticated: boolean;
 }
@@ -15,7 +15,7 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<{ token: string; shopId?: string; name?: string; email?: string; role?: string } | null>(null);
+  const [user, setUser] = useState<{ token: string; shopId?: string; name?: string; email?: string; role?: string; canAccessDashboard?: boolean } | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
@@ -32,7 +32,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             shopId: verifiedUser.shopId,
             name: verifiedUser.name,
             email: verifiedUser.email,
-            role: verifiedUser.role
+            role: verifiedUser.role,
+            canAccessDashboard: verifiedUser.canAccessDashboard
           });
           setIsAuthenticated(true);
         } else {
@@ -50,16 +51,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     checkAuthStatus();
   }, [router]);
 
-  const login = (token: string, role: string, shopId?: string) => {
+  const login = (token: string, role: string, shopId?: string, canAccessDashboard: boolean = false) => {
     localStorage.setItem('token', token);
-    setUser({ token, role, shopId });
+    setUser({ token, role, shopId, canAccessDashboard });
     setIsAuthenticated(true);
 
-    // Role route handling: Admin/User -> Dashboard, Demo -> Demo
-    if (role === 'admin' || role === 'user') {
+    // Stage-based redirect logic:
+    // 1. Authorized for dashboard (Admin or approved user) -> Dashboard
+    // 2. Demo role -> Demo page
+    // 3. Regular registered user -> Stay on main site
+    if (canAccessDashboard) {
       router.push('/dashboard');
-    } else {
+    } else if (role === 'demo') {
       router.push('/demo');
+    } else {
+      router.push('/');
     }
   };
 

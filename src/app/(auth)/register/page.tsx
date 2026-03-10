@@ -90,7 +90,7 @@ function RegisterForm() {
         setLoading(true);
         try {
             const data = await serviceRegister(name, email, shopName, businessType, plan);
-            authLogin(data.token, data.role, data.shopId);
+            authLogin(data.token, data.role, data.shopId, data.canAccessDashboard);
         } catch (err: any) {
             setError(err.message);
         } finally {

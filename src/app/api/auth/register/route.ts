@@ -84,17 +84,31 @@ export async function POST(req: NextRequest) {
             // 7. Cleanup TempUser
             await TempUser.deleteOne({ _id: tempUser._id });
 
-            return NextResponse.json(
+            const canAccessDashboard = userRole === 'admin' || user.canAccessDashboard || false;
+
+            const response = NextResponse.json(
                 {
                     _id: user.id,
                     name: user.name,
                     email: user.email,
                     shopId: shop._id,
                     role: userRole,
+                    canAccessDashboard: canAccessDashboard,
                     token: generateToken(user.id, user.email, userRole),
                 },
                 { status: 201 }
             );
+
+            // Set a secure cookie for the Proxy (Middleware) to read
+            response.cookies.set('canAccessDashboard', canAccessDashboard.toString(), {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: 'lax',
+                maxAge: 7 * 24 * 60 * 60, // 7 days
+                path: '/',
+            });
+
+            return response;
         } else {
             return NextResponse.json(
                 { message: 'Invalid user data' },

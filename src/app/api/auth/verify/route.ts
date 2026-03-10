@@ -17,18 +17,32 @@ export async function GET(req: NextRequest) {
         // Determine role based on whitelist or database field
         const role = ADMIN_EMAILS.includes(user.email.toLowerCase()) ? 'admin' : (user.role || 'user');
 
-        return NextResponse.json(
+        // Determine dashboard access
+        const canAccessDashboard = role === 'admin' || user.canAccessDashboard || false;
+
+        const response = NextResponse.json(
             {
-                _id: user.id, // Changed from user._id to user.id as per instruction snippet
+                _id: user.id,
                 name: user.name,
                 email: user.email,
                 role: role,
                 shopId: user.shop,
-                // Assuming generateToken function is available in scope
+                canAccessDashboard: canAccessDashboard,
                 token: generateToken(user.id, user.email, role),
             },
             { status: 200 }
         );
+
+        // Refresh the secure cookie
+        response.cookies.set('canAccessDashboard', canAccessDashboard.toString(), {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'lax',
+            maxAge: 7 * 24 * 60 * 60, // 7 days
+            path: '/',
+        });
+
+        return response;
     } catch (error: any) {
         console.error('[Verify API ERROR]:', error);
         return NextResponse.json(

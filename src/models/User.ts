@@ -40,6 +40,10 @@ const UserSchema = new mongoose.Schema(
         shop: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Shop'
+        },
+        canAccessDashboard: {
+            type: Boolean,
+            default: false
         }
     },
     {

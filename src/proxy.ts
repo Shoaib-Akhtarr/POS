@@ -1,7 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export function proxy(request: NextRequest) {
-    // Handle preflight requests
+    const { pathname } = request.nextUrl;
+
+    // 1. Dashboard Protection (Stage 2)
+    if (pathname.startsWith('/dashboard')) {
+        const canAccessDashboard = request.cookies.get('canAccessDashboard')?.value === 'true';
+
+        if (!canAccessDashboard) {
+            console.log(`[PROXY BLOCK] Unauthorized dashboard access attempt to ${pathname}`);
+            return NextResponse.redirect(new URL('/', request.url));
+        }
+    }
+
+    // 2. Handle preflight requests
     if (request.method === 'OPTIONS') {
         return new NextResponse(null, {
             status: 204,
@@ -16,7 +28,7 @@ export function proxy(request: NextRequest) {
 
     const response = NextResponse.next();
 
-    // Add CORS headers to all responses
+    // 3. Add CORS headers to all responses
     response.headers.set('Access-Control-Allow-Origin', '*');
     response.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
@@ -24,7 +36,7 @@ export function proxy(request: NextRequest) {
     return response;
 }
 
-// Match all API routes
+// Match API routes and Dashboard routes
 export const config = {
-    matcher: '/api/:path*',
+    matcher: ['/api/:path*', '/dashboard/:path*'],
 };
