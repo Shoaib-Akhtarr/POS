@@ -73,7 +73,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem('token');
     setUser(null);
     setIsAuthenticated(false);
-    router.push('/');
+    // Use window.location for a hard redirect to the home page
+    // This avoids race conditions with ProtectedRoute which might try to push to /login
+    window.location.href = '/';
   };
 
   const value = {
