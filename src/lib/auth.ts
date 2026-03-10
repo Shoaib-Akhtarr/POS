@@ -27,13 +27,15 @@ export const requireAuth = async (req: NextRequest) => {
             ) as jwt.JwtPayload;
 
             await connectToDatabase();
-            let user: any = await User.findById(decoded.id).select('-password');
+            let foundUser: any = await User.findById(decoded.id).select('-password');
 
-            if (!user) {
+            if (!foundUser) {
                 // Check in Public Users if not found in Authorized Users
                 const PublicUser = (await import('@/models/PublicUser')).default;
-                user = await PublicUser.findById(decoded.id).select('-password');
+                foundUser = await PublicUser.findById(decoded.id).select('-password');
             }
+
+            const user = foundUser;
 
             if (!user) {
                 console.warn(`[Auth] User not found in any collection for ID: ${decoded.id}`);

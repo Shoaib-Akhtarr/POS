@@ -18,15 +18,22 @@ export async function POST(req: NextRequest) {
         }
 
         // 1. Try to find in Authorized Users collection
-        let user: any = await User.findOne({ email }).select('+password');
-        let isAuthorized = true;
+        let foundUser: any = null;
+        let isAuthorized = false;
 
-        if (!user) {
+        const authUser = await User.findOne({ email }).select('+password');
+
+        if (authUser) {
+            foundUser = authUser;
+            isAuthorized = true;
+        } else {
             // 2. Try to find in Public Users collection
             const PublicUser = (await import('@/models/PublicUser')).default;
-            user = await PublicUser.findOne({ email }).select('+password');
+            foundUser = await PublicUser.findOne({ email }).select('+password');
             isAuthorized = false;
         }
+
+        const user = foundUser; // Neutral name for downstream logic
 
         console.log(`[LOGIN ATTEMPT] Email: ${email}, isAuthorized: ${isAuthorized}`);
         if (!user) {
