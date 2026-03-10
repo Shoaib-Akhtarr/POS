@@ -17,9 +17,18 @@ export async function POST(req: NextRequest) {
             );
         }
 
-        const user = await User.findOne({ email }).select('+password');
+        // 1. Try to find in Authorized Users collection
+        let user = await User.findOne({ email }).select('+password');
+        let isAuthorized = true;
 
-        console.log(`[LOGIN ATTEMPT] Email: ${email}`);
+        if (!user) {
+            // 2. Try to find in Public Users collection
+            const PublicUser = (await import('@/models/PublicUser')).default;
+            user = await PublicUser.findOne({ email }).select('+password');
+            isAuthorized = false;
+        }
+
+        console.log(`[LOGIN ATTEMPT] Email: ${email}, isAuthorized: ${isAuthorized}`);
         if (!user) {
             console.log(`[LOGIN FAILED] User not found: ${email}`);
             return NextResponse.json(
@@ -30,24 +39,22 @@ export async function POST(req: NextRequest) {
 
         const isMatch = await bcrypt.compare(password, user.password);
         console.log(`[LOGIN DEBUG] User found. Password Match: ${isMatch}`);
-        if (!isMatch) {
-            console.log(`[LOGIN FAILED] Password mismatch for: ${email}`);
-            console.log(`[LOGIN DEBUG] Stored hash prefix: ${user.password.substring(0, 7)}`);
-        }
 
         if (isMatch) {
-            // Check if user is admin via whitelist or stored role
-            const role = ADMIN_EMAILS.includes(email.toLowerCase()) ? 'admin' : (user.role || 'user');
+            // Check if user is admin via whitelist (Admins are always authorized)
+            const isAdmin = ADMIN_EMAILS.includes(email.toLowerCase());
+            const role = isAdmin ? 'admin' : (user.role || 'user');
 
-            // Determine dashboard access - Admin whitelist or stored flag
-            const dashboardAccess = role === 'admin' || user.dashboardAccess || false;
+            // Dashboard access is TRUE only if found in User collection OR is Admin
+            const dashboardAccess = isAuthorized || isAdmin;
 
             const response = NextResponse.json({
                 _id: user.id,
                 name: user.name,
                 email: user.email,
                 role: role,
-                dashboardAccess: dashboardAccess,
+                shopId: isAuthorized ? user.shop : undefined,
+                dashboardAccess,
                 token: generateToken(user.id, user.email, role),
             });
 

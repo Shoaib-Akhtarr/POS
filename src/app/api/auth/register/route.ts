@@ -5,6 +5,7 @@ import Shop from '@/models/Shop';
 import Account from '@/models/Account';
 import Subscription from '@/models/Subscription';
 import TempUser from '@/models/TempUser';
+import PublicUser from '@/models/PublicUser';
 import generateToken from '@/lib/generateToken';
 import { ADMIN_EMAILS } from '@/config/adminEmails';
 
@@ -29,26 +30,47 @@ export async function POST(req: NextRequest) {
             );
         }
 
-        const userExists = await User.findOne({ email });
-        if (userExists) {
+        const userExistsInAuthorized = await User.findOne({ email });
+        const userExistsInPublic = await PublicUser.findOne({ email });
+
+        if (userExistsInAuthorized || userExistsInPublic) {
             return NextResponse.json(
                 { message: 'User already exists' },
                 { status: 400 }
             );
         }
 
-        // 2. Create User using verified password from TempUser
-        const userRole = ADMIN_EMAILS.includes(email.toLowerCase()) ? 'admin' : 'user';
+        // 2. Decide where to store the user
+        const isAuthorized = ADMIN_EMAILS.includes(email.toLowerCase());
+        const userRole = isAuthorized ? 'admin' : 'user';
 
-        const user = await User.create({
-            name,
-            email,
-            password: tempUser.password, // This is already hashed
-            role: userRole
-        });
+        let user;
+        let dashboardAccess = false;
+
+        if (isAuthorized) {
+            // Authorized users (Admins) go to User collection
+            user = await User.create({
+                name,
+                email,
+                password: tempUser.password,
+                role: userRole,
+                dashboardAccess: true
+            });
+            dashboardAccess = true;
+        } else {
+            // General users go to PublicUser collection
+            user = await PublicUser.create({
+                name,
+                email,
+                password: tempUser.password,
+                role: userRole
+            });
+            dashboardAccess = false;
+        }
 
         if (user) {
-            // 3. Create Shop for the user
+            // 3. Create Shop for the user (only if they are going to have a shop, 
+            // but for now let's keep it consistent with your previous logic if you want them to have a 'potential' shop)
             const shop = await Shop.create({
                 name: shopName,
                 businessType,
@@ -57,9 +79,11 @@ export async function POST(req: NextRequest) {
                 subscriptionStatus: 'trial'
             });
 
-            // 4. Link Shop to User
-            user.shop = shop._id;
-            await user.save();
+            // 4. Link Shop (Only for Authorized Users who have a shop field)
+            if (isAuthorized) {
+                user.shop = shop._id;
+                await user.save();
+            }
 
             // 5. Create Subscription record
             const trialDays = 14;
@@ -84,17 +108,15 @@ export async function POST(req: NextRequest) {
             // 7. Cleanup TempUser
             await TempUser.deleteOne({ _id: tempUser._id });
 
-            const dashboardAccess = userRole === 'admin' || user.dashboardAccess || false;
-
             const response = NextResponse.json(
                 {
-                    _id: user.id,
+                    _id: user._id,
                     name: user.name,
                     email: user.email,
                     shopId: shop._id,
                     role: userRole,
-                    dashboardAccess: dashboardAccess,
-                    token: generateToken(user.id, user.email, userRole),
+                    dashboardAccess,
+                    token: generateToken(user._id, user.email, userRole),
                 },
                 { status: 201 }
             );

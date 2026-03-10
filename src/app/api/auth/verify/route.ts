@@ -14,11 +14,16 @@ export async function GET(req: NextRequest) {
             );
         }
 
-        // Determine role based on whitelist or database field
-        const role = ADMIN_EMAILS.includes(user.email.toLowerCase()) ? 'admin' : (user.role || 'user');
+        // Determine if user is from Authorized collection
+        // requireAuth returns a mongoose document. We check the model name or collection.
+        const isAuthorized = user.constructor.modelName === 'User';
+        const isAdmin = ADMIN_EMAILS.includes(user.email.toLowerCase());
+
+        // Determine role
+        const role = isAdmin ? 'admin' : (user.role || 'user');
 
         // Determine dashboard access
-        const dashboardAccess = role === 'admin' || user.dashboardAccess || false;
+        const dashboardAccess = isAuthorized || isAdmin;
 
         const response = NextResponse.json(
             {
