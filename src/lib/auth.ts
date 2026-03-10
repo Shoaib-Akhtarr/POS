@@ -27,7 +27,7 @@ export const requireAuth = async (req: NextRequest) => {
             ) as jwt.JwtPayload;
 
             await connectToDatabase();
-            let user = await User.findById(decoded.id).select('-password');
+            let user: any = await User.findById(decoded.id).select('-password');
 
             if (!user) {
                 // Check in Public Users if not found in Authorized Users

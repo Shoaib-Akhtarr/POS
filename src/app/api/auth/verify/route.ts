@@ -5,7 +5,7 @@ import generateToken from '@/lib/generateToken';
 
 export async function GET(req: NextRequest) {
     try {
-        const user = await requireAuth(req);
+        const user: any = await requireAuth(req);
 
         if (!user) {
             return NextResponse.json(

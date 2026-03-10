@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
         }
 
         // 1. Try to find in Authorized Users collection
-        let user = await User.findOne({ email }).select('+password');
+        let user: any = await User.findOne({ email }).select('+password');
         let isAuthorized = true;
 
         if (!user) {
