@@ -9,7 +9,7 @@ export function proxy(request: NextRequest) {
 
         if (!canAccessDashboard) {
             console.log(`[PROXY BLOCK] Unauthorized dashboard access attempt to ${pathname}`);
-            return NextResponse.redirect(new URL('/pricing', request.url));
+            return NextResponse.redirect(new URL('/', request.url));
         }
     }
 
