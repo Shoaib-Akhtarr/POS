@@ -25,7 +25,7 @@ export default function ProtectedRoute({ children, requireAdmin = false }: Prote
       } else if (pathname.startsWith('/dashboard') && !user?.canAccessDashboard) {
         // Stage 2 protection: Authenticated but not authorized for dashboard
         console.log(`[AUTH PROTECT] Redirecting unauthorized user from ${pathname}`);
-        router.push('/');
+        router.push('/pricing');
       }
     }
   }, [isAuthenticated, loading, user, requireAdmin, router, pathname]);
