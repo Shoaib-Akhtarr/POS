@@ -84,7 +84,7 @@ export async function POST(req: NextRequest) {
             // 7. Cleanup TempUser
             await TempUser.deleteOne({ _id: tempUser._id });
 
-            const canAccessDashboard = userRole === 'admin' || user.canAccessDashboard || false;
+            const dashboardAccess = userRole === 'admin' || user.dashboardAccess || false;
 
             const response = NextResponse.json(
                 {
@@ -93,14 +93,14 @@ export async function POST(req: NextRequest) {
                     email: user.email,
                     shopId: shop._id,
                     role: userRole,
-                    canAccessDashboard: canAccessDashboard,
+                    dashboardAccess: dashboardAccess,
                     token: generateToken(user.id, user.email, userRole),
                 },
                 { status: 201 }
             );
 
             // Set a secure cookie for the Proxy (Middleware) to read
-            response.cookies.set('canAccessDashboard', canAccessDashboard.toString(), {
+            response.cookies.set('dashboardAccess', dashboardAccess.toString(), {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production',
                 sameSite: 'lax',

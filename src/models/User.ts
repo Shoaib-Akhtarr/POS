@@ -41,7 +41,7 @@ const UserSchema = new mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Shop'
         },
-        canAccessDashboard: {
+        dashboardAccess: {
             type: Boolean,
             default: false
         }

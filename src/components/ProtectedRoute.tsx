@@ -22,10 +22,10 @@ export default function ProtectedRoute({ children, requireAdmin = false }: Prote
       } else if (requireAdmin && user?.role !== 'admin') {
         // If authenticated but role is demo and route requires admin
         router.push('/demo');
-      } else if (pathname.startsWith('/dashboard') && !user?.canAccessDashboard) {
+      } else if (pathname.startsWith('/dashboard') && !user?.dashboardAccess) {
         // Stage 2 protection: Authenticated but not authorized for dashboard
-        console.log(`[AUTH PROTECT] Redirecting unauthorized user from ${pathname}`);
-        router.push('/');
+        console.log(`[AUTH PROTECT] Redirecting unauthorized user from ${pathname} to /pricing`);
+        router.push('/pricing');
       }
     }
   }, [isAuthenticated, loading, user, requireAdmin, router, pathname]);

@@ -40,19 +40,19 @@ export async function POST(req: NextRequest) {
             const role = ADMIN_EMAILS.includes(email.toLowerCase()) ? 'admin' : (user.role || 'user');
 
             // Determine dashboard access - Admin whitelist or stored flag
-            const canAccessDashboard = role === 'admin' || user.canAccessDashboard || false;
+            const dashboardAccess = role === 'admin' || user.dashboardAccess || false;
 
             const response = NextResponse.json({
                 _id: user.id,
                 name: user.name,
                 email: user.email,
                 role: role,
-                canAccessDashboard: canAccessDashboard,
+                dashboardAccess: dashboardAccess,
                 token: generateToken(user.id, user.email, role),
             });
 
             // Set a secure cookie for the Proxy (Middleware) to read
-            response.cookies.set('canAccessDashboard', canAccessDashboard.toString(), {
+            response.cookies.set('dashboardAccess', dashboardAccess.toString(), {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production',
                 sameSite: 'lax',

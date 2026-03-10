@@ -18,7 +18,7 @@ export async function GET(req: NextRequest) {
         const role = ADMIN_EMAILS.includes(user.email.toLowerCase()) ? 'admin' : (user.role || 'user');
 
         // Determine dashboard access
-        const canAccessDashboard = role === 'admin' || user.canAccessDashboard || false;
+        const dashboardAccess = role === 'admin' || user.dashboardAccess || false;
 
         const response = NextResponse.json(
             {
@@ -27,14 +27,14 @@ export async function GET(req: NextRequest) {
                 email: user.email,
                 role: role,
                 shopId: user.shop,
-                canAccessDashboard: canAccessDashboard,
+                dashboardAccess: dashboardAccess,
                 token: generateToken(user.id, user.email, role),
             },
             { status: 200 }
         );
 
         // Refresh the secure cookie
-        response.cookies.set('canAccessDashboard', canAccessDashboard.toString(), {
+        response.cookies.set('dashboardAccess', dashboardAccess.toString(), {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             sameSite: 'lax',

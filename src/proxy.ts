@@ -5,11 +5,12 @@ export function proxy(request: NextRequest) {
 
     // 1. Dashboard Protection (Stage 2)
     if (pathname.startsWith('/dashboard')) {
-        const canAccessDashboard = request.cookies.get('canAccessDashboard')?.value === 'true';
+        const dashboardAccess = request.cookies.get('dashboardAccess')?.value === 'true';
+        console.log(`[PROXY DEBUG] Path: ${pathname}, dashboardAccess: ${dashboardAccess}`);
 
-        if (!canAccessDashboard) {
-            console.log(`[PROXY BLOCK] Unauthorized dashboard access attempt to ${pathname}`);
-            return NextResponse.redirect(new URL('/', request.url));
+        if (!dashboardAccess) {
+            console.log(`[PROXY BLOCK] Unauthorized dashboard access attempt to ${pathname}. Redirecting to /pricing`);
+            return NextResponse.redirect(new URL('/pricing', request.url));
         }
     }
 
