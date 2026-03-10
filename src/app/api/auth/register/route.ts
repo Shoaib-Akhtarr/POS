@@ -91,7 +91,6 @@ export async function POST(req: NextRequest) {
                     email: user.email,
                     shopId: shop._id,
                     role: userRole,
-                    // Cache-buster: Forced build at 2026-03-10
                     token: generateToken(user.id, user.email, userRole),
                 },
                 { status: 201 }
