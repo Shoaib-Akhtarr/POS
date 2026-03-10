@@ -253,7 +253,16 @@ function RegisterForm() {
             </div>
 
             <div className="w-full max-w-xl bg-white rounded-[2.5rem] shadow-2xl shadow-indigo-900/10 border border-white p-8 sm:p-12 relative z-10 backdrop-blur-sm">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                {/* Back Button */}
+                <Link
+                    href="/"
+                    className="absolute top-8 left-8 flex items-center gap-2 text-slate-400 hover:text-indigo-600 transition-colors font-black text-[10px] uppercase tracking-widest group"
+                >
+                    <span className="text-lg transition-transform group-hover:-translate-x-1">←</span>
+                    Back to Home
+                </Link>
+
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-4">
                     <div>
                         <div className="text-left mb-10">
                             <div className="inline-flex items-center justify-center w-14 h-14 bg-indigo-600 rounded-2xl shadow-lg shadow-indigo-600/30 mb-8 text-white text-3xl font-black italic">
