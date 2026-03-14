@@ -56,6 +56,14 @@ function POSContent() {
   const searchParams = useSearchParams();
   const currentView = searchParams.get('view') === 'pos' ? 'pos' : 'analytics';
 
+  // Auto-fill amountPaid when total changes
+  useEffect(() => {
+    if (currentView === 'pos') {
+      const total = calculateTotal();
+      setAmountPaid(total > 0 ? total.toString() : '');
+    }
+  }, [cart, discountAmount, currentView]);
+
   const addToCart = (product: Product, quantity: number = 1) => {
     setCart(prevCart => {
       const existingItem = prevCart.find(item => String(item.product._id) === String(product._id));
@@ -155,7 +163,7 @@ function POSContent() {
 
       setProductRefreshTrigger(prev => prev + 1);
       setCompletedSaleData({ ...saleData, receiptId: finalReceiptId });
-      alert('Sale completed successfully!');
+      // alert('Sale completed successfully!'); - Removed immediate alert
     } catch (error: any) {
       console.error('Error saving sale:', error);
       if (error.message.includes('Network Error') || !navigator.onLine) {
@@ -295,8 +303,17 @@ function POSContent() {
           previousDues={completedSaleData.previousDues}
           amountPaid={completedSaleData.amountPaid}
           balanceDue={completedSaleData.balanceDue}
-          onClose={() => { setCompletedSaleData(null); clearCart(); }}
-          onPrint={() => { setCompletedSaleData(null); clearCart(); }}
+          isCompleted={true}
+          onClose={() => { 
+            alert('Transaction completed successfully!');
+            setCompletedSaleData(null); 
+            clearCart(); 
+          }}
+          onPrint={() => { 
+            alert('Transaction completed successfully!');
+            setCompletedSaleData(null); 
+            clearCart(); 
+          }}
         />
       )}
     </AuthenticatedLayout>

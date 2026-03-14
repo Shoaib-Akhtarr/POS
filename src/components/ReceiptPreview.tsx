@@ -21,6 +21,7 @@ interface ReceiptPreviewProps {
   balanceDue?: number;
   onClose: () => void;
   onPrint: () => void;
+  isCompleted?: boolean;
 }
 
 export default function ReceiptPreview({
@@ -33,7 +34,8 @@ export default function ReceiptPreview({
   amountPaid = 0,
   balanceDue = 0,
   onClose,
-  onPrint
+  onPrint,
+  isCompleted = false
 }: ReceiptPreviewProps) {
   const [isPrinting, setIsPrinting] = useState(false);
   const [printerStatus, setPrinterStatus] = useState<'idle' | 'connecting' | 'connected' | 'error'>('idle');
@@ -309,7 +311,7 @@ export default function ReceiptPreview({
             onClick={onClose}
             className="py-3 px-4 bg-gray-50 text-gray-600 font-semibold rounded-xl hover:bg-gray-100 transition-all border border-gray-200"
           >
-            Cancel Sale
+            {isCompleted ? 'Close' : 'Cancel Sale'}
           </button>
           <button
             onClick={handlePrint}
