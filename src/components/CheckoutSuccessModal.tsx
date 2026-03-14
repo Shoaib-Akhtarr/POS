@@ -55,7 +55,10 @@ export default function CheckoutSuccessModal({
           <div className="space-y-3">
             <button
               onClick={() => {
-                router.push('/customers');
+                const url = selectedCustomer 
+                  ? `/customers?name=${encodeURIComponent(customerName)}` 
+                  : '/customers';
+                router.push(url);
                 onClose();
               }}
               className="w-full py-4 bg-pos-accent text-white rounded-2xl font-black uppercase text-[11px] tracking-[2px] shadow-lg shadow-pos-accent/20 hover:bg-blue-600 transition-all active:scale-95 flex items-center justify-center gap-3"

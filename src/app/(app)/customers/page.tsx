@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Sale, Customer } from '@/types';
 import { getCustomers } from '@/services/customerService';
 import ProtectedRoute from '@/components/ProtectedRoute';
@@ -24,6 +24,14 @@ export default function AllCustomersPage() {
         direction: 'asc'
     });
     const router = useRouter();
+    const searchParams = useSearchParams();
+
+    useEffect(() => {
+        const nameParam = searchParams.get('name');
+        if (nameParam) {
+            setSelectedCustomerName(nameParam);
+        }
+    }, [searchParams]);
 
     useEffect(() => {
         const fetchCustomers = async () => {
