@@ -14,6 +14,7 @@ import AddProductModal from '@/components/AddProductModal';
 import EditProductModal from '@/components/EditProductModal';
 import ReceiptPreview from '@/components/ReceiptPreview';
 import DashboardAnalytics from '@/components/DashboardAnalytics';
+import CheckoutSuccessModal from '@/components/CheckoutSuccessModal';
 import { Product, Sale, Customer } from '@/types';
 import { createSale } from '@/services/salesService';
 import { updateProductQuantity } from '@/services/productService';
@@ -29,6 +30,7 @@ function POSContent() {
   const [showAddProduct, setShowAddProduct] = useState(false);
   const [showAddCustomer, setShowAddCustomer] = useState(false);
   const [showPrintPreview, setShowPrintPreview] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [completedSaleData, setCompletedSaleData] = useState<any | null>(null);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [productRefreshTrigger, setProductRefreshTrigger] = useState(0);
@@ -305,15 +307,24 @@ function POSContent() {
           balanceDue={completedSaleData.balanceDue}
           isCompleted={true}
           onClose={() => { 
-            alert('Transaction completed successfully!');
-            setCompletedSaleData(null); 
-            clearCart(); 
+            setShowSuccessModal(true);
           }}
           onPrint={() => { 
-            alert('Transaction completed successfully!');
-            setCompletedSaleData(null); 
-            clearCart(); 
+            setShowSuccessModal(true);
           }}
+        />
+      )}
+
+      {showSuccessModal && (
+        <CheckoutSuccessModal
+          isOpen={showSuccessModal}
+          onClose={() => {
+            setShowSuccessModal(false);
+            setCompletedSaleData(null);
+            clearCart();
+          }}
+          customerName={completedSaleData?.customerName || 'Walk-in Customer'}
+          selectedCustomer={completedSaleData?.customer ? ({ _id: completedSaleData.customer, name: completedSaleData.customerName } as Customer) : null}
         />
       )}
     </AuthenticatedLayout>
