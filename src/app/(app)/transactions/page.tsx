@@ -10,6 +10,8 @@ import TransactionDetailsModal from '@/components/TransactionDetailsModal';
 export default function AllTransactionsPage() {
     const [sales, setSales] = useState<Sale[]>([]);
     const [total, setTotal] = useState(0);
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
     const [page, setPage] = useState(1);
     const [limit] = useState(15);
     const [loading, setLoading] = useState(true);
@@ -21,7 +23,7 @@ export default function AllTransactionsPage() {
     const fetchSales = async (currentPage: number) => {
         try {
             setLoading(true);
-            const data = await getSales(currentPage, limit);
+            const data = await getSales(currentPage, limit, startDate, endDate);
             setSales(data.sales);
             setTotal(data.total);
         } catch (err: any) {
@@ -34,13 +36,24 @@ export default function AllTransactionsPage() {
 
     useEffect(() => {
         fetchSales(page);
-    }, [page]);
+    }, [page, startDate, endDate]);
+
+    const clearFilters = () => {
+        setStartDate('');
+        setEndDate('');
+        setPage(1);
+    };
 
     const handleExportCSV = async () => {
+        if (startDate && endDate && new Date(startDate) > new Date(endDate)) {
+            alert("Start date cannot be later than end date.");
+            return;
+        }
+
         try {
             setExportLoading(true);
-            // Fetch all transactions (using a large limit to get all)
-            const data = await getSales(1, total || 2000);
+            // Fetch filtered transactions (using a large limit to get all within range)
+            const data = await getSales(1, 5000, startDate, endDate);
             const allSales = data.sales;
 
             if (allSales.length === 0) {
@@ -91,9 +104,14 @@ export default function AllTransactionsPage() {
     };
 
     const handlePrintAll = async () => {
+        if (startDate && endDate && new Date(startDate) > new Date(endDate)) {
+            alert("Start date cannot be later than end date.");
+            return;
+        }
+
         try {
             setExportLoading(true);
-            const data = await getSales(1, total || 2000);
+            const data = await getSales(1, 5000, startDate, endDate);
             const allSales = data.sales;
 
             const printWindow = window.open('', '_blank');
@@ -209,27 +227,58 @@ export default function AllTransactionsPage() {
                             <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest mt-1">Review every sale record sorted by time.</p>
                         </div>
                     </div>
-                    <div className="flex flex-wrap gap-3 w-full lg:w-auto">
-                        <button
-                            onClick={handleExportCSV}
-                            disabled={exportLoading || loading || sales.length === 0}
-                            className="flex-1 lg:flex-none px-6 py-3 bg-success text-white rounded-xl transition-all font-black text-[11px] uppercase tracking-wider shadow-sm hover:bg-green-600 hover:-translate-y-0.5 flex items-center justify-center gap-2 disabled:opacity-50"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                                <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-                            </svg>
-                            {exportLoading ? '...' : 'Export CSV'}
-                        </button>
-                        <button
-                            onClick={handlePrintAll}
-                            disabled={exportLoading || loading || sales.length === 0}
-                            className="flex-1 lg:flex-none px-6 py-3 bg-[#4D90FE] text-white rounded-xl transition-all font-black text-[11px] uppercase tracking-wider shadow-sm hover:bg-[#3b7bed] hover:-translate-y-0.5 flex items-center justify-center gap-2 disabled:opacity-50"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                                <path fillRule="evenodd" d="M5 4v3H4a2 2 0 00-2 2v3a2 2 0 002 2h1v2a2 2 0 002 2h6a2 2 0 002-2v-2h1a2 2 0 002-2V9a2 2 0 00-2-2h-1V4a2 2 0 00-2-2H7a2 2 0 00-2 2zm8 0H7v3h6V4zm0 8H7v4h6v-4z" clipRule="evenodd" />
-                            </svg>
-                            {exportLoading ? '...' : 'Print All (PDF)'}
-                        </button>
+                    <div className="flex flex-col sm:flex-row items-end gap-3 w-full lg:w-auto bg-card p-4 rounded-2xl border border-card-border shadow-sm">
+                        <div className="flex flex-col gap-1 w-full sm:w-auto">
+                            <label className="text-[9px] font-black uppercase tracking-widest text-muted-foreground ml-1">From</label>
+                            <input
+                                type="date"
+                                value={startDate}
+                                onChange={(e) => { setStartDate(e.target.value); setPage(1); }}
+                                className="px-3 py-2 bg-background border border-card-border rounded-lg text-xs font-bold focus:ring-2 focus:ring-pos-accent outline-none"
+                            />
+                        </div>
+                        <div className="flex flex-col gap-1 w-full sm:w-auto">
+                            <label className="text-[9px] font-black uppercase tracking-widest text-muted-foreground ml-1">To</label>
+                            <input
+                                type="date"
+                                value={endDate}
+                                onChange={(e) => { setEndDate(e.target.value); setPage(1); }}
+                                className="px-3 py-2 bg-background border border-card-border rounded-lg text-xs font-bold focus:ring-2 focus:ring-pos-accent outline-none"
+                            />
+                        </div>
+                        <div className="flex gap-2 w-full lg:w-auto">
+                            {(startDate || endDate) && (
+                                <button
+                                    onClick={clearFilters}
+                                    className="p-2 bg-danger/10 text-danger rounded-lg hover:bg-danger/20 transition-all"
+                                    title="Clear Filters"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            )}
+                            <button
+                                onClick={handleExportCSV}
+                                disabled={exportLoading || loading || sales.length === 0}
+                                className="flex-1 lg:flex-none px-4 py-2.5 bg-success text-white rounded-xl transition-all font-black text-[10px] uppercase tracking-wider shadow-sm hover:bg-green-600 hover:-translate-y-0.5 flex items-center justify-center gap-2 disabled:opacity-50"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                                </svg>
+                                {exportLoading ? '...' : 'CSV'}
+                            </button>
+                            <button
+                                onClick={handlePrintAll}
+                                disabled={exportLoading || loading || sales.length === 0}
+                                className="flex-1 lg:flex-none px-4 py-2.5 bg-pos-accent text-white rounded-xl transition-all font-black text-[10px] uppercase tracking-wider shadow-sm hover:bg-pos-accent/90 hover:-translate-y-0.5 flex items-center justify-center gap-2 disabled:opacity-50"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fillRule="evenodd" d="M5 4v3H4a2 2 0 00-2 2v3a2 2 0 002 2h1v2a2 2 0 002 2h6a2 2 0 002-2v-2h1a2 2 0 002-2V9a2 2 0 00-2-2h-1V4a2 2 0 00-2-2H7a2 2 0 00-2 2zm8 0H7v3h6V4zm0 8H7v4h6v-4z" clipRule="evenodd" />
+                                </svg>
+                                {exportLoading ? '...' : (startDate || endDate ? 'PDF' : 'All PDF')}
+                            </button>
+                        </div>
                     </div>
                 </header>
 

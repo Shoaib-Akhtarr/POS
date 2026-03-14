@@ -15,9 +15,24 @@ export async function GET(req: NextRequest) {
         const searchParams = req.nextUrl.searchParams;
         const page = parseInt(searchParams.get('page') || '1', 10);
         const limit = parseInt(searchParams.get('limit') || '10', 10);
+        const startDate = searchParams.get('startDate');
+        const endDate = searchParams.get('endDate');
         const startIndex = (page - 1) * limit;
 
-        const query = { user: user._id };
+        const query: any = { user: user._id };
+        
+        if (startDate || endDate) {
+            query.createdAt = {};
+            if (startDate) {
+                query.createdAt.$gte = new Date(startDate);
+            }
+            if (endDate) {
+                // Set to end of day to include all transactions on that day
+                const end = new Date(endDate);
+                end.setHours(23, 59, 59, 999);
+                query.createdAt.$lte = end;
+            }
+        }
 
         const total = await Sale.countDocuments(query);
         const sales = await Sale.find(query)
@@ -62,6 +77,16 @@ export async function POST(req: NextRequest) {
             receiptNumber,
         } = body;
 
+        const ProductModel = (await import('@/models/Product')).default;
+        const enrichedCartItems = await Promise.all(cartItems.map(async (item: any) => {
+            const product = await ProductModel.findById(item.product);
+            return {
+                ...item,
+                categoryName: product?.category || 'Uncategorized',
+                categoryId: product?.category || 'Uncategorized' // Assuming category name is used as ID for now as per schema
+            };
+        }));
+
         if (!cartItems || cartItems.length === 0) {
             return NextResponse.json({ message: 'No items in sale' }, { status: 400 });
         }
@@ -76,7 +101,7 @@ export async function POST(req: NextRequest) {
 
         const sale = await Sale.create({
             user: user._id,
-            cartItems,
+            cartItems: enrichedCartItems,
             totalAmount: Number(totalAmount),
             discount: Number(discount) || 0,
             customerName: customerName || '',

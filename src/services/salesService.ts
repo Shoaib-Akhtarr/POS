@@ -21,9 +21,18 @@ export const createSale = async (saleData: Partial<Sale>): Promise<Sale> => {
   }
 };
 
-export const getSales = async (page: number = 1, limit: number = 10): Promise<{ sales: Sale[]; total: number }> => {
+export const getSales = async (
+  page: number = 1, 
+  limit: number = 10, 
+  startDate?: string, 
+  endDate?: string
+): Promise<{ sales: Sale[]; total: number }> => {
   try {
-    const response = await api.get(`/sales?page=${page}&limit=${limit}`);
+    let url = `/sales?page=${page}&limit=${limit}`;
+    if (startDate) url += `&startDate=${startDate}`;
+    if (endDate) url += `&endDate=${endDate}`;
+    
+    const response = await api.get(url);
     return response.data;
   } catch (error: any) {
     console.error('Error fetching sales:', error);

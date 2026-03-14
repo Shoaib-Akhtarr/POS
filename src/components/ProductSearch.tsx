@@ -61,22 +61,27 @@ export default function ProductSearch({ onAddToCart, onEditProduct, refreshTrigg
   };
 
   useEffect(() => {
-    let filtered = products;
+    const timer = setTimeout(() => {
+      let filtered = products;
 
-    if (searchTerm.trim() !== '') {
-      filtered = filtered.filter(product =>
-        product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        product.category.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    }
+      if (searchTerm.trim() !== '') {
+        const lowerSearch = searchTerm.toLowerCase();
+        filtered = filtered.filter(product =>
+          product.name.toLowerCase().includes(lowerSearch) ||
+          product.category.toLowerCase().includes(lowerSearch)
+        );
+      }
 
-    if (selectedCategory !== 'All') {
-      filtered = filtered.filter(product =>
-        product.category.toLowerCase() === selectedCategory.toLowerCase()
-      );
-    }
+      if (selectedCategory !== 'All') {
+        filtered = filtered.filter(product =>
+          product.category.toLowerCase() === selectedCategory.toLowerCase()
+        );
+      }
 
-    setFilteredProducts(filtered);
+      setFilteredProducts(filtered);
+    }, 200);
+
+    return () => clearTimeout(timer);
   }, [searchTerm, products, selectedCategory]);
 
   const handleAddToCart = (product: Product) => {

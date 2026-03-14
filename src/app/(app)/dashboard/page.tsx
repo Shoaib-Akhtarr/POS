@@ -17,6 +17,7 @@ import DashboardAnalytics from '@/components/DashboardAnalytics';
 import { Product, Sale, Customer } from '@/types';
 import { createSale } from '@/services/salesService';
 import { updateProductQuantity } from '@/services/productService';
+import { saveOfflineSale, updateOfflineProductQuantity } from '@/services/offlineService';
 
 function POSContent() {
   const [cart, setCart] = useState<{ product: Product; quantity: number }[]>([]);
@@ -34,11 +35,26 @@ function POSContent() {
   const [isDraggingOverCart, setIsDraggingOverCart] = useState(false);
   const [mobileTab, setMobileTab] = useState<'products' | 'cart'>('products');
   const [showHistory, setShowHistory] = useState(false);
+  const [saleLoading, setSaleLoading] = useState(false);
+  const [offlineMode, setOfflineMode] = useState(false);
+
+  useEffect(() => {
+    const handleOnline = () => setOfflineMode(false);
+    const handleOffline = () => setOfflineMode(true);
+
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+
+    setOfflineMode(!navigator.onLine);
+
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
+    };
+  }, []);
 
   const searchParams = useSearchParams();
   const currentView = searchParams.get('view') === 'pos' ? 'pos' : 'analytics';
-
-
 
   const addToCart = (product: Product, quantity: number = 1) => {
     setCart(prevCart => {
@@ -92,6 +108,8 @@ function POSContent() {
   const handleCompleteSale = async () => {
     if (cart.length === 0) return;
     const total = calculateTotal();
+    const balanceDue = selectedCustomer ? (selectedCustomer.totalDues + total - (parseFloat(amountPaid) || 0)) : 0;
+
     const saleData = {
       cartItems: cart.map(item => ({
         name: item.product.name,
@@ -101,11 +119,11 @@ function POSContent() {
       })),
       totalAmount: total,
       discount: parseFloat(discountAmount) || 0,
-      customerName: customerName || undefined,
+      customerName: customerName || (selectedCustomer ? selectedCustomer.name : 'Walk-in Customer'),
       customer: selectedCustomer ? selectedCustomer._id : undefined,
       previousDues: selectedCustomer ? selectedCustomer.totalDues : 0,
       amountPaid: parseFloat(amountPaid) || 0,
-      balanceDue: selectedCustomer ? (selectedCustomer.totalDues + total - (parseFloat(amountPaid) || 0)) : 0,
+      balanceDue: balanceDue,
       paymentMethod,
       isPaid: paymentMethod === 'Cash',
       printed: false,
@@ -113,15 +131,42 @@ function POSContent() {
     };
 
     try {
-      const newSale = await createSale(saleData);
-      for (const item of cart) {
-        await updateProductQuantity(item.product._id, (item.product.stock || item.product.quantity || 0) - item.quantity);
+      setSaleLoading(true);
+      let finalReceiptId = saleData.receiptId;
+
+      if (offlineMode) {
+        saveOfflineSale(saleData);
+        // Optimistically update stock locally
+        cart.forEach(item => {
+          const newQty = (item.product.quantity || item.product.stock || 0) - item.quantity;
+          updateOfflineProductQuantity(item.product._id, newQty);
+        });
+        alert('Sale saved locally (Offline).');
+      } else {
+        const response = await createSale(saleData);
+        finalReceiptId = response.receiptId || saleData.receiptId;
+        
+        // Update stock in DB
+        for (const item of cart) {
+          const newQty = (item.product.quantity || item.product.stock || 0) - item.quantity;
+          await updateProductQuantity(item.product._id, newQty);
+        }
       }
+
       setProductRefreshTrigger(prev => prev + 1);
-      setCompletedSaleData({ ...saleData, receiptId: newSale.receiptId });
+      setCompletedSaleData({ ...saleData, receiptId: finalReceiptId });
+      alert('Sale completed successfully!');
     } catch (error: any) {
       console.error('Error saving sale:', error);
-      alert(error.message || 'Error saving sale. Please check your connection.');
+      if (error.message.includes('Network Error') || !navigator.onLine) {
+        saveOfflineSale(saleData);
+        alert('Connection lost. Sale saved locally.');
+        setCompletedSaleData({ ...saleData });
+      } else {
+        alert(error.message || 'Error saving sale.');
+      }
+    } finally {
+      setSaleLoading(false);
     }
   };
 
@@ -210,7 +255,13 @@ function POSContent() {
               <div className="flex justify-between items-center mb-6 px-1">
                 <div className="flex flex-col"><span className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">Grand Total</span><span className="text-3xl font-black text-foreground tracking-tighter">Rs. {calculateTotal().toLocaleString()}</span></div>
               </div>
-              <button onClick={handleCompleteSale} disabled={cart.length === 0} className={`w-full py-4 rounded-xl font-black uppercase tracking-widest text-white shadow-lg transition-all transform active:scale-95 ${cart.length === 0 ? 'bg-muted/10 text-muted cursor-not-allowed border border-card-border' : 'bg-emerald-500 hover:bg-emerald-600 shadow-emerald-500/20 hover:shadow-emerald-500/40'}`}>Complete Sale</button>
+              <button 
+                onClick={handleCompleteSale} 
+                disabled={cart.length === 0 || saleLoading} 
+                className={`w-full py-4 rounded-xl font-black uppercase tracking-widest text-white shadow-lg transition-all transform active:scale-95 ${cart.length === 0 || saleLoading ? 'bg-muted/10 text-muted cursor-not-allowed border border-card-border' : 'bg-emerald-500 hover:bg-emerald-600 shadow-emerald-500/20 hover:shadow-emerald-500/40'}`}
+              >
+                {saleLoading ? 'Processing...' : 'Complete Sale'}
+              </button>
             </div>
           </aside>
         </div>

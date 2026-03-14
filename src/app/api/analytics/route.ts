@@ -50,26 +50,17 @@ export async function GET(req: NextRequest) {
             { $sort: { "_id": 1 } }
         ]);
 
-        // 3. Category Distribution
+        // 3. Category Distribution (Optimized: No $lookup)
         const categoryData = await Sale.aggregate([
             { $match: { user: new mongoose.Types.ObjectId(user.id) } },
             { $unwind: "$cartItems" },
             {
-                $lookup: {
-                    from: "products",
-                    localField: "cartItems.product",
-                    foreignField: "_id",
-                    as: "productInfo"
-                }
-            },
-            { $unwind: "$productInfo" },
-            {
                 $group: {
-                    _id: "$productInfo.category",
+                    _id: "$cartItems.categoryName",
                     value: { $sum: { $multiply: ["$cartItems.quantity", "$cartItems.price"] } }
                 }
             },
-            { $project: { name: "$_id", value: 1, _id: 0 } }
+            { $project: { name: { $ifNull: ["$_id", "Uncategorized"] }, value: 1, _id: 0 } }
         ]);
 
         // 4. Low Stock Alert

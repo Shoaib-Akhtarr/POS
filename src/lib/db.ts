@@ -40,32 +40,6 @@ async function connectToDatabase() {
   try {
     cached.conn = await cached.promise;
     console.log('MongoDB Connected successfully');
-
-    // Ensure models are registered and indexes are synchronized
-    // This is important for unique constraints to be applied correctly in MongoDB
-    if (typeof window === 'undefined') {
-      const Product = (await import('@/models/Product')).default;
-      const Customer = (await import('@/models/Customer')).default;
-      const Sale = (await import('@/models/Sale')).default;
-
-      // Wrap syncIndexes in a safe handler to prevent SSL errors from causing pool cleared errors
-      const safeSync = async (model: any, name: string) => {
-        try {
-          await model.syncIndexes();
-        } catch (err: any) {
-          if (err.name === 'MongoPoolClearedError' || err.code === 'ERR_SSL_TLSV1_ALERT_INTERNAL_ERROR') {
-            console.warn(`${name} syncIndexes skipped (SSL/IP Whitelist issue). Please check Atlas Network Access.`);
-          } else {
-            console.error(`${name} syncIndexes error:`, err);
-          }
-        }
-      };
-
-      // We don't await these to avoid blocking every connection request
-      safeSync(Product, 'Product');
-      safeSync(Customer, 'Customer');
-      safeSync(Sale, 'Sale');
-    }
   } catch (e) {
     console.error('MongoDB Connection Error:', e);
     cached.promise = null;
