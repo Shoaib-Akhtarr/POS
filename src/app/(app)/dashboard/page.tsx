@@ -17,7 +17,6 @@ import DashboardAnalytics from '@/components/DashboardAnalytics';
 import { Product, Sale, Customer } from '@/types';
 import { createSale } from '@/services/salesService';
 import { updateProductQuantity } from '@/services/productService';
-import { saveOfflineSale, updateOfflineProductQuantity, hasOfflineData } from '@/services/offlineService';
 
 function POSContent() {
   const [cart, setCart] = useState<{ product: Product; quantity: number }[]>([]);
@@ -26,8 +25,6 @@ function POSContent() {
   const [paymentMethod, setPaymentMethod] = useState<'Cash' | 'Credit'>('Cash');
   const [amountPaid, setAmountPaid] = useState<string>('');
   const [discountAmount, setDiscountAmount] = useState<string>('');
-  const [offlineMode, setOfflineMode] = useState<boolean>(false);
-  const [hasUnsyncedData, setHasUnsyncedData] = useState(false);
   const [showAddProduct, setShowAddProduct] = useState(false);
   const [showAddCustomer, setShowAddCustomer] = useState(false);
   const [showPrintPreview, setShowPrintPreview] = useState(false);
@@ -41,18 +38,7 @@ function POSContent() {
   const searchParams = useSearchParams();
   const currentView = searchParams.get('view') === 'pos' ? 'pos' : 'analytics';
 
-  useEffect(() => {
-    const handleOnline = () => setOfflineMode(false);
-    const handleOffline = () => setOfflineMode(true);
-    window.addEventListener('online', handleOnline);
-    window.addEventListener('offline', handleOffline);
-    setOfflineMode(!navigator.onLine);
-    setHasUnsyncedData(hasOfflineData());
-    return () => {
-      window.removeEventListener('online', handleOnline);
-      window.removeEventListener('offline', handleOffline);
-    };
-  }, []);
+
 
   const addToCart = (product: Product, quantity: number = 1) => {
     setCart(prevCart => {
@@ -126,16 +112,6 @@ function POSContent() {
       receiptId: `RCP-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
     };
 
-    if (offlineMode) {
-      saveOfflineSale(saleData);
-      cart.forEach(item => {
-        updateOfflineProductQuantity(item.product._id, (item.product.stock || item.product.quantity || 0) - item.quantity);
-      });
-      setHasUnsyncedData(true);
-      setCompletedSaleData(saleData);
-      return;
-    }
-
     try {
       const newSale = await createSale(saleData);
       for (const item of cart) {
@@ -145,9 +121,7 @@ function POSContent() {
       setCompletedSaleData({ ...saleData, receiptId: newSale.receiptId });
     } catch (error: any) {
       console.error('Error saving sale:', error);
-      saveOfflineSale(saleData);
-      alert('Error saving sale. Saved offline as fallback.');
-      setCompletedSaleData(saleData);
+      alert(error.message || 'Error saving sale. Please check your connection.');
     }
   };
 
@@ -235,7 +209,6 @@ function POSContent() {
             <div className="p-4 lg:p-6 border-t border-sidebar-border bg-sidebar shadow-[0_-4px_32px_rgba(0,0,0,0.05)]">
               <div className="flex justify-between items-center mb-6 px-1">
                 <div className="flex flex-col"><span className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">Grand Total</span><span className="text-3xl font-black text-foreground tracking-tighter">Rs. {calculateTotal().toLocaleString()}</span></div>
-                <div className="text-right"><p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest italic opacity-50">#OFFLINE-READY</p></div>
               </div>
               <button onClick={handleCompleteSale} disabled={cart.length === 0} className={`w-full py-4 rounded-xl font-black uppercase tracking-widest text-white shadow-lg transition-all transform active:scale-95 ${cart.length === 0 ? 'bg-muted/10 text-muted cursor-not-allowed border border-card-border' : 'bg-emerald-500 hover:bg-emerald-600 shadow-emerald-500/20 hover:shadow-emerald-500/40'}`}>Complete Sale</button>
             </div>

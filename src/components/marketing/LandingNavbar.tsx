@@ -22,7 +22,6 @@ export default function LandingNavbar() {
         { name: 'Home', href: '/' },
         { name: 'Features', href: '/features' },
         { name: 'About us', href: '/about' },
-        { name: 'Gallery', href: '/gallery' },
         { name: 'Pricing', href: '/pricing' },
         { name: 'Demo', href: '/demo' },
     ];

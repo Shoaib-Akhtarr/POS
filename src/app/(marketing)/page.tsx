@@ -6,7 +6,6 @@ import SaaSInfo from '@/components/marketing/SaaSInfo';
 import Features from '@/components/marketing/Features';
 import Testimonials from '@/components/marketing/Testimonials';
 import Pricing from '@/components/marketing/Pricing';
-import Gallery from '@/components/marketing/Gallery';
 import CTASection from '@/components/marketing/CTASection';
 import Footer from '@/components/marketing/Footer';
 

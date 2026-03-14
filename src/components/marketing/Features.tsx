@@ -1,43 +1,64 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 const features = [
     {
+        id: 'pos-billing',
         title: 'POS Billing',
         description: 'Create professional receipts instantly with high-speed Bluetooth & USB support.',
         icon: '🧾',
         color: 'from-blue-500/20 to-blue-600/5'
     },
     {
+        id: 'khata-system',
         title: 'Khata System',
         description: 'Track customer credit effortlessly and recover dues with automated reminders.',
         icon: '📒',
         color: 'from-emerald-500/20 to-emerald-600/5'
     },
     {
+        id: 'inventory-sync',
         title: 'Inventory Sync',
         description: 'Real-time stock tracking with intelligent low-stock alerts across all devices.',
         icon: '📦',
         color: 'from-amber-500/20 to-amber-600/5'
     },
     {
+        id: 'cloud-analytics',
         title: 'Cloud Analytics',
         description: 'Beautiful, deep-dive sales reports to help you master your business performance.',
         icon: '📈',
         color: 'from-indigo-500/20 to-indigo-600/5'
     },
     {
-        title: 'Offline Mode',
-        description: 'Keep selling even without internet. Your data syncs perfectly once back online.',
-        icon: '🔋',
-        color: 'from-rose-500/20 to-rose-600/5'
-    },
-    {
+        id: 'multi-user',
         title: 'Multi-User Access',
         description: 'Grant secure staff access with custom permissions and role-based management.',
         icon: '👥',
         color: 'from-violet-500/20 to-violet-600/5'
+    },
+    {
+        id: 'multi-shop',
+        title: 'Multi-Shop Management',
+        description: 'Seamlessly manage multiple shop locations from a single owner dashboard.',
+        icon: '🏠',
+        color: 'from-cyan-500/20 to-cyan-600/5'
+    },
+    {
+        id: 'digital-ledger',
+        title: 'Digital Ledger (Khata)',
+        description: 'Replace your paper diaries with a secure, cloud-synced digital khata for all customers.',
+        icon: '📖',
+        color: 'from-orange-500/20 to-orange-600/5'
+    },
+    {
+        id: 'expense-tracking',
+        title: 'Expense Tracking',
+        description: 'Keep your profits in check by tracking every shop expense and utility bill.',
+        icon: '💸',
+        color: 'from-fuchsia-500/20 to-fuchsia-600/5'
     }
 ];
 
@@ -89,9 +110,9 @@ export default function Features() {
                                 </p>
 
                                 <div className="mt-8 pt-8 border-t border-white/5 opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <span className="text-[10px] font-black text-primary uppercase tracking-widest flex items-center gap-2">
+                                    <Link href={`/features#${feature.id}`} className="text-[10px] font-black text-primary uppercase tracking-widest flex items-center gap-2 hover:gap-3 transition-all">
                                         Learn more <span className="text-lg">→</span>
-                                    </span>
+                                    </Link>
                                 </div>
                             </div>
                         </motion.div>

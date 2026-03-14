@@ -16,9 +16,9 @@ export const login = async (email: string, password: string): Promise<{ token: s
     }
     return response.data;
   } catch (error: any) {
-    // Check if it's a network error (offline)
+    // Check if it's a network error
     if (!navigator.onLine || error.code === 'ECONNREFUSED' || error.message.includes('Network Error')) {
-      throw new Error('Network error - unable to login. Please check your connection.');
+      throw new Error('Network error. Please check your internet connection.');
     }
     const errorMessage = error.response?.data?.message || error.message || 'Login failed';
     throw new Error(errorMessage);
@@ -47,9 +47,9 @@ export const register = async (
     }
     return response.data;
   } catch (error: any) {
-    // Check if it's a network error (offline)
+    // Check if it's a network error
     if (!navigator.onLine || error.code === 'ECONNREFUSED' || error.message.includes('Network Error')) {
-      throw new Error('Network error - unable to register. Please check your connection.');
+      throw new Error('Network error. Please check your internet connection.');
     }
     const errorMessage = error.response?.data?.message || error.message || 'Registration failed';
     throw new Error(errorMessage);

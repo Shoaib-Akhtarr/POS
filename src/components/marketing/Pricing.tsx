@@ -5,31 +5,34 @@ import { motion } from 'framer-motion';
 
 const tiers = [
     {
-        name: 'Free Plan',
-        price: '0',
-        description: 'Perfect for small kiosks starting their digital journey.',
-        features: ['1 Shop Instance', '1 Admin User', 'Basic POS Billing', 'Offline Support', 'Daily Reports'],
-        cta: 'Sign Up',
-        planId: 'free',
-        highlight: false
-    },
-    {
-        name: 'Starter Pro',
-        price: '1,500',
-        description: 'Scale your business with advanced inventory & khata.',
-        features: ['Up to 3 Users', 'Advanced Inventory', 'Customer Khata', 'Automated SMS Alerts', 'Monthly Insights'],
-        cta: 'Level Up',
+        name: 'Basic POS',
+        price: '3,000',
+        description: 'Essential tools for small shops to start billing and tracking.',
+        features: ['High-Speed Billing', 'Inventory Tracking', 'Simple Sales Reports', 'USB/Bluetooth Printing'],
+        cta: 'Get Started',
         planId: 'starter',
-        highlight: true
+        highlight: false,
+        period: '/mo'
     },
     {
-        name: 'Enterprise',
-        price: '3,500',
-        description: 'The ultimate toolkit for serious retail chains.',
-        features: ['Unlimited Users', 'Multi-Shop Sync', 'Deep Analytics', 'Priority 24/7 Support', 'Custom Branding'],
-        cta: 'Go Enterprise',
+        name: 'Standard POS',
+        price: '5,000',
+        description: 'Advanced features for businesses ready to scale up.',
+        features: ['Multi-User Access', 'Advanced Analytics', 'Supplier Management', 'Customer Khata System', 'Expense Tracking'],
+        cta: 'Go Standard',
         planId: 'professional',
-        highlight: false
+        highlight: true,
+        period: '/mo'
+    },
+    {
+        name: 'Enterprise POS',
+        price: '50,000',
+        description: 'Full Standard POS power with a cost-effective yearly commitment.',
+        features: ['Standard POS Features', '1 Full Year Access', 'Priority 24/7 Support', 'Dedicated Training', 'Price Lock Guarantee'],
+        cta: 'Go Enterprise',
+        planId: 'professional-yearly',
+        highlight: false,
+        period: '/yr'
     }
 ];
 
@@ -76,9 +79,9 @@ export default function Pricing() {
                             <div className="mb-10">
                                 <h4 className="text-sm font-black text-primary uppercase tracking-widest mb-4 italic">{tier.name}</h4>
                                 <div className="flex items-baseline gap-2">
-                                    <span className="text-xl font-black text-foreground opacity-40 italic font-mono">Rs.</span>
-                                    <span className="text-6xl font-black text-foreground tracking-tighter">{tier.price}</span>
-                                    <span className="text-muted font-bold text-xs tracking-widest uppercase">/mo</span>
+                                    <span className="text-xl font-black text-foreground opacity-40 italic font-mono uppercase">PKR</span>
+                                    <span className="text-4xl md:text-5xl font-black text-foreground tracking-tighter">{tier.price}</span>
+                                    <span className="text-muted font-bold text-xs tracking-widest uppercase">{tier.period}</span>
                                 </div>
                                 <p className="mt-6 text-muted font-medium italic leading-relaxed">
                                     {tier.description}

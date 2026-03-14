@@ -29,7 +29,7 @@ export default function ProductSearch({ onAddToCart, onEditProduct, refreshTrigg
     } catch (err: any) {
       console.error('Error fetching products:', err);
       if (err.message.includes('Network error')) {
-        setError('Offline mode: Using cached data.');
+        setError('Connection error. Please check your internet.');
       } else {
         setError('Failed to load products.');
       }

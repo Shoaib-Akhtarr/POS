@@ -12,9 +12,9 @@ export const createSale = async (saleData: Partial<Sale>): Promise<Sale> => {
     console.error('Error creating sale:', error);
     console.error('Sale data that failed:', saleData); // Debug log
 
-    // Check if it's a network error (offline)
+    // Check if it's a network error
     if (!navigator.onLine || error.code === 'ECONNREFUSED' || error.message.includes('Network Error')) {
-      throw new Error('Network error - sale will be saved offline');
+      throw new Error('Network error - please check your internet connection');
     }
 
     throw error;
@@ -27,7 +27,7 @@ export const getSales = async (page: number = 1, limit: number = 10): Promise<{ 
     return response.data;
   } catch (error: any) {
     console.error('Error fetching sales:', error);
-    // Check if it's a network error (offline)
+    // Check if it's a network error
     if (!navigator.onLine || error.code === 'ECONNREFUSED' || error.message.includes('Network Error')) {
       throw new Error('Network error - unable to fetch sales');
     }
@@ -41,7 +41,7 @@ export const getSaleById = async (id: string): Promise<Sale> => {
     return response.data;
   } catch (error: any) {
     console.error('Error fetching sale:', error);
-    // Check if it's a network error (offline)
+    // Check if it's a network error
     if (!navigator.onLine || error.code === 'ECONNREFUSED' || error.message.includes('Network Error')) {
       throw new Error('Network error - unable to fetch sale');
     }
@@ -55,7 +55,7 @@ export const getSalesByCustomer = async (customerName: string): Promise<Sale[]> 
     return response.data;
   } catch (error: any) {
     console.error('Error fetching sales by customer:', error);
-    // Check if it's a network error (offline)
+    // Check if it's a network error
     if (!navigator.onLine || error.code === 'ECONNREFUSED' || error.message.includes('Network Error')) {
       throw new Error('Network error - unable to fetch sales by customer');
     }
@@ -69,7 +69,7 @@ export const updateSalePaymentStatus = async (id: string, isPaid: boolean): Prom
     return response.data;
   } catch (error: any) {
     console.error('Error updating sale payment status:', error);
-    // Check if it's a network error (offline)
+    // Check if it's a network error
     if (!navigator.onLine || error.code === 'ECONNREFUSED' || error.message.includes('Network Error')) {
       throw new Error('Network error - unable to update payment status');
     }
@@ -83,7 +83,7 @@ export const getDues = async (): Promise<Sale[]> => {
     return response.data;
   } catch (error: any) {
     console.error('Error fetching dues:', error);
-    // Check if it's a network error (offline)
+    // Check if it's a network error
     if (!navigator.onLine || error.code === 'ECONNREFUSED' || error.message.includes('Network Error')) {
       throw new Error('Network error - unable to fetch dues');
     }

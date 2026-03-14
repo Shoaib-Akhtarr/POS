@@ -10,19 +10,13 @@ interface SidebarProps {
     setIsOpen: (isOpen: boolean) => void;
     onSettingsClick: () => void;
     onLogoutClick: () => void;
-    offlineMode: boolean;
-    hasUnsyncedData: boolean;
-    onSync: () => void;
 }
 
 export default function Sidebar({
     isOpen,
     setIsOpen,
     onSettingsClick,
-    onLogoutClick,
-    offlineMode,
-    hasUnsyncedData,
-    onSync
+    onLogoutClick
 }: SidebarProps) {
     const pathname = usePathname();
     const router = useRouter();
@@ -110,24 +104,6 @@ export default function Sidebar({
                 </div>
 
                 <div className="space-y-6">
-                    {/* Status Indicator */}
-                    <div className="px-2 space-y-4">
-                        <div className={`flex items-center justify-between px-3 py-2 rounded-xl text-[9px] font-black tracking-widest ${offlineMode ? 'bg-red-500/10 text-red-500 border border-red-500/20' : 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20'}`}>
-                            <div className="flex items-center space-x-2">
-                                <div className={`w-1.5 h-1.5 rounded-full ${offlineMode ? 'bg-red-500' : 'bg-emerald-500'} animate-pulse`}></div>
-                                <span>{offlineMode ? 'OFFLINE' : 'ONLINE'}</span>
-                            </div>
-                            {hasUnsyncedData && (
-                                <button
-                                    onClick={onSync}
-                                    className="ml-2 hover:scale-110 transition-transform"
-                                    title="Sync Data"
-                                >
-                                    🔄
-                                </button>
-                            )}
-                        </div>
-                    </div>
                 </div>
             </aside>
         </>

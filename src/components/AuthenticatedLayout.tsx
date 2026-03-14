@@ -6,7 +6,6 @@ import { useAuth } from '@/context/AuthContext';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import Sidebar from '@/components/Sidebar';
 import ChangePasswordForm from '@/components/ChangePasswordForm';
-import { hasOfflineData } from '@/services/offlineService';
 
 interface AuthenticatedLayoutProps {
     children: React.ReactNode;
@@ -24,36 +23,8 @@ export default function AuthenticatedLayout({
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [showSettingsModal, setShowSettingsModal] = useState(false);
     const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
-    const [offlineMode, setOfflineMode] = useState<boolean>(false);
-    const [hasUnsyncedData, setHasUnsyncedData] = useState(false);
     const { theme, setTheme } = useTheme();
     const { logout } = useAuth();
-
-    useEffect(() => {
-        const handleOnline = () => setOfflineMode(false);
-        const handleOffline = () => setOfflineMode(true);
-        window.addEventListener('online', handleOnline);
-        window.addEventListener('offline', handleOffline);
-        setOfflineMode(!navigator.onLine);
-        setHasUnsyncedData(hasOfflineData());
-
-        const checkInterval = setInterval(() => {
-            setHasUnsyncedData(hasOfflineData());
-        }, 5000);
-
-        return () => {
-            window.removeEventListener('online', handleOnline);
-            window.removeEventListener('offline', handleOffline);
-            clearInterval(checkInterval);
-        };
-    }, []);
-
-    const handleSync = () => {
-        // In a real app, this would trigger the sync service
-        console.log('Syncing data...');
-        // We can emit an event or use a shared state if needed, 
-        // but for now we'll just keep it as a placeholder.
-    };
 
     return (
         <ProtectedRoute>
@@ -96,9 +67,6 @@ export default function AuthenticatedLayout({
                     setIsOpen={setIsSidebarOpen}
                     onSettingsClick={() => setShowSettingsModal(true)}
                     onLogoutClick={() => setShowLogoutConfirm(true)}
-                    offlineMode={offlineMode}
-                    hasUnsyncedData={hasUnsyncedData}
-                    onSync={handleSync}
                 />
 
                 {/* Main Content Area */}
