@@ -6,7 +6,7 @@ import {
     PieChart, Pie, Cell, Legend
 } from 'recharts';
 import api from '@/services/apiService';
-import { Info, ExternalLink } from 'lucide-react';
+import { Info, ExternalLink, TrendingUp, TrendingDown, Activity } from 'lucide-react';
 import { useTheme } from 'next-themes';
 
 export default function DashboardAnalytics() {
@@ -47,7 +47,7 @@ export default function DashboardAnalytics() {
             <div className="grid grid-cols-1 xl:grid-cols-4 gap-6">
 
                 {/* Point of Sale Trends */}
-                <div className="xl:col-span-3 glass-card rounded-[12px] p-8 space-y-6">
+                <div className="xl:col-span-4 glass-card rounded-[12px] p-8 space-y-6">
                     <div className="flex justify-between items-start">
                         <div className="space-y-1">
                             <div className="flex items-center space-x-2 text-muted-foreground">
@@ -65,7 +65,7 @@ export default function DashboardAnalytics() {
                         </button>
                     </div>
 
-                    <div className="h-[350px] w-full mt-4">
+                    <div className="h-[400px] w-full mt-4">
                         <ResponsiveContainer width="100%" height="100%">
                             <AreaChart data={data.salesTrend}>
                                 <defs>
@@ -110,57 +110,64 @@ export default function DashboardAnalytics() {
                         </ResponsiveContainer>
                     </div>
                 </div>
+            </div>
 
-                {/* Top Partners (Categories) */}
-                <div className="xl:col-span-1 glass-card rounded-[12px] p-8 flex flex-col space-y-6">
-                    <div className="flex justify-between items-center">
-                        <div className="flex items-center space-x-2 text-muted-foreground">
-                            <span className="text-xs font-semibold">Top Categories</span>
-                            <Info size={14} className="cursor-help" />
-                        </div>
-
-                    </div>
-
-                    <div className="flex-1 flex flex-col items-center justify-center relative min-h-[220px]">
-                        <ResponsiveContainer width="100%" height="100%">
-                            <PieChart>
-                                <Pie
-                                    data={data.categoryData}
-                                    innerRadius={70}
-                                    outerRadius={90}
-                                    paddingAngle={2}
-                                    dataKey="value"
-                                >
-                                    {data.categoryData.map((entry: any, index: number) => (
-                                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                                    ))}
-                                </Pie>
-                                <Tooltip />
-                            </PieChart>
-                        </ResponsiveContainer>
-                        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                            <span className="text-xs font-medium text-muted-foreground">Total Revenue</span>
-                            <span className="text-2xl font-bold text-foreground">Rs. {(data.summary.totalRevenue / 1000000).toFixed(1)}M</span>
-                        </div>
-                    </div>
-
-                    <div className="space-y-4 pt-4 border-t border-card-border overflow-y-auto custom-scrollbar max-h-[150px]">
-                        {data.categoryData.map((cat: any, i: number) => (
-                            <div key={i} className="flex justify-between items-center text-sm">
-                                <div className="flex items-center space-x-3">
-                                    <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: COLORS[i % COLORS.length] }}></div>
-                                    <span className="font-medium text-muted-foreground">{cat.name}</span>
+            {/* Premium Metric Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {[
+                    {
+                        label: 'Total Sale',
+                        value: `Rs. ${(data.summary.totalRevenue / 1000).toFixed(1)}k`,
+                        sub: '+ 7% Growth',
+                        icon: <Activity size={20} className="text-primary" />,
+                        trend: 'up'
+                    },
+                    {
+                        label: 'Low Selling',
+                        value: data.summary.lowSellingCount || 0,
+                        sub: 'Unsold this week',
+                        icon: <TrendingDown size={20} className="text-danger" />,
+                        trend: 'down'
+                    },
+                    {
+                        label: 'Most Selling',
+                        value: data.summary.mostSellingCount || 0,
+                        sub: 'Sold this week',
+                        icon: <TrendingUp size={20} className="text-success" />,
+                        trend: 'up'
+                    },
+                    {
+                        label: 'Low in Stock',
+                        value: data.summary.lowStockCount || 0,
+                        sub: 'Under 5 units',
+                        icon: <div className="p-1 rounded bg-amber-500/10"><Info size={20} className="text-amber-500" /></div>,
+                        trend: 'neutral'
+                    }
+                ].map((metric, i) => (
+                    <div key={i} className="glass rounded-[20px] p-6 space-y-4 hover:-translate-y-1 transition-all duration-300 group">
+                        <div className="flex justify-between items-start">
+                            <div className="flex items-center space-x-3">
+                                <div className="p-2 rounded-xl bg-background/50 border border-card-border group-hover:bg-primary/10 group-hover:border-primary/20 transition-colors">
+                                    {metric.icon}
                                 </div>
-                                <span className="font-bold text-foreground">Rs.{(cat.value / 1000).toFixed(1)}k</span>
+                                <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">{metric.label}</span>
                             </div>
-                        ))}
+                            <div className="w-6 h-6 rounded-full flex items-center justify-center bg-muted/5 group-hover:bg-primary/10 transition-colors">
+                                <ExternalLink size={12} className="text-muted-foreground group-hover:text-primary transition-colors" />
+                            </div>
+                        </div>
+                        <div className="space-y-1">
+                            <div className="text-2xl font-black text-foreground tracking-tighter">{metric.value}</div>
+                            <div className={`text-[10px] font-bold px-2 py-0.5 rounded-full w-fit ${
+                                metric.trend === 'up' ? 'text-success bg-success/10' : 
+                                metric.trend === 'down' ? 'text-danger bg-danger/10' : 
+                                'text-amber-500 bg-amber-500/10'
+                            }`}>
+                                {metric.sub}
+                            </div>
+                        </div>
                     </div>
-
-                    <button className="w-full mt-4 flex items-center justify-center space-x-2 text-xs font-bold text-emerald-600 hover:text-emerald-700 transition-colors">
-                        <span>Explore all categories</span>
-                        <ExternalLink size={12} />
-                    </button>
-                </div>
+                ))}
             </div>
 
 
