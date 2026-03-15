@@ -112,21 +112,39 @@ export default function PaymentMethod({
           </div>
         )}
 
-        <div className="relative group">
-          <label className="absolute -top-2 left-3 bg-card px-1 text-[8px] font-black text-muted-foreground uppercase tracking-widest z-10">
-            Paying Now (Rs)
-          </label>
+        <div>
+          <div className="flex justify-between items-center mb-2 px-1">
+            <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Paying Now (Rs)</label>
+            <span className="text-[9px] font-bold text-pos-accent/60 uppercase tracking-tighter">
+              Max: Rs. {(total + (previousDues < 0 ? Math.abs(previousDues) : 0)).toLocaleString()}
+            </span>
+          </div>
           <div className="relative">
-            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted font-bold text-sm">Rs.</span>
             <input
               type="number"
-              min="0"
-              step="0.01"
               value={amountPaid}
               onChange={(e) => setAmountPaid(e.target.value)}
+              disabled={paymentMethod === 'Credit' && !isCustomerSelected}
+              className={`w-full px-4 py-3 bg-background border rounded-xl focus:outline-none focus:ring-4 transition-all font-black text-xl text-foreground tracking-tighter sm:text-2xl ${parseFloat(amountPaid) > (total + (previousDues < 0 ? Math.abs(previousDues) : 0)) ? 'border-danger focus:ring-danger/10' : 'border-card-border focus:ring-pos-accent/10 focus:border-pos-accent'}`}
               placeholder="0.00"
-              className="w-full pl-12 pr-4 py-4 bg-card border border-card-border rounded-xl focus:outline-none focus:ring-4 focus:ring-pos-accent/5 focus:border-pos-accent transition-all text-lg font-black tracking-tight text-foreground"
             />
+            {parseFloat(amountPaid) > (total + (previousDues < 0 ? Math.abs(previousDues) : 0)) && (
+              <div className="mt-2 flex flex-col gap-1.5 p-3 rounded-xl bg-danger/5 border border-danger/10 animate-in slide-in-from-top-1 duration-200">
+                <div className="flex items-center gap-2 text-danger">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                  </svg>
+                  <p className="text-[9px] font-black uppercase tracking-widest leading-none">Exceeds Outstanding Balance</p>
+                </div>
+                <button 
+                  type="button"
+                  onClick={() => setAmountPaid((total + (previousDues < 0 ? Math.abs(previousDues) : 0)).toString())}
+                  className="text-[8px] font-black uppercase py-1 px-2 bg-danger text-white rounded-lg self-start hover:bg-danger/90 transition-all active:scale-95 shadow-sm"
+                >
+                  Auto-Adjust to Max
+                </button>
+              </div>
+            )}
           </div>
         </div>
 

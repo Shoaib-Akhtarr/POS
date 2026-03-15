@@ -124,9 +124,18 @@ function POSContent() {
     
     // Logic: selectedCustomer.totalDues is negative if they owe money.
     // balanceDue = previousDues - currentBill + amountPaid
-    // If result > 0 (they paid extra), clamp to 0 (no advance).
     const previousDues = selectedCustomer ? selectedCustomer.totalDues : 0;
-    const paid = parseFloat(amountPaid) || 0;
+    const pendingDebt = selectedCustomer && selectedCustomer.totalDues < 0 ? Math.abs(selectedCustomer.totalDues) : 0;
+    const totalRequested = total + pendingDebt;
+    
+    let paid = parseFloat(amountPaid) || 0;
+    
+    // Auto-cap: If paid > totalOutstanding, clamp it
+    if (paid > totalRequested) {
+      paid = totalRequested;
+      setAmountPaid(totalRequested.toString());
+    }
+
     const balanceDue = selectedCustomer ? Math.min(0, previousDues - total + paid) : 0;
 
     const saleData = {
