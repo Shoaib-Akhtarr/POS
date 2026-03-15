@@ -135,7 +135,7 @@ const TransactionDetailsModal: React.FC<TransactionDetailsModalProps> = ({ sale,
                                 <span className="font-black text-pos-accent">- Rs. {(sale.discount ?? 0).toLocaleString()}</span>
                             </div>
                         )}
-                        {(sale.previousDues ?? 0) > 0 && (
+                        {(sale.previousDues ?? 0) < 0 && (
                             <div className="flex justify-between items-center text-sm relative z-10">
                                 <span className="text-[11px] font-black text-muted-foreground uppercase tracking-widest">Previous Dues:</span>
                                 <span className="font-black text-danger">Rs. {(sale.previousDues ?? 0).toLocaleString()}</span>
@@ -151,7 +151,7 @@ const TransactionDetailsModal: React.FC<TransactionDetailsModalProps> = ({ sale,
                         </div>
                         <div className="flex justify-between items-center border-t border-card-border pt-4 mt-2 relative z-10">
                             <span className="text-[11px] font-black text-muted-foreground uppercase tracking-widest">Remaining Balance Due:</span>
-                            <span className={`text-xl font-black ${(sale.balanceDue || 0) > 0 ? 'text-danger' : 'text-success'}`}>
+                            <span className={`text-xl font-black ${(sale.balanceDue || 0) < 0 ? 'text-danger' : 'text-success'}`}>
                                 Rs. {sale.balanceDue?.toLocaleString() || '0'}
                             </span>
                         </div>

@@ -99,6 +99,9 @@ export async function POST(req: NextRequest) {
 
         console.log(`[Sales API] Creating sale with balanceDue: ${balanceDue}, amountPaid: ${amountPaid}`);
 
+        // Ensure balanceDue is clamped to 0 (no advances) and follows negative debt logic
+        const calculatedBalanceDue = Math.min(0, Number(balanceDue));
+
         const sale = await Sale.create({
             user: user._id,
             cartItems: enrichedCartItems,
@@ -108,7 +111,7 @@ export async function POST(req: NextRequest) {
             customer: customer || undefined,
             previousDues: Number(previousDues) || 0,
             amountPaid: Number(amountPaid) || 0,
-            balanceDue: Number(balanceDue) || 0,
+            balanceDue: calculatedBalanceDue,
             paymentMethod: paymentMethod || 'Cash',
             isPaid: isPaid !== undefined ? isPaid : true,
             receiptId,
@@ -120,10 +123,10 @@ export async function POST(req: NextRequest) {
 
         // Automation: If this sale is attached to a registered customer, update their running balance
         if (customer) {
-            console.log(`[Sales API] Updating customer ${customer} totalDues to ${balanceDue} and incrementing totalDiscount by ${discount}`);
+            console.log(`[Sales API] Updating customer ${customer} totalDues to ${calculatedBalanceDue} and incrementing totalDiscount by ${discount}`);
             const CustomerModel = (await import('@/models/Customer')).default;
             await CustomerModel.findByIdAndUpdate(customer, {
-                $set: { totalDues: Number(balanceDue) || 0 },
+                $set: { totalDues: calculatedBalanceDue },
                 $inc: { totalDiscount: Number(discount) || 0 }
             });
         }

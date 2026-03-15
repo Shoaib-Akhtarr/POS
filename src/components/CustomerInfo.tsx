@@ -101,9 +101,9 @@ export default function CustomerInfo({ customerName, setCustomerName, selectedCu
                             <p className="text-[10px] font-bold text-muted-foreground">{customer.phone}</p>
                           </div>
                           <div className="text-right">
-                            <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Balance</p>
-                            <p className={`text-xs font-black ${customer.totalDues > 0 ? 'text-danger' : 'text-success'}`}>
-                              Rs. {customer.totalDues.toLocaleString()}
+                            <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Status</p>
+                            <p className={`text-xs font-black ${customer.totalDues < 0 ? 'text-danger' : 'text-success'}`}>
+                              {customer.totalDues < 0 ? `Rs. ${Math.abs(customer.totalDues).toLocaleString()} (Due)` : 'Clear'}
                             </p>
                           </div>
                         </div>
@@ -130,8 +130,8 @@ export default function CustomerInfo({ customerName, setCustomerName, selectedCu
                 <div className="flex items-center space-x-2 mt-0.5">
                   <span className="text-[10px] font-bold text-muted-foreground">{selectedCustomer.phone || 'No phone'}</span>
                   <span className="text-[8px] text-muted-foreground/30">•</span>
-                  <span className={`text-[10px] font-black ${selectedCustomer.totalDues > 0 ? 'text-danger' : 'text-success'}`}>
-                    Balance: Rs. {selectedCustomer.totalDues.toLocaleString()}
+                  <span className={`text-[10px] font-black ${selectedCustomer.totalDues < 0 ? 'text-danger' : 'text-success'}`}>
+                    {selectedCustomer.totalDues < 0 ? `Due: Rs. ${Math.abs(selectedCustomer.totalDues).toLocaleString()}` : 'Balance Clear'}
                   </span>
                 </div>
               </div>

@@ -34,9 +34,10 @@ export async function POST(
             return NextResponse.json({ message: 'Customer not found' }, { status: 404 });
         }
 
-        // 1. Calculate the new balance
+        // 1. Calculate the new balance (totalDues is negative if they owe)
         const previousDues = customer.totalDues;
-        customer.totalDues -= amount;
+        // Adding the positive payment to the negative debt, then clamping to 0
+        customer.totalDues = Math.min(0, previousDues + amount);
 
         // 2. Save the customer's new balance
         await customer.save();

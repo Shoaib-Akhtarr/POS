@@ -62,9 +62,12 @@ function POSContent() {
   useEffect(() => {
     if (currentView === 'pos') {
       const total = calculateTotal();
-      setAmountPaid(total > 0 ? total.toString() : '');
+      // Default to the amount needed to clear the debt: current bill + absolute value of negative dues
+      const pendingDebt = selectedCustomer && selectedCustomer.totalDues < 0 ? Math.abs(selectedCustomer.totalDues) : 0;
+      const totalRequested = total + pendingDebt;
+      setAmountPaid(totalRequested > 0 ? totalRequested.toString() : '');
     }
-  }, [cart, discountAmount, currentView]);
+  }, [cart, discountAmount, currentView, selectedCustomer]);
 
   const addToCart = (product: Product, quantity: number = 1) => {
     setCart(prevCart => {
@@ -118,7 +121,13 @@ function POSContent() {
   const handleCompleteSale = async () => {
     if (cart.length === 0) return;
     const total = calculateTotal();
-    const balanceDue = selectedCustomer ? (selectedCustomer.totalDues + total - (parseFloat(amountPaid) || 0)) : 0;
+    
+    // Logic: selectedCustomer.totalDues is negative if they owe money.
+    // balanceDue = previousDues - currentBill + amountPaid
+    // If result > 0 (they paid extra), clamp to 0 (no advance).
+    const previousDues = selectedCustomer ? selectedCustomer.totalDues : 0;
+    const paid = parseFloat(amountPaid) || 0;
+    const balanceDue = selectedCustomer ? Math.min(0, previousDues - total + paid) : 0;
 
     const saleData = {
       cartItems: cart.map(item => ({
@@ -131,8 +140,8 @@ function POSContent() {
       discount: parseFloat(discountAmount) || 0,
       customerName: customerName || (selectedCustomer ? selectedCustomer.name : 'Walk-in Customer'),
       customer: selectedCustomer ? selectedCustomer._id : undefined,
-      previousDues: selectedCustomer ? selectedCustomer.totalDues : 0,
-      amountPaid: parseFloat(amountPaid) || 0,
+      previousDues: previousDues,
+      amountPaid: paid,
       balanceDue: balanceDue,
       paymentMethod,
       isPaid: paymentMethod === 'Cash',
@@ -258,7 +267,17 @@ function POSContent() {
               </div>
               <div className="space-y-4 pt-4 border-t border-card-border">
                 <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[3px] px-1">Payment Method</p>
-                <PaymentMethod paymentMethod={paymentMethod} setPaymentMethod={setPaymentMethod} amountPaid={amountPaid} setAmountPaid={setAmountPaid} discountAmount={discountAmount} setDiscountAmount={setDiscountAmount} total={calculateTotal()} isCustomerSelected={!!selectedCustomer} />
+                <PaymentMethod 
+                  paymentMethod={paymentMethod} 
+                  setPaymentMethod={setPaymentMethod} 
+                  amountPaid={amountPaid} 
+                  setAmountPaid={setAmountPaid} 
+                  discountAmount={discountAmount} 
+                  setDiscountAmount={setDiscountAmount} 
+                  total={calculateTotal()} 
+                  isCustomerSelected={!!selectedCustomer} 
+                  previousDues={selectedCustomer?.totalDues || 0}
+                />
               </div>
             </div>
             <div className="p-4 lg:p-6 border-t border-sidebar-border bg-sidebar shadow-[0_-4px_32px_rgba(0,0,0,0.05)]">

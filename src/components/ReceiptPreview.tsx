@@ -273,18 +273,18 @@ export default function ReceiptPreview({
                 <div className="mt-4 pt-4 border-t border-dashed border-gray-200 space-y-1">
                   <div className="flex justify-between text-gray-500">
                     <span>Previous Dues</span>
-                    <span>Rs. {previousDues.toFixed(2)}</span>
+                    <span className={previousDues < 0 ? 'text-rose-500' : ''}>Rs. {previousDues.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between font-bold text-gray-800 pt-1">
                     <span>Total Outstanding</span>
-                    <span>Rs. {(total + previousDues).toFixed(2)}</span>
+                    <span className={(total + previousDues) < 0 ? 'text-rose-600' : ''}>Rs. {(total + previousDues).toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between text-emerald-600 pt-1">
                     <span>Amount Paid</span>
                     <span>Rs. {amountPaid.toFixed(2)}</span>
                   </div>
-                  <div className="flex justify-between font-extrabold text-rose-600 border-t border-double border-gray-300 pt-2 mt-2">
-                    <span>Balance Due</span>
+                  <div className={`flex justify-between font-extrabold border-t border-double border-gray-300 pt-2 mt-2 ${balanceDue < 0 ? 'text-rose-600' : 'text-emerald-600'}`}>
+                    <span>{balanceDue < 0 ? 'Balance Owed (Negation)' : 'Balance Clear'}</span>
                     <span>Rs. {balanceDue.toFixed(2)}</span>
                   </div>
                 </div>

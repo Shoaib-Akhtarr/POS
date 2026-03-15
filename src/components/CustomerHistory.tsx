@@ -143,10 +143,10 @@ export default function CustomerHistory({
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 relative z-10">
                 <div>
                   <p className="text-[9px] font-black uppercase tracking-[0.3em] text-muted-foreground mb-2 flex items-center gap-2">
-                    <span className={`w-2 h-2 rounded-full ${customerInfo && customerInfo.totalDues > 0 ? 'bg-danger shadow-[0_0_8px_rgba(239,68,68,0.5)]' : 'bg-success shadow-[0_0_8px_rgba(34,197,94,0.5)]'}`}></span>
+                    <span className={`w-2 h-2 rounded-full ${customerInfo && customerInfo.totalDues < 0 ? 'bg-danger shadow-[0_0_8px_rgba(239,68,68,0.5)]' : 'bg-success shadow-[0_0_8px_rgba(34,197,94,0.5)]'}`}></span>
                     Outstanding Balance
                   </p>
-                  <h3 className={`text-4xl font-black italic tracking-tighter ${customerInfo && customerInfo.totalDues > 0 ? 'text-danger' : 'text-success'}`}>
+                  <h3 className={`text-4xl font-black italic tracking-tighter ${customerInfo && customerInfo.totalDues < 0 ? 'text-danger' : 'text-success'}`}>
                     Rs. {customerInfo ? customerInfo.totalDues.toLocaleString() : '0'}
                   </h3>
                 </div>
@@ -240,7 +240,7 @@ export default function CustomerHistory({
                           <td className={`px-6 py-3.5 whitespace-nowrap text-right text-[11px] font-black ${isPaymentOnly ? "text-success" : "text-muted-foreground"} hidden md:table-cell`}>
                             {(sale.amountPaid || 0) > 0 ? `Rs. ${(sale.amountPaid || 0).toLocaleString()}` : <span className="text-muted-foreground/20">---</span>}
                           </td>
-                          <td className={`px-6 py-3.5 whitespace-nowrap text-right text-[12px] font-black ${(sale.balanceDue || 0) > 0 ? "text-danger" : "text-success"}`}>
+                          <td className={`px-6 py-3.5 whitespace-nowrap text-right text-[12px] font-black ${(sale.balanceDue || 0) < 0 ? "text-danger" : "text-success"}`}>
                             Rs. {(sale.balanceDue || 0).toLocaleString()}
                           </td>
                         </tr>
@@ -253,7 +253,7 @@ export default function CustomerHistory({
                 <span className="text-[8px] font-black uppercase tracking-[0.2rem] text-muted-foreground italic">System Log End</span>
                 <div className="text-right">
                   <p className="text-[7px] font-black text-muted-foreground uppercase tracking-widest leading-none mb-1">Total Outstanding</p>
-                  <p className={`text-xl font-black italic tracking-tighter ${customerInfo && customerInfo.totalDues > 0 ? 'text-danger' : 'text-success'}`}>
+                  <p className={`text-xl font-black italic tracking-tighter ${customerInfo && customerInfo.totalDues < 0 ? 'text-danger' : 'text-success'}`}>
                     Rs. {customerInfo ? customerInfo.totalDues.toLocaleString() : '0'}
                   </p>
                 </div>

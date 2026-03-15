@@ -9,6 +9,7 @@ interface PaymentMethodProps {
   setDiscountAmount?: (amount: string) => void;
   total: number;
   isCustomerSelected: boolean;
+  previousDues?: number;
 }
 
 export default function PaymentMethod({
@@ -19,7 +20,8 @@ export default function PaymentMethod({
   discountAmount = '',
   setDiscountAmount,
   total,
-  isCustomerSelected
+  isCustomerSelected,
+  previousDues = 0
 }: PaymentMethodProps) {
 
   const handleMethodChange = (method: 'Cash' | 'Credit') => {
@@ -133,7 +135,7 @@ export default function PaymentMethod({
             <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-widest">
               <span className="text-muted-foreground">Remaining to Khata</span>
               <span className="text-pos-accent">
-                Rs. {(total - (parseFloat(amountPaid) || 0)).toLocaleString()}
+                Rs. {Math.abs(Math.min(0, previousDues - total + (parseFloat(amountPaid) || 0))).toLocaleString()}
               </span>
             </div>
           </div>

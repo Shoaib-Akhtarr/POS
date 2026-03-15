@@ -212,7 +212,7 @@ export default function AllCustomersPage() {
                                                 {customer.address || 'N/A'}
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-black">
-                                                <span className={customer.totalDues > 0 ? 'text-danger' : 'text-success'}>
+                                                <span className={customer.totalDues < 0 ? 'text-danger' : 'text-success'}>
                                                     Rs. {customer.totalDues.toLocaleString()}
                                                 </span>
                                             </td>
