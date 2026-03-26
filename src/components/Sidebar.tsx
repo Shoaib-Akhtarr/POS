@@ -34,8 +34,7 @@ export default function Sidebar({
         { id: 'purchases', label: 'Purchases', icon: '🛒', path: '/purchases' },
         { id: 'customers', label: 'Customers', icon: '👥', path: '/customers' },
         { id: 'transactions', label: 'Transactions', icon: '📄', path: '/transactions' },
-        { id: 'profile', label: 'Profile', icon: '👤', path: '/settings/profile' },
-        { id: 'settings', label: 'Settings', icon: '⚙️', isAction: true }
+        { id: 'profile', label: 'Profile', icon: '👤', path: '/settings/profile' }
     ];
 
     const handleNavClick = (item: any) => {
