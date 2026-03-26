@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import connectToDatabase from '@/lib/db';
 import Sale from '@/models/Sale';
+import '@/models/Product'; // Import to ensure schema registration for .populate()
 import { requireAuth } from '@/lib/auth';
 
 export async function GET(
