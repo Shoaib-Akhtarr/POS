@@ -36,6 +36,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
+  --color-pos-accent: var(--primary);
   --color-accent: var(--accent);
   --color-card: var(--card);
   --color-card-border: var(--card-border);
