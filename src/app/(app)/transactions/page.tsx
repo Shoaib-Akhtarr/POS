@@ -282,8 +282,8 @@ export default function AllTransactionsPage() {
                     </div>
                 </header>
 
-                <div className="bg-card rounded-[32px] shadow-sm overflow-hidden border border-card-border">
-                    <div className="overflow-x-auto p-6">
+                <div className="bg-card flex-1 min-h-[0] rounded-[32px] shadow-sm overflow-hidden border border-card-border flex flex-col">
+                    <div className="overflow-auto flex-1 p-6 custom-scrollbar">
                         {loading ? (
                             <div className="flex flex-col justify-center items-center py-16 space-y-4">
                                 <div className="w-8 h-8 border-4 border-pos-accent border-t-transparent rounded-full animate-spin"></div>
