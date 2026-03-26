@@ -10,7 +10,7 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #020617;
+  --foreground: #111827;
   
   /* SaaS Premium Palette */
   --primary: #4f46e5; /* Indigo 600 */
@@ -21,29 +21,16 @@
   --danger: #ef4444;
   
   --sidebar: #f8fafc;
-  --sidebar-border: #f1f5f9;
+  --sidebar-border: #e2e8f0;
   
-  --card: rgba(255, 255, 255, 0.7);
-  --card-border: rgba(226, 232, 240, 0.8);
+  --card: #ffffff;
+  --card-border: #e2e8f0;
   
   --muted: #64748b;
   --muted-foreground: #94a3b8;
 }
 
-.dark {
-  --background: #020617;
-  --foreground: #f8fafc;
-  
-  --primary: #818cf8; /* Indigo 400 */
-  --primary-glow: rgba(129, 140, 248, 0.1);
-  --accent: #38bdf8;
-  
-  --sidebar: #0f172a;
-  --sidebar-border: rgba(255, 255, 255, 0.05);
-  
-  --card: rgba(15, 23, 42, 0.6);
-  --card-border: rgba(255, 255, 255, 0.08);
-}
+
 
 @theme inline {
   --color-background: var(--background);
@@ -103,11 +90,7 @@ body {
     linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
 }
 
-.dark .bg-grid {
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-}
+
 
 .animate-glow {
   animation: glow 4s ease-in-out infinite alternate;

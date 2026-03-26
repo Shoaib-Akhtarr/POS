@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useTheme } from 'next-themes';
+import { useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import Sidebar from '@/components/Sidebar';
@@ -23,7 +22,6 @@ export default function AuthenticatedLayout({
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [showSettingsModal, setShowSettingsModal] = useState(false);
     const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
-    const { theme, setTheme } = useTheme();
     const { logout } = useAuth();
 
     return (
@@ -113,13 +111,12 @@ export default function AuthenticatedLayout({
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                                         <div className="space-y-4">
                                             <h3 className="text-[10px] font-black tracking-widest uppercase text-muted-foreground">Appearance</h3>
-                                            <div className="bg-background border border-card-border rounded-2xl p-2 flex gap-2">
-                                                {['light', 'dark', 'system'].map((mode) => (
-                                                    <button key={mode} onClick={() => setTheme(mode)} className={`flex-1 flex flex-col items-center justify-center py-3 rounded-xl transition-all ${theme === mode || (mode === 'system' && !theme) ? 'bg-card text-foreground shadow-sm border border-card-border' : 'text-muted-foreground hover:text-foreground'}`}>
-                                                        <span className="text-lg mb-1">{mode === 'light' ? '☀️' : mode === 'dark' ? '🌙' : '🖥️'}</span>
-                                                        <span className="text-[10px] font-bold uppercase">{mode}</span>
-                                                    </button>
-                                                ))}
+                                            <div className="bg-background border border-card-border rounded-2xl p-4 flex items-center gap-3">
+                                                <span className="text-xl">☀️</span>
+                                                <div>
+                                                    <p className="text-sm font-bold text-foreground">White Theme</p>
+                                                    <p className="text-[10px] text-muted-foreground font-semibold uppercase tracking-wider">Clean &amp; Professional</p>
+                                                </div>
                                             </div>
                                         </div>
                                         <div className="space-y-4">
