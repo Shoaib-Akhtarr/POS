@@ -9,7 +9,7 @@
 }
 
 :root {
-  --background: #ffffff;
+  --background: #f8f6f1;
   --foreground: #000000;
   
   /* SaaS Premium Palette */
@@ -20,10 +20,10 @@
   --warning: #f59e0b;
   --danger: #ef4444;
   
-  --sidebar: #f8fafc;
+  --sidebar: #f8f6f1;
   --sidebar-border: #e2e8f0;
   
-  --card: #ffffff;
+  --card: #f8f6f1;
   --card-border: #e2e8f0;
   
   --muted: #000000;
@@ -33,6 +33,7 @@
 
 
 @theme inline {
+  --color-white: #f8f6f1;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
