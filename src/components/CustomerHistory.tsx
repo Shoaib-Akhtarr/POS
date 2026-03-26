@@ -9,6 +9,7 @@ import ReceivePaymentModal from './ReceivePaymentModal';
 interface CustomerHistoryProps {
   customerName: string;
   onClose: () => void;
+  onCustomerUpdate?: (customer: Customer) => void;
   onEditSale?: (sale: Sale) => void;
   onRowClick?: (sale: Sale) => void;
 }
@@ -16,6 +17,7 @@ interface CustomerHistoryProps {
 export default function CustomerHistory({
   customerName,
   onClose,
+  onCustomerUpdate,
   onEditSale,
   onRowClick
 }: CustomerHistoryProps) {
@@ -77,7 +79,9 @@ export default function CustomerHistory({
     setShowPaymentModal(false);
     // 3. Re-fetch the history so the new "payment sale" appears in the timeline
     fetchCustomerData();
-    // 4. Show success message
+    // 4. Notify parent to sync memory list
+    if (onCustomerUpdate) onCustomerUpdate(updatedCustomer);
+    // 5. Show success message
     alert('Payment recorded successfully!');
   };
 

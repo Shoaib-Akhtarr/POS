@@ -234,6 +234,9 @@ export default function AllCustomersPage() {
                             <CustomerHistory
                                 customerName={selectedCustomerName}
                                 onClose={() => setSelectedCustomerName(null)}
+                                onCustomerUpdate={(updated) => {
+                                    setCustomers(prev => prev.map(c => c._id === updated._id ? updated : c));
+                                }}
                                 onEditSale={(sale) => {
                                     alert('Editing sales from this view is not yet supported. Please use the POS dashboard.');
                                     setSelectedCustomerName(null);
