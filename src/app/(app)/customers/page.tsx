@@ -117,7 +117,7 @@ export default function AllCustomersPage() {
                         <div className="w-10 h-10 sm:w-14 sm:h-14 bg-pos-accent rounded-xl flex items-center justify-center text-white font-black text-xl sm:text-2xl shadow-lg shadow-pos-accent/20">👥</div>
                         <div>
                             <h1 className="text-xl sm:text-3xl font-black italic tracking-tighter uppercase text-foreground">Customers</h1>
-                            <p className="text-[9px] sm:text-[11px] font-bold text-muted-foreground uppercase tracking-widest mt-0.5">Directory & Ledger</p>
+                            <p className="text-[9px] sm:text-[11px] font-bold text-black uppercase tracking-widest mt-0.5">Directory & Ledger</p>
                         </div>
                     </div>
                     <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
@@ -136,7 +136,7 @@ export default function AllCustomersPage() {
                 <div className="bg-card rounded-[32px] shadow-sm overflow-hidden border border-card-border p-6 relative">
                     <div className="mb-6">
                         <div className="relative max-w-md">
-                            <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-muted-foreground">
+                            <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-black">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                 </svg>
@@ -155,7 +155,7 @@ export default function AllCustomersPage() {
                         {loading ? (
                             <div className="flex flex-col justify-center items-center py-16 space-y-4 bg-background">
                                 <div className="w-8 h-8 border-4 border-pos-accent border-t-transparent rounded-full animate-spin"></div>
-                                <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Loading customers...</p>
+                                <p className="text-[10px] font-black uppercase tracking-widest text-black">Loading customers...</p>
                             </div>
                         ) : error ? (
                             <div className="p-16 text-center text-danger bg-background">
@@ -163,7 +163,7 @@ export default function AllCustomersPage() {
                                 <p className="text-sm font-bold uppercase tracking-widest">{error}</p>
                             </div>
                         ) : filteredCustomers.length === 0 ? (
-                            <div className="p-16 text-center text-muted-foreground bg-background flex flex-col items-center border-2 border-dashed border-card-border rounded-xl m-4">
+                            <div className="p-16 text-center text-black bg-background flex flex-col items-center border-2 border-dashed border-card-border rounded-xl m-4">
                                 <span className="text-4xl mb-3 opacity-20">📭</span>
                                 <p className="text-[11px] font-black uppercase tracking-widest">
                                     {searchTerm ? 'No customers match your search.' : 'No customers registered yet.'}
@@ -175,18 +175,18 @@ export default function AllCustomersPage() {
                                     <tr>
                                         <th
                                             scope="col"
-                                            className="px-6 py-4 text-left text-[10px] font-black text-muted-foreground uppercase tracking-widest cursor-pointer hover:text-foreground transition-colors group/header"
+                                            className="px-6 py-4 text-left text-[10px] font-black text-black uppercase tracking-widest cursor-pointer hover:text-foreground transition-colors group/header"
                                             onClick={() => handleSort('name')}
                                         >
                                             <div className="flex items-center">
                                                 Customer Name {getSortIndicator('name')}
                                             </div>
                                         </th>
-                                        <th scope="col" className="px-6 py-4 text-left text-[10px] font-black text-muted-foreground uppercase tracking-widest hidden sm:table-cell">Phone</th>
-                                        <th scope="col" className="px-6 py-4 text-left text-[10px] font-black text-muted-foreground uppercase tracking-widest hidden md:table-cell">Address</th>
+                                        <th scope="col" className="px-6 py-4 text-left text-[10px] font-black text-black uppercase tracking-widest hidden sm:table-cell">Phone</th>
+                                        <th scope="col" className="px-6 py-4 text-left text-[10px] font-black text-black uppercase tracking-widest hidden md:table-cell">Address</th>
                                         <th
                                             scope="col"
-                                            className="px-6 py-4 text-right text-[10px] font-black text-muted-foreground uppercase tracking-widest cursor-pointer hover:text-foreground transition-colors group/header"
+                                            className="px-6 py-4 text-right text-[10px] font-black text-black uppercase tracking-widest cursor-pointer hover:text-foreground transition-colors group/header"
                                             onClick={() => handleSort('totalDues')}
                                         >
                                             <div className="flex items-center justify-end">
@@ -205,10 +205,10 @@ export default function AllCustomersPage() {
                                             <td className="px-6 py-4 whitespace-nowrap">
                                                 <div className="text-sm font-black text-foreground group-hover:text-pos-accent transition-colors">{customer.name}</div>
                                             </td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-xs font-bold text-muted-foreground uppercase tracking-widest hidden sm:table-cell">
+                                            <td className="px-6 py-4 whitespace-nowrap text-xs font-bold text-black uppercase tracking-widest hidden sm:table-cell">
                                                 {customer.phone || 'N/A'}
                                             </td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-xs font-bold text-muted-foreground max-w-xs truncate uppercase tracking-widest hidden md:table-cell">
+                                            <td className="px-6 py-4 whitespace-nowrap text-xs font-bold text-black max-w-xs truncate uppercase tracking-widest hidden md:table-cell">
                                                 {customer.address || 'N/A'}
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-black">
@@ -223,7 +223,7 @@ export default function AllCustomersPage() {
                         )}
                     </div>
 
-                    <div className="mt-6 flex justify-between items-center text-[10px] font-black text-muted-foreground uppercase tracking-widest">
+                    <div className="mt-6 flex justify-between items-center text-[10px] font-black text-black uppercase tracking-widest">
                         <span>Total Customers: {filteredCustomers.length}</span>
                     </div>
                 </div>
@@ -264,3 +264,4 @@ export default function AllCustomersPage() {
         </AuthenticatedLayout>
     );
 }
+

@@ -54,7 +54,7 @@ export default function LandingNavbar() {
                             <span className="text-lg font-black tracking-tight text-foreground leading-none italic">
                                 Karobar
                             </span>
-                            <span className="text-[10px] font-bold text-muted uppercase tracking-[0.2em]">
+                            <span className="text-[10px] font-bold text-black uppercase tracking-[0.2em]">
                                 Sahulat
                             </span>
                         </div>
@@ -66,7 +66,7 @@ export default function LandingNavbar() {
                             <Link
                                 key={link.name}
                                 href={link.href}
-                                className="px-5 py-2 text-sm font-bold text-muted hover:text-primary transition-colors relative group"
+                                className="px-5 py-2 text-sm font-bold text-black hover:text-primary transition-colors relative group"
                             >
                                 {link.name}
                                 <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-1/2 group-hover:left-1/4" />
@@ -88,7 +88,7 @@ export default function LandingNavbar() {
                             <div className="hidden sm:flex items-center gap-6">
                                 <Link
                                     href="/login"
-                                    className="text-sm font-bold text-muted hover:text-primary transition-colors"
+                                    className="text-sm font-bold text-black hover:text-primary transition-colors"
                                 >
                                     Sign In
                                 </Link>
@@ -149,7 +149,7 @@ export default function LandingNavbar() {
                                     <Link
                                         href="/login"
                                         onClick={() => setIsMenuOpen(false)}
-                                        className="py-4 text-center text-xs font-black text-muted uppercase tracking-widest bg-muted/5 rounded-2xl"
+                                        className="py-4 text-center text-xs font-black text-black uppercase tracking-widest bg-muted/5 rounded-2xl"
                                     >
                                         Sign In
                                     </Link>
@@ -169,3 +169,4 @@ export default function LandingNavbar() {
         </motion.nav>
     );
 }
+

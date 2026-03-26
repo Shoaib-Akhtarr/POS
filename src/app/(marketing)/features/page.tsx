@@ -111,7 +111,7 @@ export default function FeaturesPage() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1 }}
-                            className="text-lg md:text-2xl text-muted font-medium max-w-2xl mx-auto leading-relaxed"
+                            className="text-lg md:text-2xl text-black font-medium max-w-2xl mx-auto leading-relaxed"
                         >
                             Everything you need to transform your shop from traditional to <span className="text-foreground">Digital First.</span>
                         </motion.p>
@@ -144,7 +144,7 @@ export default function FeaturesPage() {
                                         <h2 className="text-4xl md:text-5xl font-black text-foreground tracking-tight italic mb-6">
                                             {feature.title}
                                         </h2>
-                                        <p className="text-lg md:text-xl text-muted font-medium leading-relaxed">
+                                        <p className="text-lg md:text-xl text-black font-medium leading-relaxed">
                                             {feature.description}
                                         </p>
                                     </div>
@@ -192,3 +192,4 @@ export default function FeaturesPage() {
         </div>
     );
 }
+

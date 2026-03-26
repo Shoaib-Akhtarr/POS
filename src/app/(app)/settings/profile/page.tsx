@@ -79,9 +79,9 @@ export default function ProfilePage() {
                             </div>
                             <div className="text-center md:text-left">
                                 <h1 className="text-3xl lg:text-4xl font-black text-foreground tracking-tighter mb-2">{user?.name}</h1>
-                                <p className="text-muted-foreground font-medium mb-4">{user?.email}</p>
+                                <p className="text-black font-medium mb-4">{user?.email}</p>
                                 <div className="flex flex-wrap justify-center md:justify-start gap-3">
-                                    <span className="px-4 py-1.5 bg-background border border-card-border rounded-full text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                                    <span className="px-4 py-1.5 bg-background border border-card-border rounded-full text-[10px] font-black uppercase tracking-widest text-black">
                                         Owner @ {user?.shop?.name}
                                     </span>
                                     <span className="px-4 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-[10px] font-black uppercase tracking-widest text-emerald-500">
@@ -104,7 +104,7 @@ export default function ProfilePage() {
                                 onClick={() => setActiveTab(tab.id as any)}
                                 className={`px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all duration-300 flex items-center gap-2 ${activeTab === tab.id
                                     ? 'bg-pos-accent text-white shadow-lg shadow-pos-accent/20'
-                                    : 'text-muted-foreground hover:text-foreground hover:bg-muted/10'
+                                    : 'text-black hover:text-foreground hover:bg-muted/10'
                                     }`}
                             >
                                 <span>{tab.icon}</span>
@@ -132,7 +132,7 @@ export default function ProfilePage() {
 
                                     <form onSubmit={handleUpdateProfile} className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                         <div className="space-y-2">
-                                            <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground ml-1">Full Name</label>
+                                            <label className="text-[10px] font-black uppercase tracking-widest text-black ml-1">Full Name</label>
                                             <input
                                                 type="text"
                                                 value={formData.name}
@@ -142,7 +142,7 @@ export default function ProfilePage() {
                                             />
                                         </div>
                                         <div className="space-y-2 opacity-50 cursor-not-allowed">
-                                            <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground ml-1">Email Address (Read Only)</label>
+                                            <label className="text-[10px] font-black uppercase tracking-widest text-black ml-1">Email Address (Read Only)</label>
                                             <input
                                                 type="email"
                                                 value={user?.email}
@@ -151,7 +151,7 @@ export default function ProfilePage() {
                                             />
                                         </div>
                                         <div className="space-y-2">
-                                            <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground ml-1">Phone Number</label>
+                                            <label className="text-[10px] font-black uppercase tracking-widest text-black ml-1">Phone Number</label>
                                             <input
                                                 type="text"
                                                 value={formData.phoneNumber}
@@ -161,7 +161,7 @@ export default function ProfilePage() {
                                             />
                                         </div>
                                         <div className="space-y-2 md:col-span-2">
-                                            <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground ml-1">Residential Address</label>
+                                            <label className="text-[10px] font-black uppercase tracking-widest text-black ml-1">Residential Address</label>
                                             <textarea
                                                 value={formData.address}
                                                 onChange={(e) => setFormData({ ...formData, address: e.target.value })}
@@ -199,24 +199,24 @@ export default function ProfilePage() {
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                                     <div className="space-y-6">
                                         <div>
-                                            <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-1">Business Name</p>
+                                            <p className="text-[10px] font-black uppercase tracking-widest text-black mb-1">Business Name</p>
                                             <p className="text-2xl font-black tracking-tight italic">{user?.shop?.name}</p>
                                         </div>
                                         <div>
-                                            <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-1">Business Category</p>
+                                            <p className="text-[10px] font-black uppercase tracking-widest text-black mb-1">Business Category</p>
                                             <p className="text-lg font-bold text-foreground/80">{user?.shop?.businessType}</p>
                                         </div>
                                     </div>
                                     <div className="space-y-6">
                                         <div>
-                                            <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-1">Subscription Plan</p>
+                                            <p className="text-[10px] font-black uppercase tracking-widest text-black mb-1">Subscription Plan</p>
                                             <div className="flex items-center gap-3">
                                                 <p className="text-2xl font-black text-pos-accent uppercase tracking-tighter italic">{user?.shop?.plan}</p>
                                                 <span className="px-3 py-1 bg-emerald-500/10 text-emerald-500 rounded-full text-[10px] font-black border border-emerald-500/20">{user?.shop?.subscriptionStatus}</span>
                                             </div>
                                         </div>
                                         <div>
-                                            <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-1">Currency</p>
+                                            <p className="text-[10px] font-black uppercase tracking-widest text-black mb-1">Currency</p>
                                             <p className="text-lg font-bold">{user?.shop?.settings?.currency || 'PKR'}</p>
                                         </div>
                                     </div>
@@ -255,7 +255,7 @@ export default function ProfilePage() {
                                             <span className="text-4xl animate-pulse">👋</span>
                                         </div>
                                         <h3 className="text-2xl font-black italic tracking-tighter uppercase text-foreground mb-3">Sign Out?</h3>
-                                        <p className="text-muted-foreground text-sm font-medium leading-relaxed mb-8 px-4">
+                                        <p className="text-black text-sm font-medium leading-relaxed mb-8 px-4">
                                             Are you sure you want to end your session?
                                         </p>
                                         <div className="flex flex-col gap-3">
@@ -272,3 +272,4 @@ export default function ProfilePage() {
         </AuthenticatedLayout>
     );
 }
+

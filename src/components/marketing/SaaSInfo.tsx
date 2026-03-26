@@ -95,7 +95,7 @@ export default function SaaSInfo() {
                                     </div>
 
                                     <h4 className="text-2xl font-black text-foreground mb-4 italic tracking-tight">{step.title}</h4>
-                                    <p className="text-muted font-medium leading-relaxed px-4 lg:px-0 lg:pr-6">
+                                    <p className="text-black font-medium leading-relaxed px-4 lg:px-0 lg:pr-6">
                                         {step.description}
                                     </p>
 
@@ -110,3 +110,4 @@ export default function SaaSInfo() {
         </section>
     );
 }
+

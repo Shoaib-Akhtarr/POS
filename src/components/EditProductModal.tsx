@@ -68,7 +68,7 @@ const EditProductModal: React.FC<EditProductModalProps> = ({ product, onClose, o
                         <div className="w-10 h-10 bg-pos-accent rounded-xl flex items-center justify-center text-white font-black text-xl shadow-lg shadow-pos-accent/20">✏️</div>
                         <h2 className="text-xl font-black italic tracking-tighter uppercase text-foreground">Edit Product</h2>
                     </div>
-                    <button onClick={onClose} className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-card-border transition-all text-muted hover:text-foreground">
+                    <button onClick={onClose} className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-card-border transition-all text-black hover:text-foreground">
                         ✕
                     </button>
                 </div>
@@ -77,7 +77,7 @@ const EditProductModal: React.FC<EditProductModalProps> = ({ product, onClose, o
 
                 <form onSubmit={handleSubmit} className="space-y-5">
                     <div>
-                        <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-[2px] mb-2">Product Name *</label>
+                        <label className="block text-[10px] font-black text-black uppercase tracking-[2px] mb-2">Product Name *</label>
                         <input
                             type="text"
                             name="name"
@@ -90,7 +90,7 @@ const EditProductModal: React.FC<EditProductModalProps> = ({ product, onClose, o
 
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-[2px] mb-2">Selling Price *</label>
+                            <label className="block text-[10px] font-black text-black uppercase tracking-[2px] mb-2">Selling Price *</label>
                             <input
                                 type="number"
                                 name="sellingPrice"
@@ -104,7 +104,7 @@ const EditProductModal: React.FC<EditProductModalProps> = ({ product, onClose, o
                         </div>
 
                         <div>
-                            <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-[2px] mb-2">Category *</label>
+                            <label className="block text-[10px] font-black text-black uppercase tracking-[2px] mb-2">Category *</label>
                             <input
                                 type="text"
                                 name="category"
@@ -139,3 +139,4 @@ const EditProductModal: React.FC<EditProductModalProps> = ({ product, onClose, o
 };
 
 export default EditProductModal;
+

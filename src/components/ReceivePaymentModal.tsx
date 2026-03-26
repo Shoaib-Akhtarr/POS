@@ -41,14 +41,14 @@ export default function ReceivePaymentModal({ customer, onClose, onSuccess }: Re
             <div className="bg-card border border-card-border rounded-2xl shadow-xl max-w-sm w-full p-6">
                 <div className="flex justify-between items-center mb-4 leading-none">
                     <h2 className="text-xl font-bold text-foreground">Receive Payment</h2>
-                    <button onClick={onClose} className="text-muted-foreground hover:text-foreground text-2xl">&times;</button>
+                    <button onClick={onClose} className="text-black hover:text-foreground text-2xl">&times;</button>
                 </div>
 
                 <div className="bg-pos-accent/5 border border-pos-accent/10 rounded-xl p-4 mb-5">
-                    <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-1">Customer</p>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-black mb-1">Customer</p>
                     <p className="font-black text-pos-accent italic uppercase tracking-tighter text-lg leading-none mb-3">{customer.name}</p>
                     <div className="flex justify-between items-end border-t border-pos-accent/10 pt-3">
-                        <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Pending Dues:</span>
+                        <span className="text-[10px] font-bold text-black uppercase tracking-widest">Pending Dues:</span>
                         <span className="font-black text-danger text-lg tracking-tighter">Rs. {customer.totalDues.toLocaleString()}</span>
                     </div>
                 </div>
@@ -57,7 +57,7 @@ export default function ReceivePaymentModal({ customer, onClose, onSuccess }: Re
 
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                        <label className="block text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-2">Payment Amount (Rs) *</label>
+                        <label className="block text-[10px] font-black uppercase tracking-widest text-black mb-2">Payment Amount (Rs) *</label>
                         <input
                             type="number"
                             required
@@ -71,19 +71,19 @@ export default function ReceivePaymentModal({ customer, onClose, onSuccess }: Re
                     </div>
 
                     <div>
-                        <label className="block text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-2">Payment Method</label>
+                        <label className="block text-[10px] font-black uppercase tracking-widest text-black mb-2">Payment Method</label>
                         <div className="flex gap-2 text-[10px] font-black uppercase tracking-widest mt-1">
                             <button
                                 type="button"
                                 onClick={() => setPaymentMethod('Cash')}
-                                className={`flex-1 py-3 rounded-xl border transition-all ${paymentMethod === 'Cash' ? 'bg-success/10 border-success text-success shadow-sm' : 'border-card-border text-muted-foreground hover:bg-muted/5'}`}
+                                className={`flex-1 py-3 rounded-xl border transition-all ${paymentMethod === 'Cash' ? 'bg-success/10 border-success text-success shadow-sm' : 'border-card-border text-black hover:bg-muted/5'}`}
                             >
                                 Cash
                             </button>
                             <button
                                 type="button"
                                 onClick={() => setPaymentMethod('Bank Transfer')}
-                                className={`flex-1 py-3 rounded-xl border transition-all ${paymentMethod === 'Bank Transfer' ? 'bg-pos-accent/10 border-pos-accent text-pos-accent shadow-sm' : 'border-card-border text-muted-foreground hover:bg-muted/5'}`}
+                                className={`flex-1 py-3 rounded-xl border transition-all ${paymentMethod === 'Bank Transfer' ? 'bg-pos-accent/10 border-pos-accent text-pos-accent shadow-sm' : 'border-card-border text-black hover:bg-muted/5'}`}
                             >
                                 Bank Transfer
                             </button>
@@ -94,7 +94,7 @@ export default function ReceivePaymentModal({ customer, onClose, onSuccess }: Re
                         <button
                             type="button"
                             onClick={onClose}
-                            className="flex-1 py-3 border border-card-border rounded-xl text-[10px] font-black uppercase tracking-widest text-muted-foreground hover:bg-muted/5 transition-all active:scale-95"
+                            className="flex-1 py-3 border border-card-border rounded-xl text-[10px] font-black uppercase tracking-widest text-black hover:bg-muted/5 transition-all active:scale-95"
                         >
                             Cancel
                         </button>
@@ -111,3 +111,4 @@ export default function ReceivePaymentModal({ customer, onClose, onSuccess }: Re
         </div>
     );
 }
+

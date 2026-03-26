@@ -57,7 +57,7 @@ export default function AddCustomerModal({ onClose, onSuccess, initialName = '' 
                         <div className="w-10 h-10 bg-pos-accent rounded-xl flex items-center justify-center text-white font-black text-xl shadow-lg shadow-pos-accent/20">👤</div>
                         <h2 className="text-xl font-black italic tracking-tighter uppercase text-foreground">Register Customer</h2>
                     </div>
-                    <button onClick={onClose} className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-card-border transition-all text-muted hover:text-foreground">
+                    <button onClick={onClose} className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-card-border transition-all text-black hover:text-foreground">
                         ✕
                     </button>
                 </div>
@@ -66,7 +66,7 @@ export default function AddCustomerModal({ onClose, onSuccess, initialName = '' 
 
                 <form onSubmit={handleSubmit} className="space-y-5">
                     <div>
-                        <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-[2px] mb-2">Customer Name *</label>
+                        <label className="block text-[10px] font-black text-black uppercase tracking-[2px] mb-2">Customer Name *</label>
                         <input
                             type="text"
                             name="name"
@@ -78,7 +78,7 @@ export default function AddCustomerModal({ onClose, onSuccess, initialName = '' 
                     </div>
 
                     <div>
-                        <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-[2px] mb-2">Phone Number</label>
+                        <label className="block text-[10px] font-black text-black uppercase tracking-[2px] mb-2">Phone Number</label>
                         <input
                             type="text"
                             name="phone"
@@ -90,7 +90,7 @@ export default function AddCustomerModal({ onClose, onSuccess, initialName = '' 
                     </div>
 
                     <div>
-                        <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-[2px] mb-2">Address</label>
+                        <label className="block text-[10px] font-black text-black uppercase tracking-[2px] mb-2">Address</label>
                         <textarea
                             name="address"
                             rows={2}
@@ -101,7 +101,7 @@ export default function AddCustomerModal({ onClose, onSuccess, initialName = '' 
                     </div>
 
                     <div>
-                        <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-[2px] mb-2">Previous/Opening Dues (Rs)</label>
+                        <label className="block text-[10px] font-black text-black uppercase tracking-[2px] mb-2">Previous/Opening Dues (Rs)</label>
                         <input
                             type="number"
                             name="totalDues"
@@ -135,3 +135,4 @@ export default function AddCustomerModal({ onClose, onSuccess, initialName = '' 
         </div>
     );
 }
+

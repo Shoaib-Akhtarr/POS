@@ -100,7 +100,7 @@ export default function ProductsPage() {
                         <div className="w-10 h-10 sm:w-14 sm:h-14 bg-pos-accent rounded-xl flex items-center justify-center text-white font-black text-xl sm:text-2xl shadow-lg shadow-pos-accent/20">📦</div>
                         <div>
                             <h1 className="text-xl sm:text-3xl font-black italic tracking-tighter uppercase text-foreground">Products</h1>
-                            <p className="text-[9px] sm:text-[11px] font-bold text-muted-foreground uppercase tracking-widest mt-0.5">Inventory Management</p>
+                            <p className="text-[9px] sm:text-[11px] font-bold text-black uppercase tracking-widest mt-0.5">Inventory Management</p>
                         </div>
                     </div>
                 </header>
@@ -109,13 +109,13 @@ export default function ProductsPage() {
                     <div className="flex border-b border-card-border bg-sidebar overflow-x-auto no-scrollbar">
                         <button
                             onClick={() => setActiveTab('all')}
-                            className={`flex flex-1 items-center justify-center px-6 py-4 text-xs font-black uppercase tracking-widest whitespace-nowrap transition-all ${activeTab === 'all' ? 'text-pos-accent border-b-2 border-pos-accent bg-card' : 'text-muted-foreground hover:text-foreground hover:bg-card-border'}`}
+                            className={`flex flex-1 items-center justify-center px-6 py-4 text-xs font-black uppercase tracking-widest whitespace-nowrap transition-all ${activeTab === 'all' ? 'text-pos-accent border-b-2 border-pos-accent bg-card' : 'text-black hover:text-foreground hover:bg-card-border'}`}
                         >
                             <span className="mr-2 text-lg">📋</span> All Products
                         </button>
                         <button
                             onClick={() => setActiveTab('outofstock')}
-                            className={`flex flex-1 items-center justify-center px-6 py-4 text-xs font-black uppercase tracking-widest whitespace-nowrap transition-all ${activeTab === 'outofstock' ? 'text-danger border-b-2 border-danger bg-card' : 'text-muted-foreground hover:text-foreground hover:bg-card-border'}`}
+                            className={`flex flex-1 items-center justify-center px-6 py-4 text-xs font-black uppercase tracking-widest whitespace-nowrap transition-all ${activeTab === 'outofstock' ? 'text-danger border-b-2 border-danger bg-card' : 'text-black hover:text-foreground hover:bg-card-border'}`}
                         >
                             <span className="mr-2 text-lg">⚠️</span> Out of Stock
                         </button>
@@ -144,7 +144,7 @@ export default function ProductsPage() {
                                 ) : outOfStockProducts.length === 0 ? (
                                     <div className="text-center py-20 bg-sidebar rounded-[32px] border border-sidebar-border mt-8">
                                         <span className="text-5xl opacity-40 block mb-4">👍</span>
-                                        <p className="font-black text-muted-foreground uppercase tracking-widest text-sm">No products out of stock!</p>
+                                        <p className="font-black text-black uppercase tracking-widest text-sm">No products out of stock!</p>
                                     </div>
                                 ) : (
                                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -159,7 +159,7 @@ export default function ProductsPage() {
                                                     </div>
                                                     <h3 className="font-black text-sm tracking-tight mb-2 text-foreground">{product.name}</h3>
                                                     <div className="flex items-baseline space-x-1 mb-4 opacity-50">
-                                                        <span className="text-[10px] font-bold text-muted-foreground">Rs.</span>
+                                                        <span className="text-[10px] font-bold text-black">Rs.</span>
                                                         <span className="text-lg font-black tracking-tighter">
                                                             {(product.sellingPrice || product.price || 0).toLocaleString()}
                                                         </span>
@@ -196,3 +196,4 @@ export default function ProductsPage() {
         </AuthenticatedLayout>
     );
 }
+

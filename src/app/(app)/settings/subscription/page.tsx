@@ -43,8 +43,8 @@ export default function SubscriptionPage() {
         <AuthenticatedLayout>
             <div className="p-8 max-w-4xl mx-auto">
                 <div className="mb-10">
-                    <h1 className="text-4xl font-black text-slate-900 tracking-tight mb-2 italic">Subscription & Billing</h1>
-                    <p className="text-slate-500 font-medium">Manage your plan and billing details.</p>
+                    <h1 className="text-4xl font-black text-black tracking-tight mb-2 italic">Subscription & Billing</h1>
+                    <p className="text-black font-medium">Manage your plan and billing details.</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -53,7 +53,7 @@ export default function SubscriptionPage() {
                         <div>
                             <div className="flex justify-between items-start mb-8">
                                 <div>
-                                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-2 block">Active Plan</span>
+                                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-black mb-2 block">Active Plan</span>
                                     <h2 className="text-5xl font-black text-indigo-600 capitalize italic">{subscription?.plan || 'Free'}</h2>
                                 </div>
                                 <div className="bg-emerald-50 text-emerald-600 px-4 py-2 rounded-2xl text-xs font-black uppercase tracking-widest border border-emerald-100 italic">
@@ -65,15 +65,15 @@ export default function SubscriptionPage() {
                                 <div className="flex items-center gap-4">
                                     <div className="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center text-xl">📅</div>
                                     <div>
-                                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Renewal Date</p>
-                                        <p className="text-slate-900 font-bold">{new Date(subscription?.endDate).toLocaleDateString('en-US', { dateStyle: 'long' })}</p>
+                                        <p className="text-[10px] font-black text-black uppercase tracking-widest">Renewal Date</p>
+                                        <p className="text-black font-bold">{new Date(subscription?.endDate).toLocaleDateString('en-US', { dateStyle: 'long' })}</p>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-4">
                                     <div className="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center text-xl">💳</div>
                                     <div>
-                                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Payment Method</p>
-                                        <p className="text-slate-900 font-bold">No payment method attached</p>
+                                        <p className="text-[10px] font-black text-black uppercase tracking-widest">Payment Method</p>
+                                        <p className="text-black font-bold">No payment method attached</p>
                                     </div>
                                 </div>
                             </div>
@@ -83,7 +83,7 @@ export default function SubscriptionPage() {
                             <button className="bg-indigo-600 text-white font-black px-8 py-4 rounded-2xl shadow-lg shadow-indigo-600/20 hover:bg-indigo-700 transition-all active:scale-95">
                                 Upgrade Plan
                             </button>
-                            <button className="bg-white text-slate-900 border-2 border-slate-100 font-black px-8 py-4 rounded-2xl hover:bg-slate-50 transition-all active:scale-95">
+                            <button className="bg-white text-black border-2 border-slate-100 font-black px-8 py-4 rounded-2xl hover:bg-slate-50 transition-all active:scale-95">
                                 View Invoices
                             </button>
                         </div>
@@ -113,13 +113,14 @@ export default function SubscriptionPage() {
                 </div>
 
                 <div className="mt-12 p-8 bg-slate-50 rounded-[2rem] border border-slate-100">
-                    <h3 className="text-lg font-black text-slate-900 mb-6 italic">Billing History</h3>
+                    <h3 className="text-lg font-black text-black mb-6 italic">Billing History</h3>
                     <div className="text-center py-10">
                         <div className="text-4xl mb-4">📄</div>
-                        <p className="text-slate-400 font-bold text-sm uppercase tracking-widest">No transactions found</p>
+                        <p className="text-black font-bold text-sm uppercase tracking-widest">No transactions found</p>
                     </div>
                 </div>
             </div>
         </AuthenticatedLayout>
     );
 }
+

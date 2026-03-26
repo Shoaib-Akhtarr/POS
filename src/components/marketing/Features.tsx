@@ -105,7 +105,7 @@ export default function Features() {
                                 </div>
 
                                 <h4 className="text-2xl font-black text-foreground mb-4 italic tracking-tight">{feature.title}</h4>
-                                <p className="text-muted font-medium leading-relaxed">
+                                <p className="text-black font-medium leading-relaxed">
                                     {feature.description}
                                 </p>
 
@@ -122,3 +122,4 @@ export default function Features() {
         </section>
     );
 }
+

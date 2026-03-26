@@ -50,7 +50,7 @@ export default function DashboardAnalytics() {
                 <div className="xl:col-span-4 glass-card rounded-[12px] p-8 space-y-6">
                     <div className="flex justify-between items-start">
                         <div className="space-y-1">
-                            <div className="flex items-center space-x-2 text-muted-foreground">
+                            <div className="flex items-center space-x-2 text-black">
                                 <span className="text-xs font-semibold">Point of Sale Trends</span>
                                 <Info size={14} className="cursor-help" />
                                 <span className="text-[10px] font-bold text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded-full">+ 2.4% WoW</span>
@@ -59,7 +59,7 @@ export default function DashboardAnalytics() {
                                 Rs. {(data.summary.totalRevenue / 1000).toFixed(2)}k sold this week, Rs. {((data.summary.totalRevenue * 1.05) / 1000).toFixed(2)}k expected next week
                             </h2>
                         </div>
-                        <button className="flex items-center space-x-1 text-xs font-bold text-muted-foreground hover:text-foreground transition-colors group">
+                        <button className="flex items-center space-x-1 text-xs font-bold text-black hover:text-foreground transition-colors group">
                             <span>Explore</span>
                             <ExternalLink size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                         </button>
@@ -150,10 +150,10 @@ export default function DashboardAnalytics() {
                                 <div className="p-2 rounded-xl bg-background/50 border border-card-border group-hover:bg-primary/10 group-hover:border-primary/20 transition-colors">
                                     {metric.icon}
                                 </div>
-                                <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">{metric.label}</span>
+                                <span className="text-xs font-bold text-black uppercase tracking-wider">{metric.label}</span>
                             </div>
                             <div className="w-6 h-6 rounded-full flex items-center justify-center bg-muted/5 group-hover:bg-primary/10 transition-colors">
-                                <ExternalLink size={12} className="text-muted-foreground group-hover:text-primary transition-colors" />
+                                <ExternalLink size={12} className="text-black group-hover:text-primary transition-colors" />
                             </div>
                         </div>
                         <div className="space-y-1">
@@ -174,3 +174,4 @@ export default function DashboardAnalytics() {
         </div>
     );
 }
+

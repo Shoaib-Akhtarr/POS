@@ -261,7 +261,7 @@ function POSContent() {
                 </div>
               </div>
               <div className="space-y-4 pt-4 border-t border-card-border">
-                <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[3px] px-1">Select Customer</p>
+                <p className="text-[10px] font-black text-black uppercase tracking-[3px] px-1">Select Customer</p>
                 <CustomerInfo
                   customerName={customerName}
                   setCustomerName={setCustomerName}
@@ -275,7 +275,7 @@ function POSContent() {
                 />
               </div>
               <div className="space-y-4 pt-4 border-t border-card-border">
-                <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[3px] px-1">Payment Method</p>
+                <p className="text-[10px] font-black text-black uppercase tracking-[3px] px-1">Payment Method</p>
                 <PaymentMethod 
                   paymentMethod={paymentMethod} 
                   setPaymentMethod={setPaymentMethod} 
@@ -291,12 +291,12 @@ function POSContent() {
             </div>
             <div className="p-4 lg:p-6 border-t border-sidebar-border bg-sidebar shadow-[0_-4px_32px_rgba(0,0,0,0.05)]">
               <div className="flex justify-between items-center mb-6 px-1">
-                <div className="flex flex-col"><span className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">Grand Total</span><span className="text-3xl font-black text-foreground tracking-tighter">Rs. {calculateTotal().toLocaleString()}</span></div>
+                <div className="flex flex-col"><span className="text-[10px] font-black text-black uppercase tracking-widest">Grand Total</span><span className="text-3xl font-black text-foreground tracking-tighter">Rs. {calculateTotal().toLocaleString()}</span></div>
               </div>
               <button 
                 onClick={handleCompleteSale} 
                 disabled={cart.length === 0 || saleLoading} 
-                className={`w-full py-4 rounded-xl font-black uppercase tracking-widest text-white shadow-lg transition-all transform active:scale-95 ${cart.length === 0 || saleLoading ? 'bg-muted/10 text-muted cursor-not-allowed border border-card-border' : 'bg-emerald-500 hover:bg-emerald-600 shadow-emerald-500/20 hover:shadow-emerald-500/40'}`}
+                className={`w-full py-4 rounded-xl font-black uppercase tracking-widest text-white shadow-lg transition-all transform active:scale-95 ${cart.length === 0 || saleLoading ? 'bg-muted/10 text-black cursor-not-allowed border border-card-border' : 'bg-emerald-500 hover:bg-emerald-600 shadow-emerald-500/20 hover:shadow-emerald-500/40'}`}
               >
                 {saleLoading ? 'Processing...' : 'Complete Sale'}
               </button>
@@ -366,3 +366,4 @@ export default function POSDashboard() {
     </Suspense>
   );
 }
+

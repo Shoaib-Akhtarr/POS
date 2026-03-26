@@ -59,7 +59,7 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.7, delay: 0.4 }}
-                        className="text-lg md:text-2xl text-muted font-medium mb-12 max-w-2xl mx-auto leading-relaxed"
+                        className="text-lg md:text-2xl text-black font-medium mb-12 max-w-2xl mx-auto leading-relaxed"
                     >
                         The ultimate Digital POS & Khata system for growing businesses.
                         Manage sales, inventory, and recoveries in one elegant workspace.
@@ -143,3 +143,4 @@ export default function Hero() {
         </section>
     );
 }
+

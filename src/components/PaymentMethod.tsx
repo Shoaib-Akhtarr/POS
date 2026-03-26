@@ -46,7 +46,7 @@ export default function PaymentMethod({
             }`}
         >
           <span className="text-2xl mb-1">💵</span>
-          <span className={`text-[10px] font-black uppercase tracking-widest ${paymentMethod === 'Cash' ? 'text-pos-accent' : 'text-muted'}`}>
+          <span className={`text-[10px] font-black uppercase tracking-widest ${paymentMethod === 'Cash' ? 'text-pos-accent' : 'text-black'}`}>
             Cash
           </span>
           {paymentMethod === 'Cash' && (
@@ -67,7 +67,7 @@ export default function PaymentMethod({
             }`}
         >
           <span className="text-2xl mb-1">📓</span>
-          <span className={`text-[10px] font-black uppercase tracking-widest ${paymentMethod === 'Credit' ? 'text-pos-accent' : 'text-muted'}`}>
+          <span className={`text-[10px] font-black uppercase tracking-widest ${paymentMethod === 'Credit' ? 'text-pos-accent' : 'text-black'}`}>
             Khata
           </span>
           {paymentMethod === 'Credit' && (
@@ -75,7 +75,7 @@ export default function PaymentMethod({
           )}
           {!isCustomerSelected && (
             <div className="absolute inset-0 flex items-center justify-center bg-background/10 rounded-xl">
-              <span className="text-[7px] font-black text-muted-foreground bg-card px-1 py-0.5 rounded shadow-sm border border-card-border uppercase tracking-tighter">Select Customer</span>
+              <span className="text-[7px] font-black text-black bg-card px-1 py-0.5 rounded shadow-sm border border-card-border uppercase tracking-tighter">Select Customer</span>
             </div>
           )}
         </button>
@@ -84,11 +84,11 @@ export default function PaymentMethod({
       <div className="space-y-4">
         {setDiscountAmount && (
           <div className="relative group mb-8">
-            <label className="absolute -top-2 left-3 bg-card px-1 text-[8px] font-black text-muted-foreground uppercase tracking-widest z-10">
+            <label className="absolute -top-2 left-3 bg-card px-1 text-[8px] font-black text-black uppercase tracking-widest z-10">
               Discount (Rs)
             </label>
             <div className="relative">
-              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted font-bold text-sm">Rs.</span>
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-black font-bold text-sm">Rs.</span>
               <input
                 type="number"
                 min="0"
@@ -114,7 +114,7 @@ export default function PaymentMethod({
 
         <div>
           <div className="flex justify-between items-center mb-2 px-1">
-            <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Paying Now (Rs)</label>
+            <label className="text-[10px] font-black uppercase tracking-widest text-black">Paying Now (Rs)</label>
             <span className="text-[9px] font-bold text-pos-accent/60 uppercase tracking-tighter">
               Max: Rs. {(total + (previousDues < 0 ? Math.abs(previousDues) : 0)).toLocaleString()}
             </span>
@@ -151,7 +151,7 @@ export default function PaymentMethod({
         {paymentMethod === 'Credit' && (
           <div className="p-4 bg-pos-accent/5 rounded-xl border border-pos-accent/10">
             <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-widest">
-              <span className="text-muted-foreground">Remaining to Khata</span>
+              <span className="text-black">Remaining to Khata</span>
               <span className="text-pos-accent">
                 Rs. {Math.abs(Math.min(0, previousDues - total + (parseFloat(amountPaid) || 0))).toLocaleString()}
               </span>

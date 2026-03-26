@@ -39,10 +39,10 @@ export default function ChangePasswordForm() {
     return (
         <div className="space-y-4">
             <div className="flex items-center space-x-2">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8V7a4 4 0 00-8 0v4h8z" />
                 </svg>
-                <h3 className="text-xs font-semibold tracking-wide uppercase text-muted-foreground">Security Credentials</h3>
+                <h3 className="text-xs font-semibold tracking-wide uppercase text-black">Security Credentials</h3>
             </div>
 
             <div className="bg-card border border-card-border rounded-xl p-6 relative overflow-hidden transition-all duration-300 shadow-sm">
@@ -77,7 +77,7 @@ export default function ChangePasswordForm() {
                             value={currentPassword}
                             onChange={(e) => setCurrentPassword(e.target.value)}
                             required
-                            className="w-full px-4 py-2.5 bg-background border border-card-border rounded-lg focus:outline-none focus:ring-1 focus:ring-pos-accent focus:border-pos-accent text-sm text-foreground placeholder:text-muted-foreground/50 transition-colors shadow-sm"
+                            className="w-full px-4 py-2.5 bg-background border border-card-border rounded-lg focus:outline-none focus:ring-1 focus:ring-pos-accent focus:border-pos-accent text-sm text-foreground placeholder:text-black/50 transition-colors shadow-sm"
                         />
                     </div>
 
@@ -90,7 +90,7 @@ export default function ChangePasswordForm() {
                                 value={newPassword}
                                 onChange={(e) => setNewPassword(e.target.value)}
                                 required
-                                className="w-full px-4 py-2.5 bg-background border border-card-border rounded-lg focus:outline-none focus:ring-1 focus:ring-pos-accent focus:border-pos-accent text-sm text-foreground placeholder:text-muted-foreground/50 transition-colors shadow-sm"
+                                className="w-full px-4 py-2.5 bg-background border border-card-border rounded-lg focus:outline-none focus:ring-1 focus:ring-pos-accent focus:border-pos-accent text-sm text-foreground placeholder:text-black/50 transition-colors shadow-sm"
                             />
                         </div>
                         <div className="space-y-1.5">
@@ -101,7 +101,7 @@ export default function ChangePasswordForm() {
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
                                 required
-                                className="w-full px-4 py-2.5 bg-background border border-card-border rounded-lg focus:outline-none focus:ring-1 focus:ring-pos-accent focus:border-pos-accent text-sm text-foreground placeholder:text-muted-foreground/50 transition-colors shadow-sm"
+                                className="w-full px-4 py-2.5 bg-background border border-card-border rounded-lg focus:outline-none focus:ring-1 focus:ring-pos-accent focus:border-pos-accent text-sm text-foreground placeholder:text-black/50 transition-colors shadow-sm"
                             />
                         </div>
                     </div>
@@ -111,7 +111,7 @@ export default function ChangePasswordForm() {
                             type="submit"
                             disabled={loading || !currentPassword || !newPassword || !confirmPassword}
                             className={`px-6 py-2.5 rounded-lg font-medium tracking-wide text-sm transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-card focus:ring-pos-accent ${loading || !currentPassword || !newPassword || !confirmPassword
-                                    ? 'bg-muted/10 text-muted-foreground cursor-not-allowed border border-card-border'
+                                    ? 'bg-muted/10 text-black cursor-not-allowed border border-card-border'
                                     : 'bg-pos-accent text-white hover:opacity-90 shadow-md border border-transparent active:scale-95'
                                 }`}
                         >
@@ -123,3 +123,4 @@ export default function ChangePasswordForm() {
         </div>
     );
 }
+

@@ -48,7 +48,7 @@ export default function CheckoutSuccessModal({
           <h2 className="text-2xl font-black italic tracking-tighter uppercase text-foreground mb-2">
             Transaction Complete!
           </h2>
-          <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest mb-8">
+          <p className="text-[11px] font-bold text-black uppercase tracking-widest mb-8">
             Receipt generated for <span className="text-pos-accent">{customerName}</span>
           </p>
 
@@ -77,7 +77,7 @@ export default function CheckoutSuccessModal({
         </div>
         
         <div className="bg-sidebar p-4 text-center border-t border-card-border">
-          <p className="text-[9px] font-black text-muted-foreground uppercase tracking-[3px]">
+          <p className="text-[9px] font-black text-black uppercase tracking-[3px]">
             Press ESC or click anywhere to dismiss
           </p>
         </div>
@@ -85,3 +85,4 @@ export default function CheckoutSuccessModal({
     </div>
   );
 }
+

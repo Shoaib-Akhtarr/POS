@@ -224,12 +224,12 @@ export default function AllTransactionsPage() {
                         <div className="w-14 h-14 bg-pos-accent rounded-xl flex items-center justify-center text-white font-black text-2xl shadow-lg shadow-pos-accent/20">🧾</div>
                         <div>
                             <h1 className="text-3xl font-black italic tracking-tighter uppercase text-foreground">All Transactions</h1>
-                            <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest mt-1">Review every sale record sorted by time.</p>
+                            <p className="text-[11px] font-bold text-black uppercase tracking-widest mt-1">Review every sale record sorted by time.</p>
                         </div>
                     </div>
                     <div className="flex flex-col sm:flex-row items-end gap-3 w-full lg:w-auto bg-card p-4 rounded-2xl border border-card-border shadow-sm">
                         <div className="flex flex-col gap-1 w-full sm:w-auto">
-                            <label className="text-[9px] font-black uppercase tracking-widest text-muted-foreground ml-1">From</label>
+                            <label className="text-[9px] font-black uppercase tracking-widest text-black ml-1">From</label>
                             <input
                                 type="date"
                                 value={startDate}
@@ -238,7 +238,7 @@ export default function AllTransactionsPage() {
                             />
                         </div>
                         <div className="flex flex-col gap-1 w-full sm:w-auto">
-                            <label className="text-[9px] font-black uppercase tracking-widest text-muted-foreground ml-1">To</label>
+                            <label className="text-[9px] font-black uppercase tracking-widest text-black ml-1">To</label>
                             <input
                                 type="date"
                                 value={endDate}
@@ -287,7 +287,7 @@ export default function AllTransactionsPage() {
                         {loading ? (
                             <div className="flex flex-col justify-center items-center py-16 space-y-4">
                                 <div className="w-8 h-8 border-4 border-pos-accent border-t-transparent rounded-full animate-spin"></div>
-                                <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Loading transactions...</p>
+                                <p className="text-[10px] font-black uppercase tracking-widest text-black">Loading transactions...</p>
                             </div>
                         ) : error ? (
                             <div className="p-16 text-center text-danger">
@@ -295,7 +295,7 @@ export default function AllTransactionsPage() {
                                 <p className="text-[11px] font-black uppercase tracking-widest">{error}</p>
                             </div>
                         ) : sales.length === 0 ? (
-                            <div className="p-16 text-center text-muted-foreground flex flex-col items-center border-2 border-dashed border-card-border rounded-2xl mx-6 mb-6">
+                            <div className="p-16 text-center text-black flex flex-col items-center border-2 border-dashed border-card-border rounded-2xl mx-6 mb-6">
                                 <span className="text-4xl mb-3 opacity-20">📭</span>
                                 <p className="text-[11px] font-black uppercase tracking-widest">No transactions found.</p>
                             </div>
@@ -304,11 +304,11 @@ export default function AllTransactionsPage() {
                                 <table className="min-w-full divide-y divide-card-border">
                                     <thead className="bg-sidebar">
                                         <tr>
-                                            <th scope="col" className="px-6 py-4 text-left text-[10px] font-black text-muted-foreground uppercase tracking-widest">Date & Time</th>
-                                            <th scope="col" className="px-6 py-4 text-left text-[10px] font-black text-muted-foreground uppercase tracking-widest">Receipt ID</th>
-                                            <th scope="col" className="px-6 py-4 text-left text-[10px] font-black text-muted-foreground uppercase tracking-widest">Customer</th>
-                                            <th scope="col" className="px-6 py-4 text-right text-[10px] font-black text-muted-foreground uppercase tracking-widest">Total Amount</th>
-                                            <th scope="col" className="px-6 py-4 text-center text-[10px] font-black text-muted-foreground uppercase tracking-widest">Payment Method</th>
+                                            <th scope="col" className="px-6 py-4 text-left text-[10px] font-black text-black uppercase tracking-widest">Date & Time</th>
+                                            <th scope="col" className="px-6 py-4 text-left text-[10px] font-black text-black uppercase tracking-widest">Receipt ID</th>
+                                            <th scope="col" className="px-6 py-4 text-left text-[10px] font-black text-black uppercase tracking-widest">Customer</th>
+                                            <th scope="col" className="px-6 py-4 text-right text-[10px] font-black text-black uppercase tracking-widest">Total Amount</th>
+                                            <th scope="col" className="px-6 py-4 text-center text-[10px] font-black text-black uppercase tracking-widest">Payment Method</th>
                                         </tr>
                                     </thead>
                                     <tbody className="bg-card divide-y divide-card-border">
@@ -321,7 +321,7 @@ export default function AllTransactionsPage() {
                                                 <td className="px-6 py-4 whitespace-nowrap text-xs font-bold text-foreground">
                                                     {formatDate(sale.createdAt)}
                                                 </td>
-                                                <td className="px-6 py-4 whitespace-nowrap text-xs font-mono font-bold text-muted-foreground">
+                                                <td className="px-6 py-4 whitespace-nowrap text-xs font-mono font-bold text-black">
                                                     {sale.receiptId}
                                                 </td>
                                                 <td className="px-6 py-4 whitespace-nowrap text-xs font-bold text-foreground">
@@ -366,7 +366,7 @@ export default function AllTransactionsPage() {
                             </div>
                             <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
                                 <div>
-                                    <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                                    <p className="text-[10px] font-black uppercase tracking-widest text-black">
                                         Showing <span className="text-foreground">{((page - 1) * limit) + 1}</span> to <span className="text-foreground">{Math.min(page * limit, total)}</span> of <span className="text-foreground">{total}</span> results
                                     </p>
                                 </div>
@@ -375,7 +375,7 @@ export default function AllTransactionsPage() {
                                         <button
                                             onClick={() => setPage(prev => Math.max(prev - 1, 1))}
                                             disabled={page === 1}
-                                            className="relative inline-flex items-center px-2 py-2 bg-card text-muted-foreground hover:bg-card-border disabled:opacity-50 disabled:bg-card"
+                                            className="relative inline-flex items-center px-2 py-2 bg-card text-black hover:bg-card-border disabled:opacity-50 disabled:bg-card"
                                         >
                                             <span className="sr-only">Previous</span>
                                             <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -397,7 +397,7 @@ export default function AllTransactionsPage() {
                                         <button
                                             onClick={() => setPage(prev => Math.min(prev + 1, totalPages))}
                                             disabled={page === totalPages}
-                                            className="relative inline-flex items-center px-2 py-2 border-l border-card-border bg-card text-muted-foreground hover:bg-card-border disabled:opacity-50 disabled:bg-card"
+                                            className="relative inline-flex items-center px-2 py-2 border-l border-card-border bg-card text-black hover:bg-card-border disabled:opacity-50 disabled:bg-card"
                                         >
                                         </button>
                                     </nav>
@@ -417,3 +417,4 @@ export default function AllTransactionsPage() {
         </AuthenticatedLayout>
     );
 }
+

@@ -73,7 +73,7 @@ export default function Testimonials() {
                                     </div>
                                     <div>
                                         <h4 className="font-black text-foreground italic">{t.author}</h4>
-                                        <p className="text-[10px] font-bold text-muted uppercase tracking-widest">{t.role}</p>
+                                        <p className="text-[10px] font-bold text-black uppercase tracking-widest">{t.role}</p>
                                     </div>
                                 </div>
                                 <div className="inline-block px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-500 text-[10px] font-black uppercase tracking-widest">
@@ -87,3 +87,4 @@ export default function Testimonials() {
         </section>
     );
 }
+

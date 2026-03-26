@@ -81,9 +81,9 @@ export default function Pricing() {
                                 <div className="flex items-baseline gap-2">
                                     <span className="text-xl font-black text-foreground opacity-40 italic font-mono uppercase">PKR</span>
                                     <span className="text-4xl md:text-5xl font-black text-foreground tracking-tighter">{tier.price}</span>
-                                    <span className="text-muted font-bold text-xs tracking-widest uppercase">{tier.period}</span>
+                                    <span className="text-black font-bold text-xs tracking-widest uppercase">{tier.period}</span>
                                 </div>
-                                <p className="mt-6 text-muted font-medium italic leading-relaxed">
+                                <p className="mt-6 text-black font-medium italic leading-relaxed">
                                     {tier.description}
                                 </p>
                             </div>
@@ -108,7 +108,7 @@ export default function Pricing() {
                                 <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
                             </Link>
 
-                            <p className="mt-4 text-[10px] text-center text-muted font-bold uppercase tracking-widest">
+                            <p className="mt-4 text-[10px] text-center text-black font-bold uppercase tracking-widest">
                                 Cancel Anytime • No Hidden Fees
                             </p>
                         </motion.div>
@@ -118,3 +118,4 @@ export default function Pricing() {
         </section>
     );
 }
+

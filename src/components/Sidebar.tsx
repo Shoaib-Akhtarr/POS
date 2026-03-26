@@ -81,7 +81,7 @@ export default function Sidebar({
                         </div>
                         <div className="flex flex-col">
                             <h1 className="text-lg font-black tracking-tight leading-none italic text-foreground">Karobar</h1>
-                            <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Sahulat POS</span>
+                            <span className="text-[10px] font-bold text-black uppercase tracking-widest">Sahulat POS</span>
                         </div>
                     </div>
 
@@ -93,7 +93,7 @@ export default function Sidebar({
                                 onClick={() => handleNavClick(item)}
                                 className={`flex items-center space-x-3 w-full p-3.5 rounded-xl font-bold text-[11px] uppercase tracking-wider transition-all duration-200 outline-none ${currentView === item.id
                                     ? 'bg-pos-accent text-white shadow-md shadow-pos-accent/20'
-                                    : 'text-muted hover:text-foreground hover:bg-muted/10'
+                                    : 'text-black hover:text-foreground hover:bg-muted/10'
                                     }`}
                             >
                                 <span className="text-lg leading-none">{item.icon}</span>
@@ -109,3 +109,4 @@ export default function Sidebar({
         </>
     );
 }
+

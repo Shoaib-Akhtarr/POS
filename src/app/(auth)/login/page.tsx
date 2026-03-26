@@ -41,10 +41,10 @@ export default function LoginPage() {
           <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-2xl shadow-lg shadow-blue-600/30 mb-6 text-white text-3xl font-black italic">
             K
           </div>
-          <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mb-2">
+          <h1 className="text-2xl sm:text-3xl font-black text-black tracking-tight mb-2">
             Karobar Sahulat
           </h1>
-          <p className="text-slate-500 font-medium">Sign in to your account</p>
+          <p className="text-black font-medium">Sign in to your account</p>
         </div>
 
         {error && (
@@ -56,11 +56,11 @@ export default function LoginPage() {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-2">
-            <label className="text-[11px] font-black text-slate-400 uppercase tracking-widest ml-1">
+            <label className="text-[11px] font-black text-black uppercase tracking-widest ml-1">
               Email Address
             </label>
             <div className="relative group">
-              <span className="absolute inset-y-0 left-4 flex items-center text-slate-400 group-focus-within:text-blue-600 transition-colors">
+              <span className="absolute inset-y-0 left-4 flex items-center text-black group-focus-within:text-blue-600 transition-colors">
                 ✉️
               </span>
               <input
@@ -68,7 +68,7 @@ export default function LoginPage() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:outline-none focus:ring-4 focus:ring-blue-600/5 focus:border-blue-600 transition-all text-slate-900 font-bold"
+                className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:outline-none focus:ring-4 focus:ring-blue-600/5 focus:border-blue-600 transition-all text-black font-bold"
                 placeholder="yours@example.com"
               />
             </div>
@@ -76,7 +76,7 @@ export default function LoginPage() {
 
           <div className="space-y-2">
             <div className="flex justify-between items-center">
-              <label className="text-[11px] font-black text-slate-400 uppercase tracking-widest ml-1">
+              <label className="text-[11px] font-black text-black uppercase tracking-widest ml-1">
                 Password
               </label>
               <Link
@@ -87,7 +87,7 @@ export default function LoginPage() {
               </Link>
             </div>
             <div className="relative group">
-              <span className="absolute inset-y-0 left-4 flex items-center text-slate-400 group-focus-within:text-blue-600 transition-colors">
+              <span className="absolute inset-y-0 left-4 flex items-center text-black group-focus-within:text-blue-600 transition-colors">
                 🔒
               </span>
               <input
@@ -95,7 +95,7 @@ export default function LoginPage() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:outline-none focus:ring-4 focus:ring-blue-600/5 focus:border-blue-600 transition-all text-slate-900 font-bold"
+                className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:outline-none focus:ring-4 focus:ring-blue-600/5 focus:border-blue-600 transition-all text-black font-bold"
                 placeholder="••••••••"
               />
             </div>
@@ -120,14 +120,14 @@ export default function LoginPage() {
               <div className="w-full border-t border-slate-100"></div>
             </div>
             <div className="relative flex justify-center text-[10px] font-black uppercase tracking-widest">
-              <span className="bg-white px-4 text-slate-400">Don't have an account?</span>
+              <span className="bg-white px-4 text-black">Don't have an account?</span>
             </div>
           </div>
 
           <div className="mt-6">
             <Link
               href="/register"
-              className="w-full block text-center border-2 border-slate-100 hover:border-blue-600/30 bg-white text-slate-900 font-black py-4 px-6 rounded-2xl transition-all duration-300 hover:bg-slate-50 active:scale-95"
+              className="w-full block text-center border-2 border-slate-100 hover:border-blue-600/30 bg-white text-black font-black py-4 px-6 rounded-2xl transition-all duration-300 hover:bg-slate-50 active:scale-95"
             >
               Create Account
             </Link>

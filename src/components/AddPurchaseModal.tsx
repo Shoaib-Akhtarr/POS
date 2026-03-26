@@ -94,7 +94,7 @@ export default function AddPurchaseModal({ onClose, onSuccess }: AddPurchaseModa
                         <div className="w-10 h-10 bg-pos-accent rounded-xl flex items-center justify-center text-white font-black text-xl shadow-lg shadow-pos-accent/20">📥</div>
                         <h2 className="text-xl font-black italic tracking-tighter uppercase text-foreground">Log Purchase</h2>
                     </div>
-                    <button onClick={onClose} className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-card-border transition-all text-muted hover:text-foreground">
+                    <button onClick={onClose} className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-card-border transition-all text-black hover:text-foreground">
                         ✕
                     </button>
                 </div>
@@ -103,7 +103,7 @@ export default function AddPurchaseModal({ onClose, onSuccess }: AddPurchaseModa
 
                 <form onSubmit={handleSubmit} className="space-y-5">
                     <div>
-                        <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-[2px] mb-2">Select Product *</label>
+                        <label className="block text-[10px] font-black text-black uppercase tracking-[2px] mb-2">Select Product *</label>
                         <div className="space-y-3">
                             <select
                                 required
@@ -121,7 +121,7 @@ export default function AddPurchaseModal({ onClose, onSuccess }: AddPurchaseModa
 
                             {selectedProductId === 'new' && (
                                 <div className="animate-in slide-in-from-top-2 duration-300">
-                                    <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-[2px] mb-2">New Product Name *</label>
+                                    <label className="block text-[10px] font-black text-black uppercase tracking-[2px] mb-2">New Product Name *</label>
                                     <input
                                         type="text"
                                         required
@@ -138,7 +138,7 @@ export default function AddPurchaseModal({ onClose, onSuccess }: AddPurchaseModa
                     {(selectedProductId === 'new' || selectedProductId !== '') && (
                         <div className="grid grid-cols-2 gap-4 animate-in fade-in duration-300">
                             <div>
-                                <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-[2px] mb-2">Category *</label>
+                                <label className="block text-[10px] font-black text-black uppercase tracking-[2px] mb-2">Category *</label>
                                 <input
                                     type="text"
                                     required
@@ -148,7 +148,7 @@ export default function AddPurchaseModal({ onClose, onSuccess }: AddPurchaseModa
                                 />
                             </div>
                             <div>
-                                <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-[2px] mb-2">Selling Price *</label>
+                                <label className="block text-[10px] font-black text-black uppercase tracking-[2px] mb-2">Selling Price *</label>
                                 <input
                                     type="number"
                                     required
@@ -163,7 +163,7 @@ export default function AddPurchaseModal({ onClose, onSuccess }: AddPurchaseModa
                     )}
 
                     <div>
-                        <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-[2px] mb-2">Supplier Name *</label>
+                        <label className="block text-[10px] font-black text-black uppercase tracking-[2px] mb-2">Supplier Name *</label>
                         <input
                             type="text"
                             required
@@ -176,7 +176,7 @@ export default function AddPurchaseModal({ onClose, onSuccess }: AddPurchaseModa
 
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-[2px] mb-2">Unit Cost Price *</label>
+                            <label className="block text-[10px] font-black text-black uppercase tracking-[2px] mb-2">Unit Cost Price *</label>
                             <input
                                 type="number"
                                 required
@@ -189,7 +189,7 @@ export default function AddPurchaseModal({ onClose, onSuccess }: AddPurchaseModa
                             />
                         </div>
                         <div>
-                            <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-[2px] mb-2">Quantity *</label>
+                            <label className="block text-[10px] font-black text-black uppercase tracking-[2px] mb-2">Quantity *</label>
                             <input
                                 type="number"
                                 required
@@ -204,7 +204,7 @@ export default function AddPurchaseModal({ onClose, onSuccess }: AddPurchaseModa
 
                     {costPrice && quantity && (
                         <div className="p-4 bg-pos-accent/5 rounded-xl border border-pos-accent/10 flex justify-between items-center mt-2">
-                            <span className="text-[10px] font-black uppercase text-muted-foreground tracking-widest">Total Invoice Cost</span>
+                            <span className="text-[10px] font-black uppercase text-black tracking-widest">Total Invoice Cost</span>
                             <span className="text-pos-accent font-black text-lg tracking-tighter">
                                 Rs. {(Number(costPrice) * Number(quantity)).toLocaleString()}
                             </span>
@@ -232,3 +232,4 @@ export default function AddPurchaseModal({ onClose, onSuccess }: AddPurchaseModa
         </div>
     );
 }
+

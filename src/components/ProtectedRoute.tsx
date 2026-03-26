@@ -35,7 +35,7 @@ export default function ProtectedRoute({ children, requireAdmin = false }: Prote
       <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="flex flex-col items-center gap-4">
           <div className="w-12 h-12 border-4 border-primary/20 border-t-primary rounded-full animate-spin"></div>
-          <p className="text-[10px] font-black uppercase tracking-widest text-muted italic">Verifying Access...</p>
+          <p className="text-[10px] font-black uppercase tracking-widest text-black italic">Verifying Access...</p>
         </div>
       </div>
     );

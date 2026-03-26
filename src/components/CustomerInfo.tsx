@@ -69,7 +69,7 @@ export default function CustomerInfo({ customerName, setCustomerName, selectedCu
       <div className="relative">
         {!selectedCustomer ? (
           <div className="relative group">
-            <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-muted">
+            <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-black">
               <span className="text-xl">👤</span>
             </div>
             <input
@@ -86,7 +86,7 @@ export default function CustomerInfo({ customerName, setCustomerName, selectedCu
             {showSuggestions && customerName.trim() !== '' && (
               <div className="absolute z-50 w-full mt-2 bg-card border border-card-border rounded-xl shadow-xl overflow-hidden animate-in fade-in zoom-in duration-200">
                 {isSearching ? (
-                  <div className="p-4 text-center text-[10px] font-black uppercase text-muted-foreground tracking-widest">Searching...</div>
+                  <div className="p-4 text-center text-[10px] font-black uppercase text-black tracking-widest">Searching...</div>
                 ) : suggestions.length > 0 ? (
                   <ul className="max-h-60 overflow-y-auto">
                     {suggestions.map((customer) => (
@@ -98,10 +98,10 @@ export default function CustomerInfo({ customerName, setCustomerName, selectedCu
                         <div className="flex justify-between items-center">
                           <div>
                             <p className="font-black text-sm tracking-tight group-hover:text-pos-accent text-foreground">{customer.name}</p>
-                            <p className="text-[10px] font-bold text-muted-foreground">{customer.phone}</p>
+                            <p className="text-[10px] font-bold text-black">{customer.phone}</p>
                           </div>
                           <div className="text-right">
-                            <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Status</p>
+                            <p className="text-[10px] font-black uppercase tracking-widest text-black">Status</p>
                             <p className={`text-xs font-black ${customer.totalDues < 0 ? 'text-danger' : 'text-success'}`}>
                               {customer.totalDues < 0 ? `Rs. ${Math.abs(customer.totalDues).toLocaleString()} (Due)` : 'Clear'}
                             </p>
@@ -111,7 +111,7 @@ export default function CustomerInfo({ customerName, setCustomerName, selectedCu
                     ))}
                   </ul>
                 ) : (
-                  <div className="p-8 text-center text-muted-foreground italic text-xs">
+                  <div className="p-8 text-center text-black italic text-xs">
                     No customers found matching "{customerName}"
                   </div>
                 )}
@@ -128,8 +128,8 @@ export default function CustomerInfo({ customerName, setCustomerName, selectedCu
               <div>
                 <h3 className="font-black text-sm tracking-tight text-foreground">{selectedCustomer.name}</h3>
                 <div className="flex items-center space-x-2 mt-0.5">
-                  <span className="text-[10px] font-bold text-muted-foreground">{selectedCustomer.phone || 'No phone'}</span>
-                  <span className="text-[8px] text-muted-foreground/30">•</span>
+                  <span className="text-[10px] font-bold text-black">{selectedCustomer.phone || 'No phone'}</span>
+                  <span className="text-[8px] text-black/30">•</span>
                   <span className={`text-[10px] font-black ${selectedCustomer.totalDues < 0 ? 'text-danger' : 'text-success'}`}>
                     {selectedCustomer.totalDues < 0 ? `Due: Rs. ${Math.abs(selectedCustomer.totalDues).toLocaleString()}` : 'Balance Clear'}
                   </span>

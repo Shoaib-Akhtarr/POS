@@ -108,13 +108,13 @@ function RegisterForm() {
                 className="space-y-6"
             >
                 <div className="space-y-2">
-                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Email Address</label>
+                    <label className="text-[10px] font-black text-black uppercase tracking-widest ml-1">Email Address</label>
                     <input
                         type="email"
                         required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:outline-none focus:ring-4 focus:ring-indigo-600/5 focus:border-indigo-600 transition-all text-slate-900 font-bold"
+                        className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:outline-none focus:ring-4 focus:ring-indigo-600/5 focus:border-indigo-600 transition-all text-black font-bold"
                         placeholder="yours@example.com"
                     />
                 </div>
@@ -136,7 +136,7 @@ function RegisterForm() {
             >
                 <div className="space-y-2">
                     <div className="flex justify-between items-center">
-                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Verification Code</label>
+                        <label className="text-[10px] font-black text-black uppercase tracking-widest ml-1">Verification Code</label>
                         <span className="text-[10px] font-black text-indigo-600 uppercase">
                             {timer > 0 ? `Resend in ${timer}s` : <button type="button" onClick={handleSendOTP} className="underline">Resend Code</button>}
                         </span>
@@ -168,14 +168,14 @@ function RegisterForm() {
                 className="space-y-6"
             >
                 <div className="space-y-2">
-                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Choose Password</label>
+                    <label className="text-[10px] font-black text-black uppercase tracking-widest ml-1">Choose Password</label>
                     <input
                         type="password"
                         required
                         minLength={6}
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:outline-none focus:ring-4 focus:ring-indigo-600/5 focus:border-indigo-600 transition-all text-slate-900 font-bold"
+                        className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:outline-none focus:ring-4 focus:ring-indigo-600/5 focus:border-indigo-600 transition-all text-black font-bold"
                         placeholder="••••••••"
                     />
                 </div>
@@ -197,34 +197,34 @@ function RegisterForm() {
             >
                 <div className="space-y-4">
                     <div className="space-y-2">
-                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Your Full Name</label>
+                        <label className="text-[10px] font-black text-black uppercase tracking-widest ml-1">Your Full Name</label>
                         <input
                             type="text"
                             required
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:outline-none focus:ring-4 focus:ring-indigo-600/5 focus:border-indigo-600 transition-all text-slate-900 font-bold"
+                            className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:outline-none focus:ring-4 focus:ring-indigo-600/5 focus:border-indigo-600 transition-all text-black font-bold"
                             placeholder="Shoaib Akhtar"
                         />
                     </div>
                     <div className="space-y-2">
-                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Shop Name</label>
+                        <label className="text-[10px] font-black text-black uppercase tracking-widest ml-1">Shop Name</label>
                         <input
                             type="text"
                             required
                             value={shopName}
                             onChange={(e) => setShopName(e.target.value)}
-                            className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:outline-none focus:ring-4 focus:ring-indigo-600/5 focus:border-indigo-600 transition-all text-slate-900 font-bold"
+                            className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:outline-none focus:ring-4 focus:ring-indigo-600/5 focus:border-indigo-600 transition-all text-black font-bold"
                             placeholder="My Karobar"
                         />
                     </div>
                     <div className="space-y-2">
-                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Business Type</label>
+                        <label className="text-[10px] font-black text-black uppercase tracking-widest ml-1">Business Type</label>
                         <select
                             required
                             value={businessType}
                             onChange={(e) => setBusinessType(e.target.value)}
-                            className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-indigo-600/5 focus:border-indigo-600 transition-all text-slate-900 font-bold shadow-sm appearance-none"
+                            className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-indigo-600/5 focus:border-indigo-600 transition-all text-black font-bold shadow-sm appearance-none"
                         >
                             <option>General Store</option>
                             <option>Medical Store</option>
@@ -256,7 +256,7 @@ function RegisterForm() {
                 {/* Back Button */}
                 <Link
                     href="/"
-                    className="absolute top-8 left-8 flex items-center gap-2 text-slate-400 hover:text-indigo-600 transition-colors font-black text-[10px] uppercase tracking-widest group"
+                    className="absolute top-8 left-8 flex items-center gap-2 text-black hover:text-indigo-600 transition-colors font-black text-[10px] uppercase tracking-widest group"
                 >
                     <span className="text-lg transition-transform group-hover:-translate-x-1">←</span>
                     Back to Home
@@ -268,13 +268,13 @@ function RegisterForm() {
                             <div className="inline-flex items-center justify-center w-14 h-14 bg-indigo-600 rounded-2xl shadow-lg shadow-indigo-600/30 mb-8 text-white text-3xl font-black italic">
                                 K
                             </div>
-                            <h1 className="text-3xl font-black text-slate-900 tracking-tight mb-2">
+                            <h1 className="text-3xl font-black text-black tracking-tight mb-2">
                                 {step === 'email' && 'Get Started'}
                                 {step === 'otp' && 'Verify Email'}
                                 {step === 'password' && 'Choose Password'}
                                 {step === 'details' && 'Final Details'}
                             </h1>
-                            <p className="text-slate-500 font-medium italic">
+                            <p className="text-black font-medium italic">
                                 {step === 'email' && 'Enter your email to receive a verification code.'}
                                 {step === 'otp' && 'Enter the 6-digit code sent to your inbox.'}
                                 {step === 'password' && 'Secure your account with a strong password.'}
@@ -298,7 +298,7 @@ function RegisterForm() {
 
                     <div className="bg-slate-50 rounded-[2rem] p-8 flex flex-col justify-between">
                         <div>
-                            <h3 className="text-lg font-black text-slate-900 mb-8 italic">Onboarding</h3>
+                            <h3 className="text-lg font-black text-black mb-8 italic">Onboarding</h3>
                             <div className="space-y-4">
                                 {[
                                     { id: 'email', label: 'Email Verified', active: step !== 'email' },
@@ -306,10 +306,10 @@ function RegisterForm() {
                                     { id: 'details', label: 'Shop Details', active: false }
                                 ].map((s, idx) => (
                                     <div key={idx} className="flex items-center gap-3">
-                                        <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-black ${s.active ? 'bg-emerald-500 text-white' : 'bg-slate-200 text-slate-400'}`}>
+                                        <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-black ${s.active ? 'bg-emerald-500 text-white' : 'bg-slate-200 text-black'}`}>
                                             {s.active ? '✓' : idx + 1}
                                         </div>
-                                        <span className={`text-xs font-black uppercase tracking-widest ${s.active ? 'text-slate-900' : 'text-slate-400'}`}>
+                                        <span className={`text-xs font-black uppercase tracking-widest ${s.active ? 'text-black' : 'text-black'}`}>
                                             {s.label}
                                         </span>
                                     </div>
@@ -327,7 +327,7 @@ function RegisterForm() {
                         </div>
 
                         <div className="mt-12 text-center pt-8 border-t border-slate-200/60">
-                            <p className="text-xs font-bold text-slate-400 mb-4 italic">Already have an account?</p>
+                            <p className="text-xs font-bold text-black mb-4 italic">Already have an account?</p>
                             <Link href="/login" className="inline-block text-indigo-600 font-black text-sm hover:underline">Sign In</Link>
                         </div>
                     </div>
@@ -344,3 +344,4 @@ export default function RegisterPage() {
         </Suspense>
     );
 }
+

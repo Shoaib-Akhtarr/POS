@@ -75,7 +75,7 @@ export default function AboutPage() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.1 }}
-                                className="space-y-6 text-lg md:text-xl text-muted font-medium max-w-3xl mx-auto leading-relaxed"
+                                className="space-y-6 text-lg md:text-xl text-black font-medium max-w-3xl mx-auto leading-relaxed"
                             >
                                 <p>
                                     <span className="text-foreground font-bold">Karobar Sahulat – Web POS</span> is a modern point-of-sale platform designed to simplify how businesses manage sales and operations. Our goal is to provide a fast, reliable, and easy-to-use system that helps shop owners focus on running their business instead of struggling with complicated software.
@@ -116,7 +116,7 @@ export default function AboutPage() {
                                         </h2>
                                         <div className="space-y-6">
                                             {section.content.map((paragraph, pIndex) => (
-                                                <p key={pIndex} className="text-lg md:text-xl text-muted font-medium leading-relaxed">
+                                                <p key={pIndex} className="text-lg md:text-xl text-black font-medium leading-relaxed">
                                                     {paragraph}
                                                 </p>
                                             ))}
@@ -155,3 +155,4 @@ export default function AboutPage() {
         </div>
     );
 }
+

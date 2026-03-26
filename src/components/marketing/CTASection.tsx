@@ -45,7 +45,7 @@ export default function CTASection() {
                         >
                             <Link
                                 href="/demo"
-                                className="group relative w-full sm:w-auto px-16 py-6 bg-white text-slate-900 rounded-2xl font-black text-xl transition-all hover:-translate-y-1 active:scale-95 overflow-hidden shadow-2xl"
+                                className="group relative w-full sm:w-auto px-16 py-6 bg-white text-black rounded-2xl font-black text-xl transition-all hover:-translate-y-1 active:scale-95 overflow-hidden shadow-2xl"
                             >
                                 <span className="relative z-10 uppercase tracking-widest font-black italic">Lets Try It Free Now</span>
                                 <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
@@ -60,3 +60,4 @@ export default function CTASection() {
         </section>
     );
 }
+
