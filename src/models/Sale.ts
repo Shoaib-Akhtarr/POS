@@ -1,4 +1,8 @@
 import mongoose from 'mongoose';
+import './User';
+import './Shop';
+import './Product';
+import './Customer';
 
 const SaleSchema = new mongoose.Schema(
     {
