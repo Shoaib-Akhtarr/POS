@@ -41,6 +41,8 @@
   --color-accent: var(--accent);
   --color-card: var(--card);
   --color-card-border: var(--card-border);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-border: var(--sidebar-border);
   --color-success: var(--success);
   --color-danger: var(--danger);
   --color-muted: var(--muted);
