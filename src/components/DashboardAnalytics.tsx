@@ -66,7 +66,7 @@ export default function DashboardAnalytics() {
                     </div>
 
                     <div className="h-[400px] w-full mt-4">
-                        <ResponsiveContainer width="100%" height="100%">
+                        <ResponsiveContainer width="100%" height="100%" minWidth={200} minHeight={200}>
                             <AreaChart data={data.salesTrend}>
                                 <defs>
                                     <linearGradient id="colorSales" x1="0" y1="0" x2="0" y2="1">
