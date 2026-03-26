@@ -133,7 +133,7 @@ export default function AllCustomersPage() {
                     </div>
                 </header>
 
-                <div className="bg-card rounded-[32px] shadow-sm overflow-hidden border border-card-border p-6 relative">
+                <div className="bg-card flex-1 min-h-[0] flex flex-col rounded-[32px] shadow-sm overflow-hidden border border-card-border p-6 relative">
                     <div className="mb-6">
                         <div className="relative max-w-md">
                             <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-black">
@@ -151,7 +151,7 @@ export default function AllCustomersPage() {
                         </div>
                     </div>
 
-                    <div className="overflow-x-auto rounded-2xl border border-card-border">
+                    <div className="overflow-auto flex-1 rounded-2xl border border-card-border custom-scrollbar">
                         {loading ? (
                             <div className="flex flex-col justify-center items-center py-16 space-y-4 bg-background">
                                 <div className="w-8 h-8 border-4 border-pos-accent border-t-transparent rounded-full animate-spin"></div>
