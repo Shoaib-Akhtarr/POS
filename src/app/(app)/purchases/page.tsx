@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import AddPurchaseModal from '@/components/AddPurchaseModal';
+import PurchaseDetailsModal from '@/components/PurchaseDetailsModal';
 import { getPurchases } from '@/services/purchaseService';
 import { Purchase } from '@/types';
 import AuthenticatedLayout from '@/components/AuthenticatedLayout';
@@ -16,6 +17,7 @@ export default function PurchasesPage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [showAddModal, setShowAddModal] = useState(false);
+    const [selectedPurchase, setSelectedPurchase] = useState<Purchase | null>(null);
     const [refreshTrigger, setRefreshTrigger] = useState(0);
 
     const fetchPurchases = async (currentPage: number) => {
@@ -108,7 +110,8 @@ export default function PurchasesPage() {
                                         {purchases.map((purchase) => (
                                             <tr
                                                 key={purchase._id}
-                                                className="hover:bg-pos-accent/5 transition-colors group"
+                                                onClick={() => setSelectedPurchase(purchase)}
+                                                className="hover:bg-pos-accent/5 transition-colors group cursor-pointer"
                                             >
                                                 <td className="px-6 py-4 whitespace-nowrap text-xs font-bold text-foreground">
                                                     {formatDate(purchase.purchaseDate)}
@@ -215,6 +218,13 @@ export default function PurchasesPage() {
                         setShowAddModal(false);
                         setRefreshTrigger(prev => prev + 1);
                     }}
+                />
+            )}
+
+            {selectedPurchase && (
+                <PurchaseDetailsModal
+                    purchase={selectedPurchase}
+                    onClose={() => setSelectedPurchase(null)}
                 />
             )}
         </AuthenticatedLayout>
