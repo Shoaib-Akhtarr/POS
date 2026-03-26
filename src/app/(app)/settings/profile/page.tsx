@@ -225,19 +225,22 @@ export default function ProfilePage() {
                         )}
                     </div>
 
-                    <div className="flex items-center justify-between py-10 border-t border-card-border">
-                        <div>
-                            <p className="text-[10px] font-black uppercase tracking-widest opacity-30 italic mb-1">User ID: {user?._id}</p>
-                            <p className="text-[10px] font-black uppercase tracking-widest underline cursor-pointer hover:text-red-500 transition-colors opacity-30 italic">Request Account Deletion</p>
-                        </div>
-
+                    <div className="flex flex-col gap-8 py-10 border-t border-card-border mt-auto">
                         <button
                             onClick={() => setShowLogoutConfirm(true)}
-                            className="flex items-center space-x-3 px-8 py-4 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white rounded-2xl font-black text-[11px] uppercase tracking-widest transition-all duration-300 shadow-lg shadow-red-500/5 hover:shadow-red-500/20 active:scale-95 group border border-red-500/20"
+                            className="w-full flex items-center justify-center space-x-3 px-8 py-5 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white rounded-2xl font-black text-[12px] uppercase tracking-widest transition-all duration-300 shadow-lg shadow-red-500/5 hover:shadow-red-500/20 active:scale-95 group border border-red-500/20"
                         >
-                            <span className="text-lg leading-none group-hover:rotate-12 transition-transform">↪️</span>
+                            <span className="text-xl leading-none group-hover:rotate-12 transition-transform">↪️</span>
                             <span>Log out from Session</span>
                         </button>
+
+                        <div className="flex items-center justify-center text-center gap-3 flex-wrap">
+                            <p className="text-[10px] font-black uppercase tracking-widest opacity-40 italic">User ID: {user?._id}</p>
+                            <span className="text-[10px] opacity-40">|</span>
+                            <button className="text-[10px] font-black uppercase tracking-widest underline cursor-pointer hover:text-red-500 transition-colors opacity-40 italic outline-none">
+                                Request Account Deletion
+                            </button>
+                        </div>
                     </div>
 
                     {/* Local Logout Confirmation Modal */}
