@@ -39,7 +39,7 @@ export default function ReceiptPreview({
 }: ReceiptPreviewProps) {
   const [isPrinting, setIsPrinting] = useState(false);
   const [printerStatus, setPrinterStatus] = useState<'idle' | 'connecting' | 'connected' | 'error'>('idle');
-  const [printerType, setPrinterType] = useState<'bluetooth' | 'usb' | null>(null);
+  const [printerType, setPrinterType] = useState<'bluetooth' | 'usb' | null>('usb');
   const [bluetoothDevice, setBluetoothDevice] = useState<any | null>(null);
 
   const receiptId = `RCP-${Date.now()}`;
@@ -83,12 +83,7 @@ export default function ReceiptPreview({
         balanceDue
       );
 
-      // If no printer type is selected, show a message and complete the sale without printing
-      if (!printerType) {
-        alert('No printer selected. Sale will be completed without printing receipt.');
-        onPrint();
-        return;
-      }
+      // Removed the blocking alert to allow automatic fallback to system print
 
       let printSuccess = false;
 
@@ -174,12 +169,12 @@ export default function ReceiptPreview({
           <div className="mb-6 p-4 rounded-xl border border-gray-200 bg-white shadow-sm">
             <div className="flex justify-between items-center mb-3">
               <span className="font-semibold text-black">Printer Status</span>
-              <span className={`px-3 py-1 rounded-full text-xs font-medium ${printerStatus === 'connected' ? 'bg-emerald-100 text-emerald-700' :
+              <span className={`px-3 py-1 rounded-full text-xs font-medium ${printerStatus === 'connected' || printerType === 'usb' ? 'bg-emerald-100 text-emerald-700' :
                 printerStatus === 'connecting' ? 'bg-amber-100 text-amber-700' :
                   printerStatus === 'error' ? 'bg-rose-100 text-rose-700' :
                     'bg-slate-100 text-black'
                 }`}>
-                <span className={`inline-block w-1.5 h-1.5 rounded-full mr-1.5 ${printerStatus === 'connected' ? 'bg-emerald-500' :
+                <span className={`inline-block w-1.5 h-1.5 rounded-full mr-1.5 ${printerStatus === 'connected' || printerType === 'usb' ? 'bg-emerald-500' :
                   printerStatus === 'connecting' ? 'bg-amber-500' :
                     printerStatus === 'error' ? 'bg-rose-500' :
                       'bg-slate-500'

@@ -126,6 +126,8 @@ export const generateReceiptContent = (
   receipt += centerText('Made by Shawaiz & Shoaib');
   receipt += LF;
   receipt += LF;
+  receipt += LF;
+  receipt += LF;
   receipt += cutPaper(); // Cut the paper
 
   return receipt;
@@ -208,11 +210,19 @@ export const printViaUSB = async (content: string): Promise<boolean> => {
             <head>
               <title>Receipt</title>
               <style>
+                @page {
+                  size: 80mm auto;
+                  margin: 0;
+                }
                 body {
                   font-family: monospace;
                   white-space: pre;
-                  margin: 20px;
+                  margin: 5mm;
                   font-size: 14px;
+                  width: 70mm;
+                }
+                @media print {
+                  body { margin: 0; padding: 5mm; }
                 }
               </style>
             </head>
@@ -293,11 +303,19 @@ export const printViaUSB = async (content: string): Promise<boolean> => {
             <head>
               <title>Receipt</title>
               <style>
+                @page {
+                  size: 80mm auto;
+                  margin: 0;
+                }
                 body {
                   font-family: monospace;
                   white-space: pre;
-                  margin: 20px;
+                  margin: 5mm;
                   font-size: 14px;
+                  width: 70mm;
+                }
+                @media print {
+                  body { margin: 0; padding: 5mm; }
                 }
               </style>
             </head>
@@ -325,11 +343,19 @@ export const printViaUSB = async (content: string): Promise<boolean> => {
           <head>
             <title>Receipt</title>
             <style>
+              @page {
+                size: 80mm auto;
+                margin: 0;
+              }
               body {
                 font-family: monospace;
                 white-space: pre;
-                margin: 20px;
+                margin: 5mm;
                 font-size: 14px;
+                width: 70mm;
+              }
+              @media print {
+                body { margin: 0; padding: 5mm; }
               }
             </style>
           </head>
