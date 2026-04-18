@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import AddPurchaseModal from '@/components/AddPurchaseModal';
+import { useLanguage } from '@/context/LanguageContext';
 import PurchaseDetailsModal from '@/components/PurchaseDetailsModal';
 import { getPurchases } from '@/services/purchaseService';
 import { Purchase } from '@/types';

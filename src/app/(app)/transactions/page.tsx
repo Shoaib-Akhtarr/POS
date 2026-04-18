@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Sale } from '@/types';
+import { useLanguage } from '@/context/LanguageContext';
 import { getSales } from '@/services/salesService';
 import AuthenticatedLayout from '@/components/AuthenticatedLayout';
 import TransactionDetailsModal from '@/components/TransactionDetailsModal';

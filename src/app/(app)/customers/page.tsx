@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Sale, Customer } from '@/types';
+import { useLanguage } from '@/context/LanguageContext';
 import { getCustomers } from '@/services/customerService';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import AuthenticatedLayout from '@/components/AuthenticatedLayout';

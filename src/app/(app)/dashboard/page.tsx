@@ -273,7 +273,7 @@ function POSContent() {
                     if (!c) { setPaymentMethod('Cash'); setAmountPaid(calculateTotal().toString()); }
                     else if (paymentMethod === 'Cash') setAmountPaid(calculateTotal().toString());
                   }}
-                  onShowHistory={() => selectedCustomer ? setShowHistory(true) : alert(t('selectCustomerFirst' as any) || 'Please select a customer first.')}
+                  onShowHistory={() => selectedCustomer ? setShowHistory(true) : alert(t('selectCustomerFirst') || 'Please select a customer first.')}
                 />
               </div>
               <div className="space-y-4 pt-4 border-t border-card-border">
