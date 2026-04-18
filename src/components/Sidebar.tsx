@@ -4,6 +4,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { useAuth } from '@/context/AuthContext';
 import { useState } from 'react';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface SidebarProps {
     isOpen: boolean;
@@ -22,19 +23,20 @@ export default function Sidebar({
     const router = useRouter();
     const searchParams = useSearchParams();
     const { logout } = useAuth();
+    const { t } = useLanguage();
 
     const currentView = pathname === '/dashboard'
         ? (searchParams.get('view') === 'pos' ? 'pos' : 'analytics')
         : pathname.includes('subscription') ? 'subscription' : pathname.replace('/dashboard', '').slice(1);
 
     const navItems = [
-        { id: 'analytics', label: 'Home', icon: '📊', path: '/dashboard' },
-        { id: 'pos', label: 'POS / Sales', icon: '💰', path: '/dashboard?view=pos' },
-        { id: 'products', label: 'Products', icon: '📦', path: '/products' },
-        { id: 'purchases', label: 'Purchases', icon: '🛒', path: '/purchases' },
-        { id: 'customers', label: 'Customers', icon: '👥', path: '/customers' },
-        { id: 'transactions', label: 'Transactions', icon: '📄', path: '/transactions' },
-        { id: 'profile', label: 'Profile', icon: '👤', path: '/settings/profile' }
+        { id: 'analytics', label: t('dashboard'), icon: '📊', path: '/dashboard' },
+        { id: 'pos', label: 'POS / ' + t('sales'), icon: '💰', path: '/dashboard?view=pos' },
+        { id: 'products', label: t('inventory'), icon: '📦', path: '/products' },
+        { id: 'purchases', label: t('purchases'), icon: '🛒', path: '/purchases' },
+        { id: 'customers', label: t('customers'), icon: '👥', path: '/customers' },
+        { id: 'transactions', label: t('reports'), icon: '📄', path: '/transactions' },
+        { id: 'profile', label: t('profile'), icon: '👤', path: '/settings/profile' }
     ];
 
     const handleNavClick = (item: any) => {

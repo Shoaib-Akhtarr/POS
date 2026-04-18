@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
+import { useLanguage } from '@/context/LanguageContext';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import Sidebar from '@/components/Sidebar';
 import ChangePasswordForm from '@/components/ChangePasswordForm';
@@ -23,6 +24,7 @@ export default function AuthenticatedLayout({
     const [showSettingsModal, setShowSettingsModal] = useState(false);
     const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
     const { logout } = useAuth();
+    const { t } = useLanguage();
 
     return (
         <ProtectedRoute>
@@ -40,7 +42,7 @@ export default function AuthenticatedLayout({
                         <div className="w-8 h-8 bg-pos-accent rounded-lg flex items-center justify-center text-white font-black text-sm">
                             K
                         </div>
-                        <h1 className="text-sm font-black italic text-foreground leading-none">Karobar Sahulat</h1>
+                        <h1 className="text-sm font-black italic text-foreground leading-none">{t('brand')}</h1>
                     </div>
 
                     {showCartToggle ? (
@@ -80,13 +82,13 @@ export default function AuthenticatedLayout({
                                 <div className="w-20 h-20 bg-red-500/5 rounded-3xl flex items-center justify-center mx-auto mb-6 border border-red-500/10 ring-4 ring-red-500/5">
                                     <span className="text-4xl animate-pulse">👋</span>
                                 </div>
-                                <h3 className="text-2xl font-black italic tracking-tighter uppercase text-foreground mb-3">Sign Out?</h3>
+                                <h3 className="text-2xl font-black italic tracking-tighter uppercase text-foreground mb-3">{t('signOut')}</h3>
                                 <p className="text-black text-sm font-medium leading-relaxed mb-8 px-4">
-                                    Are you sure you want to end your session?
+                                    {t('confirmSignOut')}
                                 </p>
                                 <div className="flex flex-col gap-3">
-                                    <button onClick={() => setShowLogoutConfirm(false)} className="w-full py-4 bg-muted/5 hover:bg-muted/10 text-foreground rounded-2xl font-black text-[12px] uppercase tracking-[0.2em] transition-all border border-card-border active:scale-95">Stay Logged In</button>
-                                    <button onClick={logout} className="w-full py-4 bg-red-500 hover:bg-red-600 text-white rounded-2xl font-black text-[12px] uppercase tracking-[0.2em] transition-all shadow-lg active:scale-95 border border-white/10">Yes, Sign Out</button>
+                                    <button onClick={() => setShowLogoutConfirm(false)} className="w-full py-4 bg-muted/5 hover:bg-muted/10 text-foreground rounded-2xl font-black text-[12px] uppercase tracking-[0.2em] transition-all border border-card-border active:scale-95">{t('stayLoggedIn')}</button>
+                                    <button onClick={logout} className="w-full py-4 bg-red-500 hover:bg-red-600 text-white rounded-2xl font-black text-[12px] uppercase tracking-[0.2em] transition-all shadow-lg active:scale-95 border border-white/10">{t('yesSignOut')}</button>
                                 </div>
                             </div>
                         </div>
@@ -101,7 +103,7 @@ export default function AuthenticatedLayout({
                             <div className="flex justify-between items-center p-6 border-b border-card-border">
                                 <div className="flex items-center space-x-3">
                                     <div className="w-8 h-8 rounded-xl bg-pos-accent/10 border border-pos-accent/20 flex items-center justify-center text-pos-accent">⚙️</div>
-                                    <h2 className="text-lg font-bold tracking-tight text-foreground italic uppercase">Settings</h2>
+                                    <h2 className="text-lg font-bold tracking-tight text-foreground italic uppercase">{t('settings')}</h2>
                                 </div>
                                 <button onClick={() => setShowSettingsModal(false)} className="w-8 h-8 rounded-xl flex items-center justify-center text-black hover:text-foreground hover:bg-muted/10 transition-colors">✕</button>
                             </div>
@@ -110,23 +112,23 @@ export default function AuthenticatedLayout({
                                 <div className="grid grid-cols-1 gap-12">
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                                         <div className="space-y-4">
-                                            <h3 className="text-[10px] font-black tracking-widest uppercase text-black">Appearance</h3>
+                                            <h3 className="text-[10px] font-black tracking-widest uppercase text-black">{t('appearance')}</h3>
                                             <div className="bg-background border border-card-border rounded-2xl p-4 flex items-center gap-3">
                                                 <span className="text-xl">☀️</span>
                                                 <div>
-                                                    <p className="text-sm font-bold text-foreground">White Theme</p>
-                                                    <p className="text-[10px] text-black font-semibold uppercase tracking-wider">Clean &amp; Professional</p>
+                                                    <p className="text-sm font-bold text-foreground">{t('theme')}</p>
+                                                    <p className="text-[10px] text-black font-semibold uppercase tracking-wider">{t('themeDesc')}</p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="space-y-4">
-                                            <h3 className="text-[10px] font-black tracking-widest uppercase text-black">System</h3>
+                                            <h3 className="text-[10px] font-black tracking-widest uppercase text-black">{t('system')}</h3>
                                             <div className="bg-card border border-card-border rounded-2xl p-4 flex items-center justify-between group cursor-default">
                                                 <div>
-                                                    <p className="text-sm font-bold text-foreground italic">Karobar Sahulat POS</p>
-                                                    <p className="text-[10px] text-black font-black uppercase tracking-wider">v1.0.4 Premium</p>
+                                                    <p className="text-sm font-bold text-foreground italic">{t('brand')} POS</p>
+                                                    <p className="text-[10px] text-black font-black uppercase tracking-wider">{t('version')}</p>
                                                 </div>
-                                                <div className="px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-500 text-[10px] font-black uppercase">Active</div>
+                                                <div className="px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-500 text-[10px] font-black uppercase">{t('active')}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -136,8 +138,8 @@ export default function AuthenticatedLayout({
                                 </div>
                             </div>
                             <div className="p-6 border-t border-card-border bg-muted/5 flex items-center justify-between text-[10px] font-bold uppercase tracking-widest text-black">
-                                <span>© 2024 Karobar Sahulat</span>
-                                <span>Designed with ❤️ by Shawaiz & Shoaib</span>
+                                <span>© 2024 {t('brand')}</span>
+                                <span>{t('designedBy')}</span>
                             </div>
                         </div>
                     </div>

@@ -6,14 +6,17 @@ import { getProfile, updateProfile } from '@/services/authService';
 import ChangePasswordForm from '@/components/ChangePasswordForm';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '@/context/AuthContext';
+import { useLanguage } from '@/context/LanguageContext';
+import { TranslationKey } from '@/translations/translations';
 
 export default function ProfilePage() {
     const [user, setUser] = useState<any>(null);
     const [loading, setLoading] = useState(true);
     const [updating, setUpdating] = useState(false);
     const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
-    const [activeTab, setActiveTab] = useState<'general' | 'security' | 'shop'>('general');
+    const [activeTab, setActiveTab] = useState<'general' | 'security' | 'shop' | 'language'>('general');
     const { logout } = useAuth();
+    const { t, language, setLanguage, dir } = useLanguage();
     const [formData, setFormData] = useState({
         name: '',
         phoneNumber: '',
@@ -95,9 +98,10 @@ export default function ProfilePage() {
                     {/* Navigation Tabs */}
                     <div className="flex gap-2 p-1.5 bg-sidebar border border-sidebar-border rounded-2xl w-fit">
                         {[
-                            { id: 'general', label: 'General', icon: '👤' },
-                            { id: 'security', label: 'Security', icon: '🔒' },
-                            { id: 'shop', label: 'Shop Details', icon: '🏪' }
+                            { id: 'general', label: t('general'), icon: '👤' },
+                            { id: 'security', label: t('security'), icon: '🔒' },
+                            { id: 'shop', label: t('shopDetails'), icon: '🏪' },
+                            { id: 'language', label: t('language'), icon: '🌐' }
                         ].map((tab) => (
                             <button
                                 key={tab.id}
@@ -119,7 +123,7 @@ export default function ProfilePage() {
                             <div className="space-y-6">
                                 <div className="bg-sidebar border border-sidebar-border rounded-[2rem] p-8 lg:p-10 shadow-sm relative overflow-hidden">
                                     <h3 className="text-xl font-black italic text-foreground mb-8 flex items-center gap-3">
-                                        Personal Information
+                                        {t('personalInfo')}
                                         <div className="h-px flex-1 bg-card-border"></div>
                                     </h3>
 
@@ -132,7 +136,7 @@ export default function ProfilePage() {
 
                                     <form onSubmit={handleUpdateProfile} className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                         <div className="space-y-2">
-                                            <label className="text-[10px] font-black uppercase tracking-widest text-black ml-1">Full Name</label>
+                                            <label className="text-[10px] font-black uppercase tracking-widest text-black ml-1">{t('fullName')}</label>
                                             <input
                                                 type="text"
                                                 value={formData.name}
@@ -142,7 +146,7 @@ export default function ProfilePage() {
                                             />
                                         </div>
                                         <div className="space-y-2 opacity-50 cursor-not-allowed">
-                                            <label className="text-[10px] font-black uppercase tracking-widest text-black ml-1">Email Address (Read Only)</label>
+                                            <label className="text-[10px] font-black uppercase tracking-widest text-black ml-1">{t('emailAddress')} ({language === 'ur' ? 'صرف پڑھنے کے لیے' : 'Read Only'})</label>
                                             <input
                                                 type="email"
                                                 value={user?.email}
@@ -151,7 +155,7 @@ export default function ProfilePage() {
                                             />
                                         </div>
                                         <div className="space-y-2">
-                                            <label className="text-[10px] font-black uppercase tracking-widest text-black ml-1">Phone Number</label>
+                                            <label className="text-[10px] font-black uppercase tracking-widest text-black ml-1">{t('phoneNumber')}</label>
                                             <input
                                                 type="text"
                                                 value={formData.phoneNumber}
@@ -161,7 +165,7 @@ export default function ProfilePage() {
                                             />
                                         </div>
                                         <div className="space-y-2 md:col-span-2">
-                                            <label className="text-[10px] font-black uppercase tracking-widest text-black ml-1">Residential Address</label>
+                                            <label className="text-[10px] font-black uppercase tracking-widest text-black ml-1">{t('address')}</label>
                                             <textarea
                                                 value={formData.address}
                                                 onChange={(e) => setFormData({ ...formData, address: e.target.value })}
@@ -176,7 +180,7 @@ export default function ProfilePage() {
                                                 disabled={updating}
                                                 className="bg-pos-accent text-white px-10 py-4 rounded-xl font-black text-sm uppercase tracking-widest shadow-lg shadow-pos-accent/20 hover:-translate-y-1 active:scale-95 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                                             >
-                                                {updating ? 'Updating...' : 'Save Changes'}
+                                                {updating ? t('updating') : t('saveChanges')}
                                             </button>
                                         </div>
                                     </form>
@@ -193,7 +197,7 @@ export default function ProfilePage() {
                         {activeTab === 'shop' && (
                             <div className="bg-sidebar border border-sidebar-border rounded-[2rem] p-8 lg:p-10 shadow-sm">
                                 <h3 className="text-xl font-black italic text-foreground mb-8 flex items-center gap-3">
-                                    Linked Shop Profile
+                                    {t('linkedShop')}
                                     <div className="h-px flex-1 bg-card-border"></div>
                                 </h3>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -222,6 +226,46 @@ export default function ProfilePage() {
                                     </div>
                                 </div>
                             </div>
+                        {activeTab === 'language' && (
+                            <div className="bg-sidebar border border-sidebar-border rounded-[2rem] p-8 lg:p-10 shadow-sm transition-all duration-500">
+                                <h3 className="text-xl font-black italic text-foreground mb-8 flex items-center gap-3">
+                                    {t('selectLanguage')}
+                                    <div className="h-px flex-1 bg-card-border"></div>
+                                </h3>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <button
+                                        onClick={() => setLanguage('en')}
+                                        className={`p-6 rounded-[2rem] border transition-all flex items-center justify-between group ${language === 'en' ? 'bg-pos-accent text-white border-pos-accent shadow-xl shadow-pos-accent/20' : 'bg-background text-foreground border-card-border hover:border-pos-accent'}`}
+                                    >
+                                        <div className="flex items-center gap-4">
+                                            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-2xl ${language === 'en' ? 'bg-white/20' : 'bg-pos-accent/10'}`}>
+                                                🇺🇸
+                                            </div>
+                                            <div className="text-left">
+                                                <p className="font-black italic uppercase tracking-widest text-[10px] opacity-70">Region: International</p>
+                                                <p className="text-xl font-black tracking-tight">{t('english')}</p>
+                                            </div>
+                                        </div>
+                                        {language === 'en' && <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center text-[10px] text-pos-accent">✓</div>}
+                                    </button>
+
+                                    <button
+                                        onClick={() => setLanguage('ur')}
+                                        className={`p-6 rounded-[2rem] border transition-all flex items-center justify-between group ${language === 'ur' ? 'bg-pos-accent text-white border-pos-accent shadow-xl shadow-pos-accent/20' : 'bg-background text-foreground border-card-border hover:border-pos-accent'}`}
+                                    >
+                                        <div className="flex items-center gap-4">
+                                            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-2xl ${language === 'ur' ? 'bg-white/20' : 'bg-pos-accent/10'}`}>
+                                                🇵🇰
+                                            </div>
+                                            <div className="text-left">
+                                                <p className="font-black italic uppercase tracking-widest text-[10px] opacity-70">Region: Pakistan</p>
+                                                <p className="text-xl font-black tracking-tight">{t('urdu')}</p>
+                                            </div>
+                                        </div>
+                                        {language === 'ur' && <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center text-[10px] text-pos-accent">✓</div>}
+                                    </button>
+                                </div>
+                            </div>
                         )}
                     </div>
 
@@ -231,7 +275,7 @@ export default function ProfilePage() {
                             className="w-full flex items-center justify-center space-x-3 px-8 py-5 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white rounded-2xl font-black text-[12px] uppercase tracking-widest transition-all duration-300 shadow-lg shadow-red-500/5 hover:shadow-red-500/20 active:scale-95 group border border-red-500/20"
                         >
                             <span className="text-xl leading-none group-hover:rotate-12 transition-transform">↪️</span>
-                            <span>Log out from Session</span>
+                            <span>{t('logout')}</span>
                         </button>
 
                         <div className="flex items-center justify-center text-center gap-3 flex-wrap">
@@ -257,13 +301,13 @@ export default function ProfilePage() {
                                         <div className="w-20 h-20 bg-red-500/5 rounded-3xl flex items-center justify-center mx-auto mb-6 border border-red-500/10 ring-4 ring-red-500/5">
                                             <span className="text-4xl animate-pulse">👋</span>
                                         </div>
-                                        <h3 className="text-2xl font-black italic tracking-tighter uppercase text-foreground mb-3">Sign Out?</h3>
+                                        <h3 className="text-2xl font-black italic tracking-tighter uppercase text-foreground mb-3">{t('signOut')}</h3>
                                         <p className="text-black text-sm font-medium leading-relaxed mb-8 px-4">
-                                            Are you sure you want to end your session?
+                                            {t('confirmSignOut')}
                                         </p>
                                         <div className="flex flex-col gap-3">
-                                            <button onClick={() => setShowLogoutConfirm(false)} className="w-full py-4 bg-muted/5 hover:bg-muted/10 text-foreground rounded-2xl font-black text-[12px] uppercase tracking-[0.2em] transition-all border border-card-border active:scale-95">Stay Logged In</button>
-                                            <button onClick={logout} className="w-full py-4 bg-red-500 hover:bg-red-600 text-white rounded-2xl font-black text-[12px] uppercase tracking-[0.2em] transition-all shadow-lg active:scale-95 border border-white/10">Yes, Sign Out</button>
+                                            <button onClick={() => setShowLogoutConfirm(false)} className="w-full py-4 bg-muted/5 hover:bg-muted/10 text-foreground rounded-2xl font-black text-[12px] uppercase tracking-[0.2em] transition-all border border-card-border active:scale-95">{t('stayLoggedIn')}</button>
+                                            <button onClick={logout} className="w-full py-4 bg-red-500 hover:bg-red-600 text-white rounded-2xl font-black text-[12px] uppercase tracking-[0.2em] transition-all shadow-lg active:scale-95 border border-white/10">{t('yesSignOut')}</button>
                                         </div>
                                     </div>
                                 </motion.div>

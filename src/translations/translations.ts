@@ -1,0 +1,109 @@
+export const translations = {
+    en: {
+        // Navigation
+        dashboard: "Dashboard",
+        inventory: "Inventory",
+        sales: "Sales",
+        purchases: "Purchases",
+        customers: "Customers",
+        suppliers: "Suppliers",
+        reports: "Reports",
+        settings: "Settings",
+        profile: "Profile",
+        logout: "Logout",
+
+        // Profile Page
+        personalInfo: "Personal Information",
+        fullName: "Full Name",
+        emailAddress: "Email Address",
+        phoneNumber: "Phone Number",
+        address: "Residential Address",
+        saveChanges: "Save Changes",
+        updating: "Updating...",
+        security: "Security",
+        shopDetails: "Shop Details",
+        general: "General",
+        linkedShop: "Linked Shop Profile",
+        businessName: "Business Name",
+        businessCategory: "Business Category",
+        subscriptionPlan: "Subscription Plan",
+        currency: "Currency",
+        language: "Language",
+        selectLanguage: "Select Language",
+        english: "English",
+        urdu: "Urdu",
+        appearance: "Appearance",
+        theme: "White Theme",
+        themeDesc: "Clean & Professional",
+        system: "System",
+        active: "Active",
+        version: "v1.0.4 Premium",
+        brand: "Karobar Sahulat",
+        designedBy: "Designed with ❤️ by Shawaiz & Shoaib",
+        
+        // Modal
+        signOut: "Sign Out?",
+        confirmSignOut: "Are you sure you want to end your session?",
+        stayLoggedIn: "Stay Logged In",
+        yesSignOut: "Yes, Sign Out",
+        
+        // Messages
+        profileUpdated: "Profile updated successfully",
+        errorOccurred: "An error occurred",
+    },
+    ur: {
+        // Navigation
+        dashboard: "ڈیش بورڈ",
+        inventory: "انوینٹری",
+        sales: "فروخت",
+        purchases: "خریداری",
+        customers: "گاہک",
+        suppliers: "سپلائرز",
+        reports: "رپورٹس",
+        settings: "ترتیبات",
+        profile: "پروفائل",
+        logout: "لاگ آؤٹ",
+
+        // Profile Page
+        personalInfo: "ذاتی معلومات",
+        fullName: "پورا نام",
+        emailAddress: "ای میل ایڈریس",
+        phoneNumber: "فون نمبر",
+        address: "رہائشی پتہ",
+        saveChanges: "تبدیلیاں محفوظ کریں",
+        updating: "اپ ڈیٹ ہو رہا ہے...",
+        security: "سیکیورٹی",
+        shopDetails: "دکان کی تفصیلات",
+        general: "عام",
+        linkedShop: "منسلک دکان کی پروفائل",
+        businessName: "کاروبار کا نام",
+        businessCategory: "کاروبار کا زمرہ",
+        subscriptionPlan: "سبسکرپشن پلان",
+        currency: "کرنسی",
+        language: "زبان",
+        selectLanguage: "زبان منتخب کریں",
+        english: "انگریزی",
+        urdu: "اردو",
+        appearance: "ظاہری شکل",
+        theme: "سفید تھیم",
+        themeDesc: "صاف اور پیشہ ورانہ",
+        system: "سسٹم",
+        active: "فعال",
+        version: "v1.0.4 پریمیم",
+        brand: "کاروبار سہولت",
+        designedBy: "شویز اور شعیب کی طرف سے محبت کے ساتھ ڈیزائن کیا گیا",
+
+        // Modal
+        signOut: "سائن آؤٹ کریں؟",
+        confirmSignOut: "کیا آپ واقعی اپنا سیشن ختم کرنا چاہتے ہیں؟",
+        stayLoggedIn: "لاگ ان رہیں",
+        yesSignOut: "جی ہاں، سائن آؤٹ کریں",
+
+        // Messages
+        profileUpdated: "پروفائل کامیابی سے اپ ڈیٹ ہو گئی",
+        errorOccurred: "ایک غلطی ہوئی",
+    }
+};
+
+export type Language = 'en' | 'ur';
+export type TranslationKey = keyof typeof translations.en;
