@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useLanguage } from '@/context/LanguageContext';
 import { CartItem } from '@/types';
 import {
   generateReceiptContent,
@@ -37,6 +38,7 @@ export default function ReceiptPreview({
   onPrint,
   isCompleted = false
 }: ReceiptPreviewProps) {
+  const { t } = useLanguage();
   const [isPrinting, setIsPrinting] = useState(false);
   const [printerStatus, setPrinterStatus] = useState<'idle' | 'connecting' | 'connected' | 'error'>('idle');
   const [printerType, setPrinterType] = useState<'bluetooth' | 'usb' | null>('usb');
@@ -80,7 +82,24 @@ export default function ReceiptPreview({
         discount,
         previousDues,
         amountPaid,
-        balanceDue
+        balanceDue,
+        {
+          receiptLabel: t('receiptLabel'),
+          dateLabel: t('dateLabel'),
+          customerLabel: t('customerLabel'),
+          paymentLabel: t('paymentLabel'),
+          itemLabel: t('itemLabel'),
+          amountLabel: t('amountLabel'),
+          discountLabel: t('discountLabel'),
+          currentBill: t('currentBill'),
+          previousDues: t('previousDues'),
+          totalOutstanding: t('totalOutstanding'),
+          amountPaid: t('amountPaid'),
+          balanceDue: t('balanceDue'),
+          balanceClear: t('balanceClear'),
+          thankYouPurchase: t('thankYouPurchase'),
+          madeBy: t('madeBy')
+        }
       );
 
       // Removed the blocking alert to allow automatic fallback to system print
@@ -150,8 +169,8 @@ export default function ReceiptPreview({
         {/* Header */}
         <div className="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-white sticky top-0 z-10">
           <div>
-            <h2 className="text-xl font-bold text-black">Receipt Preview</h2>
-            <p className="text-xs text-black">Review and print your order receipt</p>
+            <h2 className="text-xl font-bold text-black">{t('receiptPreview')}</h2>
+            <p className="text-xs text-black">{t('reviewPrintReceipt')}</p>
           </div>
           <button
             onClick={onClose}
@@ -168,7 +187,7 @@ export default function ReceiptPreview({
           {/* Printer Connection Status */}
           <div className="mb-6 p-4 rounded-xl border border-gray-200 bg-white shadow-sm">
             <div className="flex justify-between items-center mb-3">
-              <span className="font-semibold text-black">Printer Status</span>
+              <span className="font-semibold text-black">{t('printerStatus')}</span>
               <span className={`px-3 py-1 rounded-full text-xs font-medium ${printerStatus === 'connected' || printerType === 'usb' ? 'bg-emerald-100 text-emerald-700' :
                 printerStatus === 'connecting' ? 'bg-amber-100 text-amber-700' :
                   printerStatus === 'error' ? 'bg-rose-100 text-rose-700' :
@@ -179,7 +198,7 @@ export default function ReceiptPreview({
                     printerStatus === 'error' ? 'bg-rose-500' :
                       'bg-slate-500'
                   }`}></span>
-                {printerStatus.charAt(0).toUpperCase() + printerStatus.slice(1)}
+                {t(`${printerStatus}Status` as any)}
                 {printerType && ` (${printerType.toUpperCase()})`}
               </span>
             </div>
@@ -194,13 +213,13 @@ export default function ReceiptPreview({
                     : 'bg-indigo-50 text-indigo-700 hover:bg-indigo-100 border border-indigo-100'
                     }`}
                 >
-                  {isWebBluetoothSupported() ? 'Connect Bluetooth' : 'Bluetooth Not Supported'}
+                  {isWebBluetoothSupported() ? t('connectBluetooth') : t('btNotSupported')}
                 </button>
                 <button
                   onClick={handleSelectUSB}
                   className="flex-1 py-2.5 px-4 text-sm font-medium bg-emerald-50 text-emerald-700 rounded-lg hover:bg-emerald-100 border border-emerald-100 transition-all"
                 >
-                  Connect USB
+                  {t('connectUSB')}
                 </button>
               </div>
             )}
@@ -229,16 +248,16 @@ export default function ReceiptPreview({
             </div>
 
             <div className="space-y-1 mb-6 py-4 border-y border-dashed border-gray-300">
-              <div className="flex justify-between"><span className="text-black">Receipt:</span> <span className="font-bold">{receiptId}</span></div>
-              <div className="flex justify-between"><span className="text-black">Date:</span> <span>{receiptDate}</span></div>
-              {customerName && <div className="flex justify-between"><span className="text-black">Customer:</span> <span className="font-bold">{customerName}</span></div>}
-              <div className="flex justify-between"><span className="text-black">Payment:</span> <span className="font-bold">{paymentMethod}</span></div>
+              <div className="flex justify-between"><span className="text-black">{t('receiptLabel')}:</span> <span className="font-bold">{receiptId}</span></div>
+              <div className="flex justify-between"><span className="text-black">{t('dateLabel')}:</span> <span>{receiptDate}</span></div>
+              {customerName && <div className="flex justify-between"><span className="text-black">{t('customerLabel')}:</span> <span className="font-bold">{customerName}</span></div>}
+              <div className="flex justify-between"><span className="text-black">{t('paymentLabel')}:</span> <span className="font-bold">{paymentMethod}</span></div>
             </div>
 
             <div className="space-y-2 mb-6">
               <div className="flex justify-between font-bold border-b border-gray-100 pb-1 text-xs uppercase tracking-wider text-black">
-                <span>Item</span>
-                <span>Amount</span>
+                <span>{t('itemLabel')}</span>
+                <span>{t('amountLabel')}</span>
               </div>
               {cart.map((item, index) => (
                 <div key={index} className="flex justify-between gap-4">
@@ -255,31 +274,31 @@ export default function ReceiptPreview({
             <div className="space-y-2 pt-4 border-t border-gray-200">
               {discount > 0 && (
                 <div className="flex justify-between text-emerald-600 font-bold">
-                  <span>Discount</span>
+                  <span>{t('discountLabel')}</span>
                   <span>-Rs. {discount.toFixed(2)}</span>
                 </div>
               )}
               <div className="flex justify-between text-lg font-bold text-black">
-                <span>Current Bill</span>
+                <span>{t('currentBill')}</span>
                 <span>Rs. {total.toFixed(2)}</span>
               </div>
 
               {customerName && (
                 <div className="mt-4 pt-4 border-t border-dashed border-gray-200 space-y-1">
                   <div className="flex justify-between text-black">
-                    <span>Previous Dues</span>
+                    <span>{t('previousDues')}</span>
                     <span className={previousDues < 0 ? 'text-rose-500' : ''}>Rs. {previousDues.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between font-bold text-black pt-1">
-                    <span>Total Outstanding</span>
+                    <span>{t('totalOutstanding')}</span>
                     <span className={(total + previousDues) < 0 ? 'text-rose-600' : ''}>Rs. {(total + previousDues).toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between text-emerald-600 pt-1">
-                    <span>Amount Paid</span>
+                    <span>{t('amountPaid')}</span>
                     <span>Rs. {amountPaid.toFixed(2)}</span>
                   </div>
                   <div className={`flex justify-between font-extrabold border-t border-double border-gray-300 pt-2 mt-2 ${balanceDue < 0 ? 'text-rose-600' : 'text-emerald-600'}`}>
-                    <span>{balanceDue < 0 ? 'Balance Owed (Negation)' : 'Balance Clear'}</span>
+                    <span>{balanceDue < 0 ? t('balanceDue') : t('balanceClear')}</span>
                     <span>Rs. {balanceDue.toFixed(2)}</span>
                   </div>
                 </div>
@@ -287,8 +306,8 @@ export default function ReceiptPreview({
             </div>
 
             <div className="text-center mt-8 pt-6 border-t border-dashed border-gray-300">
-              <p className="font-bold text-black mb-1 italic">Thank you for your Purchase!</p>
-              <p className="text-[10px] text-black font-medium tracking-widest uppercase">Made by Shawaiz & Shoaib</p>
+              <p className="font-bold text-black mb-1 italic">{t('thankYouPurchase')}</p>
+              <p className="text-[10px] text-black font-medium tracking-widest uppercase">{t('madeBy')} Shawaiz & Shoaib</p>
             </div>
 
             {/* Bottom serrated edge effect (visual only) */}
@@ -306,7 +325,7 @@ export default function ReceiptPreview({
             onClick={onClose}
             className="py-3 px-4 bg-gray-50 text-black font-semibold rounded-xl hover:bg-gray-100 transition-all border border-gray-200"
           >
-            {isCompleted ? 'Close' : 'Cancel Sale'}
+            {isCompleted ? t('close') : t('cancelSale')}
           </button>
           <button
             onClick={handlePrint}
@@ -322,9 +341,9 @@ export default function ReceiptPreview({
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                Printing...
+                {t('printing')}
               </span>
-            ) : 'Print Receipt'}
+            ) : t('printReceipt')}
           </button>
         </div>
       </div>

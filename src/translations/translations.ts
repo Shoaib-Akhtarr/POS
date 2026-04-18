@@ -50,6 +50,37 @@ export const translations = {
         // Messages
         profileUpdated: "Profile updated successfully",
         errorOccurred: "An error occurred",
+
+        // Receipt
+        receiptPreview: "Receipt Preview",
+        reviewPrintReceipt: "Review and print your order receipt",
+        printerStatus: "Printer Status",
+        connectBluetooth: "Connect Bluetooth",
+        connectUSB: "Connect USB",
+        receiptLabel: "Receipt",
+        dateLabel: "Date",
+        customerLabel: "Customer",
+        paymentLabel: "Payment",
+        itemLabel: "Item",
+        amountLabel: "Amount",
+        discountLabel: "Discount",
+        currentBill: "Current Bill",
+        previousDues: "Previous Dues",
+        totalOutstanding: "Total Outstanding",
+        amountPaid: "Amount Paid",
+        balanceClear: "Balance Clear",
+        balanceDue: "Balance Owed",
+        thankYouPurchase: "Thank you for your Purchase!",
+        madeBy: "Made by",
+        cancelSale: "Cancel Sale",
+        printReceipt: "Print Receipt",
+        printing: "Printing...",
+        idleStatus: "Idle",
+        connectingStatus: "Connecting",
+        connectedStatus: "Connected",
+        errorStatus: "Error",
+        btNotSupported: "Bluetooth Not Supported",
+        close: "Close"
     },
     ur: {
         // Navigation
@@ -102,6 +133,37 @@ export const translations = {
         // Messages
         profileUpdated: "پروفائل کامیابی سے اپ ڈیٹ ہو گئی",
         errorOccurred: "ایک غلطی ہوئی",
+
+        // رسید
+        receiptPreview: "رسید کا منظر",
+        reviewPrintReceipt: "اپنے آرڈر کی رسید دیکھیں اور پرنٹ کریں",
+        printerStatus: "پرنٹر کی حالت",
+        connectBluetooth: "بلوٹوتھ منسلک کریں",
+        connectUSB: "USB منسلک کریں",
+        receiptLabel: "رسید",
+        dateLabel: "تاریخ",
+        customerLabel: "گاہک",
+        paymentLabel: "ادائیگی",
+        itemLabel: "آئٹم",
+        amountLabel: "رقم",
+        discountLabel: "رعایت",
+        currentBill: "موجودہ بل",
+        previousDues: "پچھلی واجبات",
+        totalOutstanding: "کل واجب الادا",
+        amountPaid: "ادا کردہ رقم",
+        balanceClear: "بقیہ ختم",
+        balanceDue: "بقیہ رقم",
+        thankYouPurchase: "خریداری کے لیے شکریہ!",
+        madeBy: "بنایا گیا",
+        cancelSale: "فروخت منسوخ کریں",
+        printReceipt: "رسید پرنٹ کریں",
+        printing: "پرنٹ ہو رہا ہے...",
+        idleStatus: "فارغ",
+        connectingStatus: "منسلک ہو رہا ہے",
+        connectedStatus: "منسلک",
+        errorStatus: "غلطی",
+        btNotSupported: "بلوٹوتھ سپورٹڈ نہیں ہے",
+        close: "بند کریں"
     }
 };
 

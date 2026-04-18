@@ -50,7 +50,7 @@ const leftAlign = (text: string) => `\x1Ba\x00${text}${LF}`;
 // Create right-aligned text
 const rightAlign = (text: string) => `\x1Ba\x02${text}${LF}`;
 
-// Generate receipt content in ESC/POS format
+// Generate receipt content in ESC/POS format with multi-language support
 export const generateReceiptContent = (
   storeName: string,
   receiptId: string,
@@ -62,9 +62,30 @@ export const generateReceiptContent = (
   discount: number = 0,
   previousDues: number = 0,
   amountPaid: number = 0,
-  balanceDue: number = 0
+  balanceDue: number = 0,
+  labels: { [key: string]: string } = {}
 ): string => {
   let receipt = initPrinter();
+
+  // Use provided labels or fall back to English defaults
+  const l = {
+    receipt: labels.receiptLabel || 'Receipt',
+    date: labels.dateLabel || 'Date',
+    customer: labels.customerLabel || 'Customer',
+    payment: labels.paymentLabel || 'Payment',
+    item: labels.itemLabel || 'Item',
+    qty: 'Qty',
+    price: 'Price',
+    total: labels.amountLabel || 'Total',
+    discount: labels.discountLabel || 'Discount',
+    currentBill: labels.currentBill || 'Current Bill',
+    previousDues: labels.previousDues || 'Previous Dues',
+    totalOutstanding: labels.totalOutstanding || 'Total + Dues',
+    paidNow: labels.amountPaid || 'Paid Now',
+    remainingBal: labels.balanceDue || 'Remaining Bal',
+    thankYou: labels.thankYouPurchase || 'Thank you for your business!',
+    madeBy: labels.madeBy || 'Made by'
+  };
 
   // Store name and header
   receipt += setTextSize(2, 2); // Double size
@@ -76,17 +97,17 @@ export const generateReceiptContent = (
   receipt += LF;
 
   // Receipt details
-  receipt += leftAlign(`Receipt #: ${receiptId}`);
-  receipt += leftAlign(`Date: ${date}`);
+  receipt += leftAlign(`${l.receipt}: ${receiptId}`);
+  receipt += leftAlign(`${l.date}: ${date}`);
   if (customerName) {
-    receipt += leftAlign(`Customer: ${customerName}`);
+    receipt += leftAlign(`${l.customer}: ${customerName}`);
   }
-  receipt += leftAlign(`Payment: ${paymentMethod}`);
+  receipt += leftAlign(`${l.payment}: ${paymentMethod}`);
   receipt += LF;
 
   // Items header
   receipt += leftAlign('--------------------------------');
-  receipt += leftAlign('Item              Qty  Price  Total');
+  receipt += leftAlign(`${l.item.padEnd(16)} Qty  Price  Total`);
   receipt += leftAlign('--------------------------------');
 
   // Cart items
@@ -107,23 +128,23 @@ export const generateReceiptContent = (
 
   // Total
   if (discount > 0) {
-    receipt += rightAlign(`Discount: -Rs. ${discount.toFixed(2)}`);
+    receipt += rightAlign(`${l.discount}: -Rs. ${discount.toFixed(2)}`);
   }
   if (customerName) {
-    receipt += rightAlign(`Current Bill: Rs. ${total.toFixed(2)}`);
-    receipt += rightAlign(`Previous Dues: Rs. ${previousDues.toFixed(2)}`);
-    receipt += rightAlign(`Total + Dues: Rs. ${(total + previousDues).toFixed(2)}`);
+    receipt += rightAlign(`${l.currentBill}: Rs. ${total.toFixed(2)}`);
+    receipt += rightAlign(`${l.previousDues}: Rs. ${previousDues.toFixed(2)}`);
+    receipt += rightAlign(`${l.totalOutstanding}: Rs. ${(total + previousDues).toFixed(2)}`);
     receipt += leftAlign('--------------------------------');
-    receipt += rightAlign(`Paid Now: Rs. ${amountPaid.toFixed(2)}`);
-    receipt += rightAlign(`Remaining Bal: Rs. ${balanceDue.toFixed(2)}`);
+    receipt += rightAlign(`${l.paidNow}: Rs. ${amountPaid.toFixed(2)}`);
+    receipt += rightAlign(`${l.remainingBal}: Rs. ${balanceDue.toFixed(2)}`);
   } else {
-    receipt += rightAlign(`Total: Rs. ${total.toFixed(2)}`);
+    receipt += rightAlign(`${l.total}: Rs. ${total.toFixed(2)}`);
   }
   receipt += LF;
 
   // Footer
-  receipt += centerText('Thank you for your business!');
-  receipt += centerText('Made by Shawaiz & Shoaib');
+  receipt += centerText(l.thankYou);
+  receipt += centerText(`${l.madeBy} Shawaiz & Shoaib`);
   receipt += LF;
   receipt += LF;
   receipt += LF;
