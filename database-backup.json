@@ -1,0 +1,2433 @@
+{
+  "_metadata": {
+    "exportedAt": "2026-04-01T11:05:19.317Z",
+    "database": "test",
+    "collections": [
+      "tempusers",
+      "tests",
+      "accounts",
+      "customers",
+      "purchases",
+      "products",
+      "shops",
+      "verificationlogs",
+      "sales",
+      "users",
+      "subscriptions",
+      "public_users"
+    ]
+  },
+  "tempusers": [],
+  "tests": [],
+  "accounts": [
+    {
+      "_id": "69aef103af3f1db40549ff3a",
+      "name": "Cash",
+      "type": "Asset",
+      "balance": 0,
+      "shop": "69aef103af3f1db40549ff34",
+      "__v": 0,
+      "createdAt": "2026-03-09T16:10:43.581Z",
+      "updatedAt": "2026-03-09T16:10:43.581Z"
+    },
+    {
+      "_id": "69aef103af3f1db40549ff3b",
+      "name": "Sales",
+      "type": "Revenue",
+      "balance": 0,
+      "shop": "69aef103af3f1db40549ff34",
+      "__v": 0,
+      "createdAt": "2026-03-09T16:10:43.583Z",
+      "updatedAt": "2026-03-09T16:10:43.583Z"
+    },
+    {
+      "_id": "69aef103af3f1db40549ff3c",
+      "name": "Debtors",
+      "type": "Asset",
+      "balance": 0,
+      "shop": "69aef103af3f1db40549ff34",
+      "__v": 0,
+      "createdAt": "2026-03-09T16:10:43.583Z",
+      "updatedAt": "2026-03-09T16:10:43.583Z"
+    },
+    {
+      "_id": "69aefaedaf3f1db40549ff6d",
+      "name": "Cash",
+      "type": "Asset",
+      "balance": 0,
+      "shop": "69aefaedaf3f1db40549ff68",
+      "__v": 0,
+      "createdAt": "2026-03-09T16:53:01.965Z",
+      "updatedAt": "2026-03-09T16:53:01.965Z"
+    },
+    {
+      "_id": "69aefaedaf3f1db40549ff6e",
+      "name": "Sales",
+      "type": "Revenue",
+      "balance": 0,
+      "shop": "69aefaedaf3f1db40549ff68",
+      "__v": 0,
+      "createdAt": "2026-03-09T16:53:01.966Z",
+      "updatedAt": "2026-03-09T16:53:01.966Z"
+    },
+    {
+      "_id": "69aefaedaf3f1db40549ff6f",
+      "name": "Debtors",
+      "type": "Asset",
+      "balance": 0,
+      "shop": "69aefaedaf3f1db40549ff68",
+      "__v": 0,
+      "createdAt": "2026-03-09T16:53:01.966Z",
+      "updatedAt": "2026-03-09T16:53:01.966Z"
+    },
+    {
+      "_id": "69af91705c3a57283eb7e0a8",
+      "name": "Cash",
+      "type": "Asset",
+      "balance": 0,
+      "shop": "69af916f5c3a57283eb7e0a3",
+      "__v": 0,
+      "createdAt": "2026-03-10T03:35:12.288Z",
+      "updatedAt": "2026-03-10T03:35:12.288Z"
+    },
+    {
+      "_id": "69af91705c3a57283eb7e0a9",
+      "name": "Sales",
+      "type": "Revenue",
+      "balance": 0,
+      "shop": "69af916f5c3a57283eb7e0a3",
+      "__v": 0,
+      "createdAt": "2026-03-10T03:35:12.288Z",
+      "updatedAt": "2026-03-10T03:35:12.288Z"
+    },
+    {
+      "_id": "69af91705c3a57283eb7e0aa",
+      "name": "Debtors",
+      "type": "Asset",
+      "balance": 0,
+      "shop": "69af916f5c3a57283eb7e0a3",
+      "__v": 0,
+      "createdAt": "2026-03-10T03:35:12.288Z",
+      "updatedAt": "2026-03-10T03:35:12.288Z"
+    },
+    {
+      "_id": "69af95892a66ee52df38bcf9",
+      "name": "Cash",
+      "type": "Asset",
+      "balance": 0,
+      "shop": "69af95882a66ee52df38bcf4",
+      "__v": 0,
+      "createdAt": "2026-03-10T03:52:41.357Z",
+      "updatedAt": "2026-03-10T03:52:41.357Z"
+    },
+    {
+      "_id": "69af95892a66ee52df38bcfa",
+      "name": "Sales",
+      "type": "Revenue",
+      "balance": 0,
+      "shop": "69af95882a66ee52df38bcf4",
+      "__v": 0,
+      "createdAt": "2026-03-10T03:52:41.357Z",
+      "updatedAt": "2026-03-10T03:52:41.357Z"
+    },
+    {
+      "_id": "69af95892a66ee52df38bcfb",
+      "name": "Debtors",
+      "type": "Asset",
+      "balance": 0,
+      "shop": "69af95882a66ee52df38bcf4",
+      "__v": 0,
+      "createdAt": "2026-03-10T03:52:41.357Z",
+      "updatedAt": "2026-03-10T03:52:41.357Z"
+    },
+    {
+      "_id": "69afb292de4f635c3452f81a",
+      "name": "Cash",
+      "type": "Asset",
+      "balance": 0,
+      "shop": "69afb291de4f635c3452f816",
+      "__v": 0,
+      "createdAt": "2026-03-10T05:56:34.227Z",
+      "updatedAt": "2026-03-10T05:56:34.227Z"
+    },
+    {
+      "_id": "69afb292de4f635c3452f81b",
+      "name": "Sales",
+      "type": "Revenue",
+      "balance": 0,
+      "shop": "69afb291de4f635c3452f816",
+      "__v": 0,
+      "createdAt": "2026-03-10T05:56:34.228Z",
+      "updatedAt": "2026-03-10T05:56:34.228Z"
+    },
+    {
+      "_id": "69afb292de4f635c3452f81c",
+      "name": "Debtors",
+      "type": "Asset",
+      "balance": 0,
+      "shop": "69afb291de4f635c3452f816",
+      "__v": 0,
+      "createdAt": "2026-03-10T05:56:34.228Z",
+      "updatedAt": "2026-03-10T05:56:34.228Z"
+    },
+    {
+      "_id": "69afb8e6f9cc7d22cdd0e462",
+      "name": "Cash",
+      "type": "Asset",
+      "balance": 0,
+      "shop": "69afb8e6f9cc7d22cdd0e45e",
+      "__v": 0,
+      "createdAt": "2026-03-10T06:23:34.942Z",
+      "updatedAt": "2026-03-10T06:23:34.942Z"
+    },
+    {
+      "_id": "69afb8e6f9cc7d22cdd0e463",
+      "name": "Sales",
+      "type": "Revenue",
+      "balance": 0,
+      "shop": "69afb8e6f9cc7d22cdd0e45e",
+      "__v": 0,
+      "createdAt": "2026-03-10T06:23:34.942Z",
+      "updatedAt": "2026-03-10T06:23:34.942Z"
+    },
+    {
+      "_id": "69afb8e6f9cc7d22cdd0e464",
+      "name": "Debtors",
+      "type": "Asset",
+      "balance": 0,
+      "shop": "69afb8e6f9cc7d22cdd0e45e",
+      "__v": 0,
+      "createdAt": "2026-03-10T06:23:34.942Z",
+      "updatedAt": "2026-03-10T06:23:34.942Z"
+    }
+  ],
+  "customers": [
+    {
+      "_id": "69ae6fab914ff65bcde41ee7",
+      "name": "Hamza butt",
+      "phone": "0300 2121131",
+      "address": "Village Ali Pur Sharqi, Gujrat",
+      "totalDues": -1098.9999999999964,
+      "totalDiscount": 120.99,
+      "user": "69abee6e043105ad9a2a6d11",
+      "createdAt": "2026-03-09T06:58:51.555Z",
+      "updatedAt": "2026-03-26T18:25:07.182Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b5a90cb68831360ba4fcf2",
+      "name": "Shoaib",
+      "phone": "03056054842",
+      "address": "Village Ali Pur Sharqi, Gujrat",
+      "totalDues": 2000,
+      "totalDiscount": 0,
+      "user": "69adb3cda5a2b2b42c1f4090",
+      "createdAt": "2026-03-14T18:29:32.210Z",
+      "updatedAt": "2026-03-14T18:53:49.090Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b6cf3cdcb7870e583c4190",
+      "name": "Ali",
+      "phone": "",
+      "address": "Gujrat",
+      "totalDues": -3000,
+      "totalDiscount": 0,
+      "user": "69adb75342fa607539bd2848",
+      "createdAt": "2026-03-15T15:24:44.254Z",
+      "updatedAt": "2026-03-15T15:59:11.431Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b6d6ba04e720e9ff75b294",
+      "name": "Abdullah",
+      "phone": "",
+      "address": "Gujrat",
+      "totalDues": 10000,
+      "totalDiscount": 0,
+      "user": "69adb75342fa607539bd2848",
+      "createdAt": "2026-03-15T15:56:42.708Z",
+      "updatedAt": "2026-03-15T15:56:42.708Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b6de11353b20ace717eb2d",
+      "name": "Ali",
+      "phone": "03049419743",
+      "address": "Village Ali pur sharqi Gujrat",
+      "totalDues": 0,
+      "totalDiscount": 0,
+      "user": "69abee6e043105ad9a2a6d11",
+      "createdAt": "2026-03-15T16:28:01.567Z",
+      "updatedAt": "2026-03-26T15:51:18.669Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b6de2b353b20ace717eb34",
+      "name": "shawaiz",
+      "phone": "00000",
+      "address": "asdasf",
+      "totalDues": -3900,
+      "totalDiscount": 250.05,
+      "user": "69abee6e043105ad9a2a6d11",
+      "createdAt": "2026-03-15T16:28:27.695Z",
+      "updatedAt": "2026-03-26T18:22:56.264Z",
+      "__v": 0
+    },
+    {
+      "_id": "69bad9140638f21a0ee65491",
+      "name": "Sulman",
+      "phone": "0000000000",
+      "address": "Village Ali Pur Sharqi, Gujrat",
+      "totalDues": 0,
+      "totalDiscount": 0,
+      "user": "69abee6e043105ad9a2a6d11",
+      "createdAt": "2026-03-18T16:55:48.637Z",
+      "updatedAt": "2026-03-26T15:47:00.328Z",
+      "__v": 0
+    },
+    {
+      "_id": "69c55bfe3aefec0e9e742ca5",
+      "name": "Shoaib Akhtar",
+      "phone": "03056054842",
+      "address": "Village Ali Pur Sharqi, Gujrat",
+      "totalDues": 0,
+      "totalDiscount": 0,
+      "user": "69abee6e043105ad9a2a6d11",
+      "createdAt": "2026-03-26T16:17:02.119Z",
+      "updatedAt": "2026-03-26T16:17:02.119Z",
+      "__v": 0
+    },
+    {
+      "_id": "69c55c073aefec0e9e742ca8",
+      "name": "Shoaib Akhtar",
+      "phone": "03056054",
+      "address": "Village Ali Pur Sharqi, Gujrat",
+      "totalDues": 0,
+      "totalDiscount": 0,
+      "user": "69abee6e043105ad9a2a6d11",
+      "createdAt": "2026-03-26T16:17:11.315Z",
+      "updatedAt": "2026-03-26T16:17:11.315Z",
+      "__v": 0
+    }
+  ],
+  "purchases": [
+    {
+      "_id": "69ae6f7c914ff65bcde41ed4",
+      "product": "69ae6f7b914ff65bcde41ed2",
+      "productName": "item 01",
+      "supplierName": "Shoaib",
+      "costPrice": 1000,
+      "quantity": 5,
+      "totalCost": 5000,
+      "user": "69abee6e043105ad9a2a6d11",
+      "purchaseDate": "2026-03-09T06:58:04.141Z",
+      "createdAt": "2026-03-09T06:58:04.222Z",
+      "updatedAt": "2026-03-09T06:58:04.222Z",
+      "__v": 0
+    },
+    {
+      "_id": "69ae70b9914ff65bcde41f10",
+      "product": "69ae70b9914ff65bcde41f0e",
+      "productName": "item 02",
+      "supplierName": "Umair",
+      "costPrice": 1500,
+      "quantity": 10,
+      "totalCost": 15000,
+      "user": "69abee6e043105ad9a2a6d11",
+      "purchaseDate": "2026-03-09T07:03:21.921Z",
+      "createdAt": "2026-03-09T07:03:21.924Z",
+      "updatedAt": "2026-03-09T07:03:21.924Z",
+      "__v": 0
+    },
+    {
+      "_id": "69aeb404e504c11c29b45d16",
+      "product": "69aeb404e504c11c29b45d14",
+      "productName": "pussy",
+      "supplierName": "haris",
+      "costPrice": 1000,
+      "quantity": 10,
+      "totalCost": 10000,
+      "user": "69adc2c9b326ee50f4eeaaf2",
+      "purchaseDate": "2026-03-09T11:50:28.353Z",
+      "createdAt": "2026-03-09T11:50:28.353Z",
+      "updatedAt": "2026-03-09T11:50:28.353Z",
+      "__v": 0
+    },
+    {
+      "_id": "69aed6b6bafbad6f0fee3b61",
+      "product": "69ae70b9914ff65bcde41f0e",
+      "productName": "item 02",
+      "supplierName": "Ali sab",
+      "costPrice": 1400,
+      "quantity": 19,
+      "totalCost": 26600,
+      "user": "69abee6e043105ad9a2a6d11",
+      "purchaseDate": "2026-03-09T14:18:30.866Z",
+      "createdAt": "2026-03-09T14:18:30.873Z",
+      "updatedAt": "2026-03-09T14:18:30.873Z",
+      "__v": 0
+    },
+    {
+      "_id": "69aed6d2bafbad6f0fee3b6b",
+      "product": "69ae6f7b914ff65bcde41ed2",
+      "productName": "item 01",
+      "supplierName": "Sulman sab",
+      "costPrice": 1000,
+      "quantity": 20,
+      "totalCost": 20000,
+      "user": "69abee6e043105ad9a2a6d11",
+      "purchaseDate": "2026-03-09T14:18:58.941Z",
+      "createdAt": "2026-03-09T14:18:58.942Z",
+      "updatedAt": "2026-03-09T14:18:58.942Z",
+      "__v": 0
+    },
+    {
+      "_id": "69af1abc4bb154ad58027bc2",
+      "product": "69af1abc4bb154ad58027bc0",
+      "productName": "item 003",
+      "supplierName": "shoaib",
+      "costPrice": 1000,
+      "quantity": 10,
+      "totalCost": 10000,
+      "user": "69aef102af3f1db40549ff32",
+      "purchaseDate": "2026-03-09T19:08:44.829Z",
+      "createdAt": "2026-03-09T19:08:44.831Z",
+      "updatedAt": "2026-03-09T19:08:44.831Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b5a80cb68831360ba4fc8f",
+      "product": "69b5a80cb68831360ba4fc8d",
+      "productName": "item 03",
+      "supplierName": "Nazim",
+      "costPrice": 1500,
+      "quantity": 9,
+      "totalCost": 13500,
+      "user": "69abee6e043105ad9a2a6d11",
+      "purchaseDate": "2026-03-14T18:25:16.660Z",
+      "createdAt": "2026-03-14T18:25:16.661Z",
+      "updatedAt": "2026-03-14T18:25:16.661Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b5a8f8b68831360ba4fce9",
+      "product": "69b5a8f8b68831360ba4fce7",
+      "productName": "product 01",
+      "supplierName": "Sulman",
+      "costPrice": 1600,
+      "quantity": 99,
+      "totalCost": 158400,
+      "user": "69adb3cda5a2b2b42c1f4090",
+      "purchaseDate": "2026-03-14T18:29:12.920Z",
+      "createdAt": "2026-03-14T18:29:12.921Z",
+      "updatedAt": "2026-03-14T18:29:12.921Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b6ce63dcb7870e583c4176",
+      "product": "69b6ce62dcb7870e583c4174",
+      "productName": "Dates",
+      "supplierName": "Abdullah",
+      "costPrice": 1200,
+      "quantity": 50,
+      "totalCost": 60000,
+      "user": "69adb75342fa607539bd2848",
+      "purchaseDate": "2026-03-15T15:21:07.106Z",
+      "createdAt": "2026-03-15T15:21:07.107Z",
+      "updatedAt": "2026-03-15T15:21:07.107Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b6cef9dcb7870e583c4181",
+      "product": "69b6cef9dcb7870e583c417f",
+      "productName": "Meat",
+      "supplierName": "Younace",
+      "costPrice": 1000,
+      "quantity": 10,
+      "totalCost": 10000,
+      "user": "69adb75342fa607539bd2848",
+      "purchaseDate": "2026-03-15T15:23:37.917Z",
+      "createdAt": "2026-03-15T15:23:37.918Z",
+      "updatedAt": "2026-03-15T15:23:37.918Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b6ded2353b20ace717eb59",
+      "product": "69b6ded2353b20ace717eb57",
+      "productName": "test",
+      "supplierName": "zain",
+      "costPrice": 1000,
+      "quantity": 10,
+      "totalCost": 10000,
+      "user": "69abee6e043105ad9a2a6d11",
+      "purchaseDate": "2026-03-15T16:31:14.326Z",
+      "createdAt": "2026-03-15T16:31:14.326Z",
+      "updatedAt": "2026-03-15T16:31:14.326Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b6f1c26a9ed8a0b1294319",
+      "product": "69b6f1c26a9ed8a0b1294317",
+      "productName": "product 001",
+      "supplierName": "zain",
+      "costPrice": 1200,
+      "quantity": 10,
+      "totalCost": 12000,
+      "user": "69abee6e043105ad9a2a6d11",
+      "purchaseDate": "2026-03-15T17:52:02.219Z",
+      "createdAt": "2026-03-15T17:52:02.220Z",
+      "updatedAt": "2026-03-15T17:52:02.220Z",
+      "__v": 0
+    },
+    {
+      "_id": "69bad8e30638f21a0ee65474",
+      "product": "69b5a80cb68831360ba4fc8d",
+      "productName": "item 03",
+      "supplierName": "Zain",
+      "costPrice": 1500,
+      "quantity": 10,
+      "totalCost": 15000,
+      "user": "69abee6e043105ad9a2a6d11",
+      "purchaseDate": "2026-03-18T16:54:59.907Z",
+      "createdAt": "2026-03-18T16:54:59.907Z",
+      "updatedAt": "2026-03-18T16:54:59.907Z",
+      "__v": 0
+    },
+    {
+      "_id": "69c55f16a54a04c0f6d694aa",
+      "product": "69c55f16a54a04c0f6d694a8",
+      "productName": "item 04",
+      "supplierName": "zain",
+      "costPrice": 1500,
+      "quantity": 999,
+      "totalCost": 1498500,
+      "user": "69abee6e043105ad9a2a6d11",
+      "purchaseDate": "2026-03-26T16:30:14.514Z",
+      "createdAt": "2026-03-26T16:30:14.515Z",
+      "updatedAt": "2026-03-26T16:30:14.515Z",
+      "__v": 0
+    },
+    {
+      "_id": "69c55f42a54a04c0f6d694b5",
+      "product": "69c55f42a54a04c0f6d694b3",
+      "productName": "item 05",
+      "supplierName": "zain",
+      "costPrice": 3000,
+      "quantity": 100,
+      "totalCost": 300000,
+      "user": "69abee6e043105ad9a2a6d11",
+      "purchaseDate": "2026-03-26T16:30:58.639Z",
+      "createdAt": "2026-03-26T16:30:58.640Z",
+      "updatedAt": "2026-03-26T16:30:58.640Z",
+      "__v": 0
+    },
+    {
+      "_id": "69c579b9f95980d6453b37f4",
+      "product": "69c579b9f95980d6453b37f2",
+      "productName": "item 07",
+      "supplierName": "Zain",
+      "costPrice": 1500,
+      "quantity": 8,
+      "totalCost": 12000,
+      "user": "69abee6e043105ad9a2a6d11",
+      "purchaseDate": "2026-03-26T18:23:53.210Z",
+      "createdAt": "2026-03-26T18:23:53.211Z",
+      "updatedAt": "2026-03-26T18:23:53.211Z",
+      "__v": 0
+    }
+  ],
+  "products": [
+    {
+      "_id": "69ae6f7b914ff65bcde41ed2",
+      "name": "item 01",
+      "costPrice": 1000,
+      "sellingPrice": 1500,
+      "quantity": 9,
+      "category": "cat 1",
+      "description": "",
+      "salesCount": 0,
+      "user": "69abee6e043105ad9a2a6d11",
+      "createdAt": "2026-03-09T06:58:03.490Z",
+      "updatedAt": "2026-03-26T16:37:00.015Z",
+      "__v": 0
+    },
+    {
+      "_id": "69ae70b9914ff65bcde41f0e",
+      "name": "item 02",
+      "costPrice": 1500,
+      "sellingPrice": 2000,
+      "quantity": 4,
+      "category": "cat 02",
+      "description": "",
+      "salesCount": 0,
+      "user": "69abee6e043105ad9a2a6d11",
+      "createdAt": "2026-03-09T07:03:21.723Z",
+      "updatedAt": "2026-03-26T16:36:58.952Z",
+      "__v": 0
+    },
+    {
+      "_id": "69af1abc4bb154ad58027bc0",
+      "name": "item 003",
+      "costPrice": 1000,
+      "sellingPrice": 1500,
+      "quantity": 10,
+      "category": " Shoaib",
+      "description": "",
+      "salesCount": 0,
+      "user": "69aef102af3f1db40549ff32",
+      "createdAt": "2026-03-09T19:08:44.700Z",
+      "updatedAt": "2026-03-09T19:08:57.867Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b5a80cb68831360ba4fc8d",
+      "name": "item 03",
+      "costPrice": 1500,
+      "sellingPrice": 2000,
+      "quantity": 11,
+      "category": "news ",
+      "description": "",
+      "salesCount": 0,
+      "user": "69abee6e043105ad9a2a6d11",
+      "createdAt": "2026-03-14T18:25:16.467Z",
+      "updatedAt": "2026-03-26T18:22:58.518Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b5a8f8b68831360ba4fce7",
+      "name": "product 01",
+      "costPrice": 1600,
+      "sellingPrice": 2000,
+      "quantity": 95,
+      "category": "Seeds",
+      "description": "",
+      "salesCount": 0,
+      "user": "69adb3cda5a2b2b42c1f4090",
+      "createdAt": "2026-03-14T18:29:12.722Z",
+      "updatedAt": "2026-03-14T18:53:50.349Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b6ce62dcb7870e583c4174",
+      "name": "Dates",
+      "costPrice": 1200,
+      "sellingPrice": 1300,
+      "quantity": 50,
+      "category": "Eating",
+      "description": "",
+      "salesCount": 0,
+      "user": "69adb75342fa607539bd2848",
+      "createdAt": "2026-03-15T15:21:06.899Z",
+      "updatedAt": "2026-03-15T15:21:07.305Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b6cef9dcb7870e583c417f",
+      "name": "Meat",
+      "costPrice": 1000,
+      "sellingPrice": 1200,
+      "quantity": 10,
+      "category": "Eating Food",
+      "description": "",
+      "salesCount": 0,
+      "user": "69adb75342fa607539bd2848",
+      "createdAt": "2026-03-15T15:23:37.718Z",
+      "updatedAt": "2026-03-15T15:23:38.106Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b6f1c26a9ed8a0b1294317",
+      "name": "product 001",
+      "costPrice": 1200,
+      "sellingPrice": 2000,
+      "quantity": 4,
+      "category": "abc",
+      "description": "",
+      "salesCount": 0,
+      "user": "69abee6e043105ad9a2a6d11",
+      "createdAt": "2026-03-15T17:52:02.023Z",
+      "updatedAt": "2026-03-26T16:56:26.362Z",
+      "__v": 0
+    },
+    {
+      "_id": "69c55f16a54a04c0f6d694a8",
+      "name": "item 04",
+      "costPrice": 1500,
+      "sellingPrice": 2999.99,
+      "quantity": 994,
+      "category": "seeds",
+      "description": "",
+      "salesCount": 0,
+      "user": "69abee6e043105ad9a2a6d11",
+      "createdAt": "2026-03-26T16:30:14.304Z",
+      "updatedAt": "2026-03-31T10:31:57.592Z",
+      "__v": 0
+    },
+    {
+      "_id": "69c55f42a54a04c0f6d694b3",
+      "name": "item 05",
+      "costPrice": 3000,
+      "sellingPrice": 4000,
+      "quantity": 94,
+      "category": "seeds",
+      "description": "",
+      "salesCount": 0,
+      "user": "69abee6e043105ad9a2a6d11",
+      "createdAt": "2026-03-26T16:30:58.445Z",
+      "updatedAt": "2026-03-31T10:31:56.274Z",
+      "__v": 0
+    },
+    {
+      "_id": "69c579b9f95980d6453b37f2",
+      "name": "item 07",
+      "costPrice": 1500,
+      "sellingPrice": 2500,
+      "quantity": 7,
+      "category": "abc",
+      "description": "",
+      "salesCount": 0,
+      "user": "69abee6e043105ad9a2a6d11",
+      "createdAt": "2026-03-26T18:23:53.020Z",
+      "updatedAt": "2026-03-31T10:30:57.426Z",
+      "__v": 0
+    }
+  ],
+  "shops": [
+    {
+      "_id": "69aef103af3f1db40549ff34",
+      "name": "shop 1",
+      "businessType": "General Store",
+      "owner": "69aef102af3f1db40549ff32",
+      "plan": "free",
+      "subscriptionStatus": "trial",
+      "settings": {
+        "currency": "Rs.",
+        "taxEnabled": false,
+        "taxPercentage": 0
+      },
+      "createdAt": "2026-03-09T16:10:43.085Z",
+      "updatedAt": "2026-03-09T16:10:43.085Z",
+      "__v": 0
+    },
+    {
+      "_id": "69aefaedaf3f1db40549ff68",
+      "name": "Abdullah 01",
+      "businessType": "General Store",
+      "owner": "69aefaecaf3f1db40549ff66",
+      "plan": "free",
+      "subscriptionStatus": "trial",
+      "settings": {
+        "currency": "Rs.",
+        "taxEnabled": false,
+        "taxPercentage": 0
+      },
+      "createdAt": "2026-03-09T16:53:01.224Z",
+      "updatedAt": "2026-03-09T16:53:01.224Z",
+      "__v": 0
+    },
+    {
+      "_id": "69af916f5c3a57283eb7e0a3",
+      "name": "Shop 03",
+      "businessType": "General Store",
+      "owner": "69af916f5c3a57283eb7e0a1",
+      "plan": "free",
+      "subscriptionStatus": "trial",
+      "settings": {
+        "currency": "Rs.",
+        "taxEnabled": false,
+        "taxPercentage": 0
+      },
+      "createdAt": "2026-03-10T03:35:11.712Z",
+      "updatedAt": "2026-03-10T03:35:11.712Z",
+      "__v": 0
+    },
+    {
+      "_id": "69af95882a66ee52df38bcf4",
+      "name": "shop 2",
+      "businessType": "General Store",
+      "owner": "69af95882a66ee52df38bcf2",
+      "plan": "free",
+      "subscriptionStatus": "trial",
+      "settings": {
+        "currency": "Rs.",
+        "taxEnabled": false,
+        "taxPercentage": 0
+      },
+      "createdAt": "2026-03-10T03:52:40.785Z",
+      "updatedAt": "2026-03-10T03:52:40.785Z",
+      "__v": 0
+    },
+    {
+      "_id": "69afb291de4f635c3452f816",
+      "name": "Shop 04",
+      "businessType": "General Store",
+      "owner": "69afb291de4f635c3452f814",
+      "plan": "free",
+      "subscriptionStatus": "trial",
+      "settings": {
+        "currency": "Rs.",
+        "taxEnabled": false,
+        "taxPercentage": 0
+      },
+      "createdAt": "2026-03-10T05:56:33.947Z",
+      "updatedAt": "2026-03-10T05:56:33.947Z",
+      "__v": 0
+    },
+    {
+      "_id": "69afb8e6f9cc7d22cdd0e45e",
+      "name": "shop 00",
+      "businessType": "General Store",
+      "owner": "69afb8e6f9cc7d22cdd0e45c",
+      "plan": "free",
+      "subscriptionStatus": "trial",
+      "settings": {
+        "currency": "Rs.",
+        "taxEnabled": false,
+        "taxPercentage": 0
+      },
+      "createdAt": "2026-03-10T06:23:34.560Z",
+      "updatedAt": "2026-03-10T06:23:34.560Z",
+      "__v": 0
+    }
+  ],
+  "verificationlogs": [],
+  "sales": [
+    {
+      "_id": "69ae6fd9914ff65bcde41ef0",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "item 01",
+          "quantity": 1,
+          "price": 1500,
+          "product": "69ae6f7b914ff65bcde41ed2",
+          "_id": "69ae6fd9914ff65bcde41ef1"
+        }
+      ],
+      "totalAmount": 1490,
+      "discount": 10,
+      "customerName": "Hamza butt",
+      "customer": "69ae6fab914ff65bcde41ee7",
+      "previousDues": 2000,
+      "amountPaid": 1000,
+      "balanceDue": 2490,
+      "paymentMethod": "Credit",
+      "isPaid": false,
+      "receiptId": "RCP-1773039577368-777",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-09T06:59:37.575Z",
+      "updatedAt": "2026-03-09T06:59:37.575Z",
+      "__v": 0
+    },
+    {
+      "_id": "69ae70dd914ff65bcde41f27",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "item 02",
+          "quantity": 4,
+          "price": 2000,
+          "product": "69ae70b9914ff65bcde41f0e",
+          "_id": "69ae70dd914ff65bcde41f28"
+        }
+      ],
+      "totalAmount": 8000,
+      "discount": 0,
+      "customerName": "",
+      "previousDues": 0,
+      "amountPaid": 8000,
+      "balanceDue": 0,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "RCP-1773039837083-872",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-09T07:03:57.242Z",
+      "updatedAt": "2026-03-09T07:03:57.242Z",
+      "__v": 0
+    },
+    {
+      "_id": "69aeb46be504c11c29b45d3a",
+      "user": "69adc2c9b326ee50f4eeaaf2",
+      "cartItems": [
+        {
+          "name": "pussy",
+          "quantity": 1,
+          "price": 100,
+          "product": "69aeb404e504c11c29b45d14",
+          "_id": "69aeb46be504c11c29b45d3b"
+        }
+      ],
+      "totalAmount": 100,
+      "discount": 0,
+      "customerName": "",
+      "previousDues": 0,
+      "amountPaid": 0,
+      "balanceDue": 0,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "RCP-1773057130677-28",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-09T11:52:11.059Z",
+      "updatedAt": "2026-03-09T11:52:11.059Z",
+      "__v": 0
+    },
+    {
+      "_id": "69aeb46ee504c11c29b45d43",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "item 01",
+          "quantity": 1,
+          "price": 1500,
+          "product": "69ae6f7b914ff65bcde41ed2",
+          "_id": "69aeb46ee504c11c29b45d44"
+        },
+        {
+          "name": "item 02",
+          "quantity": 1,
+          "price": 2000,
+          "product": "69ae70b9914ff65bcde41f0e",
+          "_id": "69aeb46ee504c11c29b45d45"
+        }
+      ],
+      "totalAmount": 3400,
+      "discount": 100,
+      "customerName": "",
+      "previousDues": 0,
+      "amountPaid": 1400,
+      "balanceDue": 0,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "RCP-1773057132204-978",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-09T11:52:14.983Z",
+      "updatedAt": "2026-03-09T11:52:14.983Z",
+      "__v": 0
+    },
+    {
+      "_id": "69aece7ea9ac4b55d931a919",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "item 02",
+          "quantity": 1,
+          "price": 2000,
+          "product": "69ae70b9914ff65bcde41f0e",
+          "_id": "69aece7ea9ac4b55d931a91a"
+        }
+      ],
+      "totalAmount": 2000,
+      "discount": 0,
+      "customerName": "",
+      "previousDues": 0,
+      "amountPaid": 0,
+      "balanceDue": 0,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "RCP-1773063802914-635",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-09T13:43:26.084Z",
+      "updatedAt": "2026-03-09T13:43:26.084Z",
+      "__v": 0
+    },
+    {
+      "_id": "69aececda9ac4b55d931a922",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "item 02",
+          "quantity": 1,
+          "price": 2000,
+          "product": "69ae70b9914ff65bcde41f0e",
+          "_id": "69aececda9ac4b55d931a923"
+        }
+      ],
+      "totalAmount": 2000,
+      "discount": 0,
+      "customerName": "",
+      "previousDues": 0,
+      "amountPaid": 0,
+      "balanceDue": 0,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "RCP-1773063882264-630",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-09T13:44:45.457Z",
+      "updatedAt": "2026-03-09T13:44:45.457Z",
+      "__v": 0
+    },
+    {
+      "_id": "69aed00baf3f1db40549fe86",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "item 02",
+          "quantity": 1,
+          "price": 2000,
+          "product": "69ae70b9914ff65bcde41f0e",
+          "_id": "69aed00baf3f1db40549fe87"
+        }
+      ],
+      "totalAmount": 2000,
+      "discount": 0,
+      "customerName": "",
+      "previousDues": 0,
+      "amountPaid": 0,
+      "balanceDue": 0,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "RCP-1773064203148-172",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-09T13:50:03.519Z",
+      "updatedAt": "2026-03-09T13:50:03.519Z",
+      "__v": 0
+    },
+    {
+      "_id": "69aed60a3028e0bd1a1fe487",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "item 01",
+          "quantity": 1,
+          "price": 1500,
+          "product": "69ae6f7b914ff65bcde41ed2",
+          "_id": "69aed60a3028e0bd1a1fe488"
+        }
+      ],
+      "totalAmount": 1500,
+      "discount": 0,
+      "customerName": "",
+      "previousDues": 0,
+      "amountPaid": 0,
+      "balanceDue": 0,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "RCP-1773065729747-817",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-09T14:15:38.583Z",
+      "updatedAt": "2026-03-09T14:15:38.583Z",
+      "__v": 0
+    },
+    {
+      "_id": "69aed613af3f1db40549ff0c",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "item 02",
+          "quantity": 1,
+          "price": 2000,
+          "product": "69ae70b9914ff65bcde41f0e",
+          "_id": "69aed613af3f1db40549ff0d"
+        }
+      ],
+      "totalAmount": 2000,
+      "discount": 0,
+      "customerName": "",
+      "previousDues": 0,
+      "amountPaid": 0,
+      "balanceDue": 0,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "RCP-1773065746933-338",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-09T14:15:47.196Z",
+      "updatedAt": "2026-03-09T14:15:47.196Z",
+      "__v": 0
+    },
+    {
+      "_id": "69aed702bafbad6f0fee3b75",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "item 01",
+          "quantity": 1,
+          "price": 1500,
+          "product": "69ae6f7b914ff65bcde41ed2",
+          "_id": "69aed702bafbad6f0fee3b76"
+        }
+      ],
+      "totalAmount": 1500,
+      "discount": 0,
+      "customerName": "",
+      "previousDues": 0,
+      "amountPaid": 0,
+      "balanceDue": 0,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "RCP-1773065982966-854",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-09T14:19:46.442Z",
+      "updatedAt": "2026-03-09T14:19:46.442Z",
+      "__v": 0
+    },
+    {
+      "_id": "69affcac7dbb808da1d9b86e",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "item 02",
+          "quantity": 1,
+          "price": 2000,
+          "product": "69ae70b9914ff65bcde41f0e",
+          "_id": "69affcac7dbb808da1d9b86f"
+        }
+      ],
+      "totalAmount": 2000,
+      "discount": 0,
+      "customerName": "Hamza butt",
+      "customer": "69ae6fab914ff65bcde41ee7",
+      "previousDues": 2490,
+      "amountPaid": 2000,
+      "balanceDue": 2490,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "RCP-1773141159867-397",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-10T11:12:44.558Z",
+      "updatedAt": "2026-03-10T11:12:44.558Z",
+      "__v": 0
+    },
+    {
+      "_id": "69affcd37dbb808da1d9b87a",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "item 02",
+          "quantity": 2,
+          "price": 2000,
+          "product": "69ae70b9914ff65bcde41f0e",
+          "_id": "69affcd37dbb808da1d9b87b"
+        },
+        {
+          "name": "item 01",
+          "quantity": 1,
+          "price": 1500,
+          "product": "69ae6f7b914ff65bcde41ed2",
+          "_id": "69affcd37dbb808da1d9b87c"
+        }
+      ],
+      "totalAmount": 5500,
+      "discount": 0,
+      "customerName": "Hamza butt",
+      "customer": "69ae6fab914ff65bcde41ee7",
+      "previousDues": 2490,
+      "amountPaid": 2000,
+      "balanceDue": 5990,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "RCP-1773141199614-268",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-10T11:13:23.941Z",
+      "updatedAt": "2026-03-10T11:13:23.941Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b0101de7e50609f3d84a80",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "item 02",
+          "quantity": 2,
+          "price": 2000,
+          "product": "69ae70b9914ff65bcde41f0e",
+          "_id": "69b0101de7e50609f3d84a81"
+        },
+        {
+          "name": "item 01",
+          "quantity": 2,
+          "price": 1500,
+          "product": "69ae6f7b914ff65bcde41ed2",
+          "_id": "69b0101de7e50609f3d84a82"
+        }
+      ],
+      "totalAmount": 7000,
+      "discount": 0,
+      "customerName": "",
+      "previousDues": 0,
+      "amountPaid": 0,
+      "balanceDue": 0,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "RCP-1773146136745-664",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-10T12:35:41.160Z",
+      "updatedAt": "2026-03-10T12:35:41.160Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b0103ce7e50609f3d84a8d",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "item 02",
+          "quantity": 2,
+          "price": 2000,
+          "product": "69ae70b9914ff65bcde41f0e",
+          "_id": "69b0103ce7e50609f3d84a8e"
+        },
+        {
+          "name": "item 01",
+          "quantity": 2,
+          "price": 1500,
+          "product": "69ae6f7b914ff65bcde41ed2",
+          "_id": "69b0103ce7e50609f3d84a8f"
+        }
+      ],
+      "totalAmount": 7000,
+      "discount": 0,
+      "customerName": "",
+      "previousDues": 0,
+      "amountPaid": 7000,
+      "balanceDue": 0,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "RCP-1773146168057-483",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-10T12:36:12.444Z",
+      "updatedAt": "2026-03-10T12:36:12.444Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b143a18fe5d5d42b2859be",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "item 02",
+          "quantity": 1,
+          "price": 2000,
+          "product": "69ae70b9914ff65bcde41f0e",
+          "_id": "69b143a18fe5d5d42b2859bf"
+        },
+        {
+          "name": "item 01",
+          "quantity": 1,
+          "price": 1500,
+          "product": "69ae6f7b914ff65bcde41ed2",
+          "_id": "69b143a18fe5d5d42b2859c0"
+        }
+      ],
+      "totalAmount": 3500,
+      "discount": 0,
+      "customerName": "",
+      "previousDues": 0,
+      "amountPaid": 0,
+      "balanceDue": 0,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "RCP-1773224859353-363",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-11T10:27:45.085Z",
+      "updatedAt": "2026-03-11T10:27:45.085Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b52c24f50ff0f55fc7fa5c",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "item 02",
+          "quantity": 2,
+          "price": 2000,
+          "product": "69ae70b9914ff65bcde41f0e",
+          "_id": "69b52c24f50ff0f55fc7fa5d"
+        }
+      ],
+      "totalAmount": 4000,
+      "discount": 0,
+      "customerName": "",
+      "previousDues": 0,
+      "amountPaid": 0,
+      "balanceDue": 0,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "RCP-1773480993770-348",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-14T09:36:36.495Z",
+      "updatedAt": "2026-03-14T09:36:36.495Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b52c36f50ff0f55fc7fa65",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "item 02",
+          "quantity": 2,
+          "price": 2000,
+          "product": "69ae70b9914ff65bcde41f0e",
+          "_id": "69b52c36f50ff0f55fc7fa66"
+        }
+      ],
+      "totalAmount": 4000,
+      "discount": 0,
+      "customerName": "",
+      "previousDues": 0,
+      "amountPaid": 4000,
+      "balanceDue": 0,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "RCP-1773481012306-957",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-14T09:36:54.789Z",
+      "updatedAt": "2026-03-14T09:36:54.789Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b52da55f9f8071e4f856a0",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "item 01",
+          "quantity": 2,
+          "price": 1500,
+          "product": "69ae6f7b914ff65bcde41ed2",
+          "_id": "69b52da55f9f8071e4f856a1"
+        }
+      ],
+      "totalAmount": 2990,
+      "discount": 10,
+      "customerName": "Hamza butt",
+      "customer": "69ae6fab914ff65bcde41ee7",
+      "previousDues": 5990,
+      "amountPaid": 1500,
+      "balanceDue": 7480,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "RCP-1773481378522-620",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-14T09:43:01.025Z",
+      "updatedAt": "2026-03-14T09:43:01.025Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b5a7c4b68831360ba4fc7b",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "item 02",
+          "quantity": 1,
+          "price": 2000,
+          "product": "69ae70b9914ff65bcde41f0e",
+          "categoryId": "cat 02",
+          "categoryName": "cat 02",
+          "_id": "69b5a7c4b68831360ba4fc7c"
+        }
+      ],
+      "totalAmount": 2000,
+      "discount": 0,
+      "customerName": "Walk-in Customer",
+      "previousDues": 0,
+      "amountPaid": 2000,
+      "balanceDue": 0,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "RCP-1773512641713-890",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-14T18:24:04.168Z",
+      "updatedAt": "2026-03-14T18:24:04.168Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b5a91bb68831360ba4fcfb",
+      "user": "69adb3cda5a2b2b42c1f4090",
+      "cartItems": [
+        {
+          "name": "product 01",
+          "quantity": 2,
+          "price": 2000,
+          "product": "69b5a8f8b68831360ba4fce7",
+          "categoryId": "Seeds",
+          "categoryName": "Seeds",
+          "_id": "69b5a91bb68831360ba4fcfc"
+        }
+      ],
+      "totalAmount": 4000,
+      "discount": 0,
+      "customerName": "Walk-in Customer",
+      "previousDues": 0,
+      "amountPaid": 4000,
+      "balanceDue": 0,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "RCP-1773512985234-532",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-14T18:29:47.668Z",
+      "updatedAt": "2026-03-14T18:29:47.668Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b5ab7b38f66b1405305e17",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "item 03",
+          "quantity": 1,
+          "price": 2000,
+          "product": "69b5a80cb68831360ba4fc8d",
+          "categoryId": "news ",
+          "categoryName": "news ",
+          "_id": "69b5ab7b38f66b1405305e18"
+        }
+      ],
+      "totalAmount": 2000,
+      "discount": 0,
+      "customerName": "Walk-in Customer",
+      "previousDues": 0,
+      "amountPaid": 2000,
+      "balanceDue": 0,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "RCP-1773513595241-282",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-14T18:39:55.984Z",
+      "updatedAt": "2026-03-14T18:39:55.984Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b5ad1938f66b1405305e28",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "item 02",
+          "quantity": 1,
+          "price": 2000,
+          "product": "69ae70b9914ff65bcde41f0e",
+          "categoryId": "cat 02",
+          "categoryName": "cat 02",
+          "_id": "69b5ad1938f66b1405305e29"
+        }
+      ],
+      "totalAmount": 2000,
+      "discount": 0,
+      "customerName": "Hamza butt",
+      "customer": "69ae6fab914ff65bcde41ee7",
+      "previousDues": 7480,
+      "amountPaid": 2000,
+      "balanceDue": 7480,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "RCP-1773514009280-25",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-14T18:46:49.611Z",
+      "updatedAt": "2026-03-14T18:46:49.611Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b5ae3438f66b1405305e5f",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "item 03",
+          "quantity": 1,
+          "price": 2000,
+          "product": "69b5a80cb68831360ba4fc8d",
+          "categoryId": "news ",
+          "categoryName": "news ",
+          "_id": "69b5ae3438f66b1405305e60"
+        }
+      ],
+      "totalAmount": 2000,
+      "discount": 0,
+      "customerName": "Hamza butt",
+      "customer": "69ae6fab914ff65bcde41ee7",
+      "previousDues": 7480,
+      "amountPaid": 2000,
+      "balanceDue": 7480,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "RCP-1773514292040-724",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-14T18:51:32.511Z",
+      "updatedAt": "2026-03-14T18:51:32.511Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b5ae83addf518c05acf544",
+      "user": "69adb3cda5a2b2b42c1f4090",
+      "cartItems": [
+        {
+          "name": "product 01",
+          "quantity": 1,
+          "price": 2000,
+          "product": "69b5a8f8b68831360ba4fce7",
+          "categoryId": "Seeds",
+          "categoryName": "Seeds",
+          "_id": "69b5ae83addf518c05acf545"
+        }
+      ],
+      "totalAmount": 2000,
+      "discount": 0,
+      "customerName": "Shoaib",
+      "customer": "69b5a90cb68831360ba4fcf2",
+      "previousDues": 1000,
+      "amountPaid": 2000,
+      "balanceDue": 1000,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "RCP-1773514364857-884",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-14T18:52:51.693Z",
+      "updatedAt": "2026-03-14T18:52:51.693Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b5aebce4f9f80e145fa30a",
+      "user": "69adb3cda5a2b2b42c1f4090",
+      "cartItems": [
+        {
+          "name": "product 01",
+          "quantity": 1,
+          "price": 2000,
+          "product": "69b5a8f8b68831360ba4fce7",
+          "categoryId": "Seeds",
+          "categoryName": "Seeds",
+          "_id": "69b5aebce4f9f80e145fa30b"
+        }
+      ],
+      "totalAmount": 2000,
+      "discount": 0,
+      "customerName": "Shoaib",
+      "customer": "69b5a90cb68831360ba4fcf2",
+      "previousDues": 1000,
+      "amountPaid": 1000,
+      "balanceDue": 2000,
+      "paymentMethod": "Credit",
+      "isPaid": false,
+      "receiptId": "RCP-1773514426191-243",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-14T18:53:48.894Z",
+      "updatedAt": "2026-03-14T18:53:48.894Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b6cf52dcb7870e583c419d",
+      "user": "69adb75342fa607539bd2848",
+      "cartItems": [],
+      "totalAmount": 0,
+      "discount": 0,
+      "customerName": "Ali",
+      "customer": "69b6cf3cdcb7870e583c4190",
+      "previousDues": 0,
+      "amountPaid": 1000,
+      "balanceDue": -1000,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "PAY-1773588306800-968",
+      "printed": true,
+      "createdAt": "2026-03-15T15:25:06.803Z",
+      "updatedAt": "2026-03-15T15:25:06.803Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b6d74f04e720e9ff75b29d",
+      "user": "69adb75342fa607539bd2848",
+      "cartItems": [],
+      "totalAmount": 0,
+      "discount": 0,
+      "customerName": "Ali",
+      "customer": "69b6cf3cdcb7870e583c4190",
+      "previousDues": -1000,
+      "amountPaid": 2000,
+      "balanceDue": -3000,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "PAY-1773590351631-943",
+      "printed": true,
+      "createdAt": "2026-03-15T15:59:11.633Z",
+      "updatedAt": "2026-03-15T15:59:11.633Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b6daa0f3613c1ecc7cd463",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "item 01",
+          "quantity": 2,
+          "price": 1500,
+          "product": "69ae6f7b914ff65bcde41ed2",
+          "categoryId": "cat 1",
+          "categoryName": "cat 1",
+          "_id": "69b6daa0f3613c1ecc7cd464"
+        },
+        {
+          "name": "item 03",
+          "quantity": 1,
+          "price": 2000,
+          "product": "69b5a80cb68831360ba4fc8d",
+          "categoryId": "news ",
+          "categoryName": "news ",
+          "_id": "69b6daa0f3613c1ecc7cd465"
+        }
+      ],
+      "totalAmount": 5000,
+      "discount": 0,
+      "customerName": "Hamza butt",
+      "customer": "69ae6fab914ff65bcde41ee7",
+      "previousDues": 7480,
+      "amountPaid": 12000,
+      "balanceDue": 480,
+      "paymentMethod": "Credit",
+      "isPaid": false,
+      "receiptId": "RCP-1773591196090-199",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-15T16:13:20.339Z",
+      "updatedAt": "2026-03-15T16:13:20.339Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b6de55353b20ace717eb3e",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "item 03",
+          "quantity": 1,
+          "price": 2000,
+          "product": "69b5a80cb68831360ba4fc8d",
+          "categoryId": "news ",
+          "categoryName": "news ",
+          "_id": "69b6de55353b20ace717eb3f"
+        }
+      ],
+      "totalAmount": 2000,
+      "discount": 0,
+      "customerName": "shawaiz",
+      "customer": "69b6de2b353b20ace717eb34",
+      "previousDues": 0,
+      "amountPaid": 2000,
+      "balanceDue": 0,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "RCP-1773592145078-379",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-15T16:29:09.034Z",
+      "updatedAt": "2026-03-15T16:29:09.034Z",
+      "__v": 0
+    },
+    {
+      "_id": "69b6faac21d8bb9e4d27bb35",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "test",
+          "quantity": 1,
+          "price": 1500,
+          "product": "69b6ded2353b20ace717eb57",
+          "categoryId": "seeds",
+          "categoryName": "seeds",
+          "_id": "69b6faac21d8bb9e4d27bb36"
+        }
+      ],
+      "totalAmount": 1500,
+      "discount": 0,
+      "customerName": "shawaiz",
+      "customer": "69b6de2b353b20ace717eb34",
+      "previousDues": 0,
+      "amountPaid": 2000,
+      "balanceDue": 0,
+      "paymentMethod": "Credit",
+      "isPaid": false,
+      "receiptId": "RCP-1773599399843-385",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-15T18:30:04.183Z",
+      "updatedAt": "2026-03-15T18:30:04.183Z",
+      "__v": 0
+    },
+    {
+      "_id": "69bad8560638f21a0ee6543e",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "product 001",
+          "quantity": 1,
+          "price": 2000,
+          "product": "69b6f1c26a9ed8a0b1294317",
+          "categoryId": "abc",
+          "categoryName": "abc",
+          "_id": "69bad8560638f21a0ee6543f"
+        }
+      ],
+      "totalAmount": 2000,
+      "discount": 0,
+      "customerName": "Walk-in Customer",
+      "previousDues": 0,
+      "amountPaid": 2000,
+      "balanceDue": 0,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "RCP-1773852756284-699",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-18T16:52:38.709Z",
+      "updatedAt": "2026-03-18T16:52:38.709Z",
+      "__v": 0
+    },
+    {
+      "_id": "69bad8be0638f21a0ee6545e",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "product 001",
+          "quantity": 1,
+          "price": 2000,
+          "product": "69b6f1c26a9ed8a0b1294317",
+          "categoryId": "abc",
+          "categoryName": "abc",
+          "_id": "69bad8be0638f21a0ee6545f"
+        },
+        {
+          "name": "test",
+          "quantity": 1,
+          "price": 1500,
+          "product": "69b6ded2353b20ace717eb57",
+          "categoryId": "seeds",
+          "categoryName": "seeds",
+          "_id": "69bad8be0638f21a0ee65460"
+        }
+      ],
+      "totalAmount": 3400,
+      "discount": 100,
+      "customerName": "Hamza butt",
+      "customer": "69ae6fab914ff65bcde41ee7",
+      "previousDues": 480,
+      "amountPaid": 2000,
+      "balanceDue": -920,
+      "paymentMethod": "Credit",
+      "isPaid": false,
+      "receiptId": "RCP-1773852860478-546",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-18T16:54:22.718Z",
+      "updatedAt": "2026-03-18T16:54:22.718Z",
+      "__v": 0
+    },
+    {
+      "_id": "69bb7ab8d4b41716449cfbee",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "test",
+          "quantity": 2,
+          "price": 1500,
+          "product": "69b6ded2353b20ace717eb57",
+          "categoryId": "seeds",
+          "categoryName": "seeds",
+          "_id": "69bb7ab8d4b41716449cfbef"
+        }
+      ],
+      "totalAmount": 3000,
+      "discount": 0,
+      "customerName": "Walk-in Customer",
+      "previousDues": 0,
+      "amountPaid": 3000,
+      "balanceDue": 0,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "RCP-1773894325096-499",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-19T04:25:28.968Z",
+      "updatedAt": "2026-03-19T04:25:28.968Z",
+      "__v": 0
+    },
+    {
+      "_id": "69bb7b0bd4b41716449cfbfb",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "item 02",
+          "quantity": 1,
+          "price": 2000,
+          "product": "69ae70b9914ff65bcde41f0e",
+          "categoryId": "cat 02",
+          "categoryName": "cat 02",
+          "_id": "69bb7b0bd4b41716449cfbfc"
+        },
+        {
+          "name": "item 01",
+          "quantity": 1,
+          "price": 1500,
+          "product": "69ae6f7b914ff65bcde41ed2",
+          "categoryId": "cat 1",
+          "categoryName": "cat 1",
+          "_id": "69bb7b0bd4b41716449cfbfd"
+        }
+      ],
+      "totalAmount": 3500,
+      "discount": 0,
+      "customerName": "Sulman",
+      "customer": "69bad9140638f21a0ee65491",
+      "previousDues": 0,
+      "amountPaid": 2000,
+      "balanceDue": -1500,
+      "paymentMethod": "Credit",
+      "isPaid": false,
+      "receiptId": "RCP-1773894408008-103",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-19T04:26:51.585Z",
+      "updatedAt": "2026-03-19T04:26:51.585Z",
+      "__v": 0
+    },
+    {
+      "_id": "69bb7b57d4b41716449cfc15",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "test",
+          "quantity": 6,
+          "price": 1500,
+          "product": "69b6ded2353b20ace717eb57",
+          "categoryId": "seeds",
+          "categoryName": "seeds",
+          "_id": "69bb7b57d4b41716449cfc16"
+        }
+      ],
+      "totalAmount": 9000,
+      "discount": 0,
+      "customerName": "Walk-in Customer",
+      "previousDues": 0,
+      "amountPaid": 9000,
+      "balanceDue": 0,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "RCP-1773894484045-157",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-19T04:28:07.613Z",
+      "updatedAt": "2026-03-19T04:28:07.613Z",
+      "__v": 0
+    },
+    {
+      "_id": "69c54f1d3536dcc8521184eb",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "product 001",
+          "quantity": 1,
+          "price": 2000,
+          "product": "69b6f1c26a9ed8a0b1294317",
+          "categoryId": "abc",
+          "categoryName": "abc",
+          "_id": "69c54f1d3536dcc8521184ec"
+        }
+      ],
+      "totalAmount": 2000,
+      "discount": 0,
+      "customerName": "Walk-in Customer",
+      "previousDues": 0,
+      "amountPaid": 2000,
+      "balanceDue": 0,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "RCP-1774538522486-687",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-26T15:22:05.394Z",
+      "updatedAt": "2026-03-26T15:22:05.394Z",
+      "__v": 0
+    },
+    {
+      "_id": "69c554ccf641492a18ceda46",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [],
+      "totalAmount": 0,
+      "discount": 0,
+      "customerName": "Hamza butt",
+      "customer": "69ae6fab914ff65bcde41ee7",
+      "previousDues": -920,
+      "amountPaid": 920,
+      "balanceDue": 0,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "PAY-1774539980980-964",
+      "printed": true,
+      "createdAt": "2026-03-26T15:46:20.982Z",
+      "updatedAt": "2026-03-26T15:46:20.982Z",
+      "__v": 0
+    },
+    {
+      "_id": "69c554f4f641492a18ceda72",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [],
+      "totalAmount": 0,
+      "discount": 0,
+      "customerName": "Sulman",
+      "customer": "69bad9140638f21a0ee65491",
+      "previousDues": -1500,
+      "amountPaid": 1500,
+      "balanceDue": 0,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "PAY-1774540020530-853",
+      "printed": true,
+      "createdAt": "2026-03-26T15:47:00.531Z",
+      "updatedAt": "2026-03-26T15:47:00.531Z",
+      "__v": 0
+    },
+    {
+      "_id": "69c555f6f641492a18cedaaa",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [],
+      "totalAmount": 0,
+      "discount": 0,
+      "customerName": "Ali",
+      "customer": "69b6de11353b20ace717eb2d",
+      "previousDues": 1000,
+      "amountPaid": 1000,
+      "balanceDue": 0,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "PAY-1774540278880-24",
+      "printed": true,
+      "createdAt": "2026-03-26T15:51:18.881Z",
+      "updatedAt": "2026-03-26T15:51:18.881Z",
+      "__v": 0
+    },
+    {
+      "_id": "69c557b0e63fa066a0117f11",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "product 001",
+          "quantity": 1,
+          "price": 2000,
+          "product": "69b6f1c26a9ed8a0b1294317",
+          "categoryId": "abc",
+          "categoryName": "abc",
+          "_id": "69c557b0e63fa066a0117f12"
+        }
+      ],
+      "totalAmount": 2000,
+      "discount": 0,
+      "customerName": "Hamza butt",
+      "customer": "69ae6fab914ff65bcde41ee7",
+      "previousDues": 0,
+      "amountPaid": 0,
+      "balanceDue": -2000,
+      "paymentMethod": "Credit",
+      "isPaid": false,
+      "receiptId": "RCP-1774540717613-904",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-26T15:58:40.505Z",
+      "updatedAt": "2026-03-26T15:58:40.505Z",
+      "__v": 0
+    },
+    {
+      "_id": "69c5589795fcd129ee76ea29",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [],
+      "totalAmount": 0,
+      "discount": 0,
+      "customerName": "Hamza butt",
+      "customer": "69ae6fab914ff65bcde41ee7",
+      "previousDues": -2000,
+      "amountPaid": 1000,
+      "balanceDue": -1000,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "PAY-1774540951603-712",
+      "printed": true,
+      "createdAt": "2026-03-26T16:02:31.607Z",
+      "updatedAt": "2026-03-26T16:02:31.607Z",
+      "__v": 0
+    },
+    {
+      "_id": "69c560a4d7a2bd7ecc934e7d",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "item 03",
+          "quantity": 2,
+          "price": 2000,
+          "product": "69b5a80cb68831360ba4fc8d",
+          "categoryId": "news ",
+          "categoryName": "news ",
+          "_id": "69c560a4d7a2bd7ecc934e7e"
+        },
+        {
+          "name": "item 05",
+          "quantity": 1,
+          "price": 4000,
+          "product": "69c55f42a54a04c0f6d694b3",
+          "categoryId": "seeds",
+          "categoryName": "seeds",
+          "_id": "69c560a4d7a2bd7ecc934e7f"
+        },
+        {
+          "name": "item 04",
+          "quantity": 1,
+          "price": 2999.99,
+          "product": "69c55f16a54a04c0f6d694a8",
+          "categoryId": "seeds",
+          "categoryName": "seeds",
+          "_id": "69c560a4d7a2bd7ecc934e80"
+        },
+        {
+          "name": "product 001",
+          "quantity": 1,
+          "price": 2000,
+          "product": "69b6f1c26a9ed8a0b1294317",
+          "categoryId": "abc",
+          "categoryName": "abc",
+          "_id": "69c560a4d7a2bd7ecc934e81"
+        },
+        {
+          "name": "item 02",
+          "quantity": 1,
+          "price": 2000,
+          "product": "69ae70b9914ff65bcde41f0e",
+          "categoryId": "cat 02",
+          "categoryName": "cat 02",
+          "_id": "69c560a4d7a2bd7ecc934e82"
+        },
+        {
+          "name": "item 01",
+          "quantity": 1,
+          "price": 1500,
+          "product": "69ae6f7b914ff65bcde41ed2",
+          "categoryId": "cat 1",
+          "categoryName": "cat 1",
+          "_id": "69c560a4d7a2bd7ecc934e83"
+        }
+      ],
+      "totalAmount": 16498.999999999996,
+      "discount": 0.99,
+      "customerName": "Hamza butt",
+      "customer": "69ae6fab914ff65bcde41ee7",
+      "previousDues": -1000,
+      "amountPaid": 15400,
+      "balanceDue": -2098.9999999999964,
+      "paymentMethod": "Credit",
+      "isPaid": false,
+      "receiptId": "RCP-1774543007490-158",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-26T16:36:52.556Z",
+      "updatedAt": "2026-03-26T16:36:52.556Z",
+      "__v": 0
+    },
+    {
+      "_id": "69c561cba54a04c0f6d69558",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "item 05",
+          "quantity": 1,
+          "price": 4000,
+          "product": "69c55f42a54a04c0f6d694b3",
+          "categoryId": "seeds",
+          "categoryName": "seeds",
+          "_id": "69c561cba54a04c0f6d69559"
+        }
+      ],
+      "totalAmount": 3900,
+      "discount": 100,
+      "customerName": "shawaiz",
+      "customer": "69b6de2b353b20ace717eb34",
+      "previousDues": 0,
+      "amountPaid": 3900,
+      "balanceDue": 0,
+      "paymentMethod": "Credit",
+      "isPaid": false,
+      "receiptId": "RCP-1774543306700-498",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-26T16:41:47.203Z",
+      "updatedAt": "2026-03-26T16:41:47.203Z",
+      "__v": 0
+    },
+    {
+      "_id": "69c56536ca4c802a505d2f3f",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "item 05",
+          "quantity": 1,
+          "price": 4000,
+          "product": "69c55f42a54a04c0f6d694b3",
+          "categoryId": "seeds",
+          "categoryName": "seeds",
+          "_id": "69c56536ca4c802a505d2f40"
+        },
+        {
+          "name": "item 04",
+          "quantity": 2,
+          "price": 2999.99,
+          "product": "69c55f16a54a04c0f6d694a8",
+          "categoryId": "seeds",
+          "categoryName": "seeds",
+          "_id": "69c56536ca4c802a505d2f41"
+        },
+        {
+          "name": "product 001",
+          "quantity": 1,
+          "price": 2000,
+          "product": "69b6f1c26a9ed8a0b1294317",
+          "categoryId": "abc",
+          "categoryName": "abc",
+          "_id": "69c56536ca4c802a505d2f42"
+        },
+        {
+          "name": "item 03",
+          "quantity": 1,
+          "price": 2000,
+          "product": "69b5a80cb68831360ba4fc8d",
+          "categoryId": "news ",
+          "categoryName": "news ",
+          "_id": "69c56536ca4c802a505d2f43"
+        }
+      ],
+      "totalAmount": 13949.93,
+      "discount": 50.05,
+      "customerName": "shawaiz",
+      "customer": "69b6de2b353b20ace717eb34",
+      "previousDues": 0,
+      "amountPaid": 13949.93,
+      "balanceDue": 0,
+      "paymentMethod": "Credit",
+      "isPaid": false,
+      "receiptId": "RCP-1774544179692-331",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-26T16:56:22.362Z",
+      "updatedAt": "2026-03-26T16:56:22.362Z",
+      "__v": 0
+    },
+    {
+      "_id": "69c5794bf95980d6453b37c4",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "item 05",
+          "quantity": 1,
+          "price": 4000,
+          "product": "69c55f42a54a04c0f6d694b3",
+          "categoryId": "seeds",
+          "categoryName": "seeds",
+          "_id": "69c5794bf95980d6453b37c5"
+        },
+        {
+          "name": "item 04",
+          "quantity": 1,
+          "price": 2999.99,
+          "product": "69c55f16a54a04c0f6d694a8",
+          "categoryId": "seeds",
+          "categoryName": "seeds",
+          "_id": "69c5794bf95980d6453b37c6"
+        }
+      ],
+      "totalAmount": 6999.99,
+      "discount": 0,
+      "customerName": "Walk-in Customer",
+      "previousDues": 0,
+      "amountPaid": 6999.99,
+      "balanceDue": 0,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "RCP-1774549320188-401",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-26T18:22:03.117Z",
+      "updatedAt": "2026-03-26T18:22:03.117Z",
+      "__v": 0
+    },
+    {
+      "_id": "69c57980f95980d6453b37db",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "item 05",
+          "quantity": 1,
+          "price": 4000,
+          "product": "69c55f42a54a04c0f6d694b3",
+          "categoryId": "seeds",
+          "categoryName": "seeds",
+          "_id": "69c57980f95980d6453b37dc"
+        },
+        {
+          "name": "item 03",
+          "quantity": 1,
+          "price": 2000,
+          "product": "69b5a80cb68831360ba4fc8d",
+          "categoryId": "news ",
+          "categoryName": "news ",
+          "_id": "69c57980f95980d6453b37dd"
+        }
+      ],
+      "totalAmount": 5900,
+      "discount": 100,
+      "customerName": "shawaiz",
+      "customer": "69b6de2b353b20ace717eb34",
+      "previousDues": 0,
+      "amountPaid": 2000,
+      "balanceDue": -3900,
+      "paymentMethod": "Credit",
+      "isPaid": false,
+      "receiptId": "RCP-1774549373437-216",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-26T18:22:56.059Z",
+      "updatedAt": "2026-03-26T18:22:56.059Z",
+      "__v": 0
+    },
+    {
+      "_id": "69c57a03f95980d6453b381f",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [],
+      "totalAmount": 0,
+      "discount": 0,
+      "customerName": "Hamza butt",
+      "customer": "69ae6fab914ff65bcde41ee7",
+      "previousDues": -2098.9999999999964,
+      "amountPaid": 1000,
+      "balanceDue": -1098.9999999999964,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "PAY-1774549507371-462",
+      "printed": true,
+      "createdAt": "2026-03-26T18:25:07.372Z",
+      "updatedAt": "2026-03-26T18:25:07.372Z",
+      "__v": 0
+    },
+    {
+      "_id": "69cba25f14a89ccb4c5bff7a",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "item 07",
+          "quantity": 1,
+          "price": 2500,
+          "product": "69c579b9f95980d6453b37f2",
+          "categoryId": "abc",
+          "categoryName": "abc",
+          "_id": "69cba25f14a89ccb4c5bff7b"
+        }
+      ],
+      "totalAmount": 2500,
+      "discount": 0,
+      "customerName": "Walk-in Customer",
+      "previousDues": 0,
+      "amountPaid": 2500,
+      "balanceDue": 0,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "RCP-1774953054813-703",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-31T10:30:55.720Z",
+      "updatedAt": "2026-03-31T10:30:55.720Z",
+      "__v": 0
+    },
+    {
+      "_id": "69cba29a14a89ccb4c5bff97",
+      "user": "69abee6e043105ad9a2a6d11",
+      "cartItems": [
+        {
+          "name": "item 05",
+          "quantity": 1,
+          "price": 4000,
+          "product": "69c55f42a54a04c0f6d694b3",
+          "categoryId": "seeds",
+          "categoryName": "seeds",
+          "_id": "69cba29a14a89ccb4c5bff98"
+        },
+        {
+          "name": "item 04",
+          "quantity": 1,
+          "price": 2999.99,
+          "product": "69c55f16a54a04c0f6d694a8",
+          "categoryId": "seeds",
+          "categoryName": "seeds",
+          "_id": "69cba29a14a89ccb4c5bff99"
+        }
+      ],
+      "totalAmount": 6999.99,
+      "discount": 0,
+      "customerName": "Walk-in Customer",
+      "previousDues": 0,
+      "amountPaid": 6999.99,
+      "balanceDue": 0,
+      "paymentMethod": "Cash",
+      "isPaid": true,
+      "receiptId": "RCP-1774953114368-271",
+      "printed": false,
+      "receiptNumber": "",
+      "createdAt": "2026-03-31T10:31:54.931Z",
+      "updatedAt": "2026-03-31T10:31:54.931Z",
+      "__v": 0
+    }
+  ],
+  "users": [
+    {
+      "_id": "69abee6e043105ad9a2a6d11",
+      "name": "Test User",
+      "email": "test@example.com",
+      "password": "$2b$10$1JiDbXTFj.VHwjH1DlEiruEtXbf8iiD0iRh4/NKOrBD3Su8ije5u6",
+      "createdAt": "2026-03-07T09:22:54.352Z",
+      "updatedAt": "2026-03-08T07:57:31.552Z",
+      "__v": 0
+    },
+    {
+      "_id": "69adb3cda5a2b2b42c1f4090",
+      "name": "Shoaib Akhtar",
+      "email": "onlyshoaib158@gmail.com",
+      "password": "$2b$10$61LlK.7nuYcflIkh94MuW.031fCQ0agf1JRW6Darer6z71MFtfhqW",
+      "createdAt": "2026-03-08T17:37:17.772Z",
+      "updatedAt": "2026-03-08T17:37:17.772Z",
+      "__v": 0
+    },
+    {
+      "_id": "69adb75342fa607539bd2848",
+      "name": "Shawaiz Ali ",
+      "email": "shahwaizali446@gmail.com",
+      "password": "$2b$10$rs4I8kp0t6SHeo51CRa/U.cnCZ0EDXVWQ3B/XX8wiI7R.Q4WSfxPO",
+      "createdAt": "2026-03-08T17:52:19.291Z",
+      "updatedAt": "2026-03-08T17:52:19.291Z",
+      "__v": 0
+    },
+    {
+      "_id": "69adc2c9b326ee50f4eeaaf2",
+      "name": "Gohar",
+      "email": "GoharAbbas@gmail.com",
+      "password": "$2b$10$hkeEgAw7x6APuOKxn7iG..Gswq8OhaEL2fJ8xmyGNLZqyHQxRaVCu",
+      "createdAt": "2026-03-08T18:41:13.191Z",
+      "updatedAt": "2026-03-08T18:41:13.191Z",
+      "__v": 0
+    },
+    {
+      "_id": "69aef102af3f1db40549ff32",
+      "name": "Shoaib ",
+      "email": "Onlyshoaib158@gmail.com",
+      "password": "$2b$10$P02CIgCRVnU6mc4r.QwHaOnuA/IHPoVCHAT1jtcOYq6fezsi.l0Ki",
+      "createdAt": "2026-03-09T16:10:42.820Z",
+      "updatedAt": "2026-03-09T16:10:42.820Z",
+      "__v": 0
+    },
+    {
+      "_id": "69aefaecaf3f1db40549ff66",
+      "name": "Abdullah",
+      "email": "m.shoaib7204@gmail.com",
+      "password": "$2b$10$LAEPez2UBe0d648On/g0dOciyIfkA821qGBL65zkfEwcs6.3eBxLC",
+      "createdAt": "2026-03-09T16:53:00.983Z",
+      "updatedAt": "2026-03-09T16:53:00.983Z",
+      "__v": 0
+    }
+  ],
+  "subscriptions": [
+    {
+      "_id": "69aef103af3f1db40549ff38",
+      "shop": "69aef103af3f1db40549ff34",
+      "plan": "free",
+      "status": "trialing",
+      "endDate": "2026-03-23T16:10:43.411Z",
+      "cancelAtPeriodEnd": false,
+      "startDate": "2026-03-09T16:10:43.414Z",
+      "createdAt": "2026-03-09T16:10:43.418Z",
+      "updatedAt": "2026-03-09T16:10:43.418Z",
+      "__v": 0
+    },
+    {
+      "_id": "69aefaedaf3f1db40549ff6b",
+      "shop": "69aefaedaf3f1db40549ff68",
+      "plan": "free",
+      "status": "trialing",
+      "endDate": "2026-03-23T16:53:01.728Z",
+      "cancelAtPeriodEnd": false,
+      "startDate": "2026-03-09T16:53:01.729Z",
+      "createdAt": "2026-03-09T16:53:01.731Z",
+      "updatedAt": "2026-03-09T16:53:01.731Z",
+      "__v": 0
+    },
+    {
+      "_id": "69af91705c3a57283eb7e0a6",
+      "shop": "69af916f5c3a57283eb7e0a3",
+      "plan": "free",
+      "status": "trialing",
+      "endDate": "2026-03-24T03:35:12.094Z",
+      "cancelAtPeriodEnd": false,
+      "startDate": "2026-03-10T03:35:12.094Z",
+      "createdAt": "2026-03-10T03:35:12.094Z",
+      "updatedAt": "2026-03-10T03:35:12.094Z",
+      "__v": 0
+    },
+    {
+      "_id": "69af95892a66ee52df38bcf7",
+      "shop": "69af95882a66ee52df38bcf4",
+      "plan": "free",
+      "status": "trialing",
+      "endDate": "2026-03-24T03:52:41.165Z",
+      "cancelAtPeriodEnd": false,
+      "startDate": "2026-03-10T03:52:41.165Z",
+      "createdAt": "2026-03-10T03:52:41.165Z",
+      "updatedAt": "2026-03-10T03:52:41.165Z",
+      "__v": 0
+    },
+    {
+      "_id": "69afb292de4f635c3452f818",
+      "shop": "69afb291de4f635c3452f816",
+      "plan": "free",
+      "status": "trialing",
+      "endDate": "2026-03-24T05:56:34.052Z",
+      "cancelAtPeriodEnd": false,
+      "startDate": "2026-03-10T05:56:34.053Z",
+      "createdAt": "2026-03-10T05:56:34.054Z",
+      "updatedAt": "2026-03-10T05:56:34.054Z",
+      "__v": 0
+    },
+    {
+      "_id": "69afb8e6f9cc7d22cdd0e460",
+      "shop": "69afb8e6f9cc7d22cdd0e45e",
+      "plan": "free",
+      "status": "trialing",
+      "endDate": "2026-03-24T06:23:34.749Z",
+      "cancelAtPeriodEnd": false,
+      "startDate": "2026-03-10T06:23:34.750Z",
+      "createdAt": "2026-03-10T06:23:34.750Z",
+      "updatedAt": "2026-03-10T06:23:34.750Z",
+      "__v": 0
+    }
+  ],
+  "public_users": [
+    {
+      "_id": "69afb8e6f9cc7d22cdd0e45c",
+      "name": "Abdullah sab",
+      "email": "baba.nazar7204@gmail.com",
+      "password": "$2b$10$yiYVJlCwJS5EP4cT871OU.lRdAQhCvOFh/us.HTjnTeuLtJloOwgu",
+      "role": "user",
+      "createdAt": "2026-03-10T06:23:34.368Z",
+      "updatedAt": "2026-03-10T06:23:34.368Z",
+      "__v": 0
+    }
+  ]
+}

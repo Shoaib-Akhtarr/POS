@@ -9,6 +9,7 @@ import { Purchase } from '@/types';
 import AuthenticatedLayout from '@/components/AuthenticatedLayout';
 
 export default function PurchasesPage() {
+    const { t } = useLanguage();
     const router = useRouter();
     const [purchases, setPurchases] = useState<Purchase[]>([]);
     const [total, setTotal] = useState(0);
@@ -29,7 +30,7 @@ export default function PurchasesPage() {
             setError(null);
         } catch (err: any) {
             console.error('Error fetching purchases:', err);
-            setError(err.message || 'Failed to load purchase history');
+            setError(err.message || t('errorOccurred'));
         } finally {
             setLoading(false);
         }
@@ -60,8 +61,8 @@ export default function PurchasesPage() {
                     <div className="flex items-center space-x-4">
                         <div className="w-14 h-14 bg-pos-accent rounded-xl flex items-center justify-center text-white font-black text-2xl shadow-lg shadow-pos-accent/20">🛒</div>
                         <div>
-                            <h1 className="text-3xl font-black italic tracking-tighter uppercase text-foreground">Purchase History</h1>
-                            <p className="text-[11px] font-bold text-black uppercase tracking-widest mt-1">Review incoming inventory and supplier logs.</p>
+                            <h1 className="text-3xl font-black italic tracking-tighter uppercase text-foreground">{t('purchases')}</h1>
+                            <p className="text-[11px] font-bold text-black uppercase tracking-widest mt-1">{t('reviewInventoryLogs')}</p>
                         </div>
                     </div>
                     <div className="flex flex-wrap gap-3 w-full lg:w-auto">
@@ -70,7 +71,7 @@ export default function PurchasesPage() {
                             className="flex-1 lg:flex-none px-6 py-3 bg-pos-accent text-white rounded-xl transition-all font-black text-[11px] uppercase tracking-wider shadow-sm hover:bg-blue-600 hover:-translate-y-0.5 shadow-pos-accent/20 flex items-center justify-center gap-2"
                         >
                             <span className="text-lg">➕</span>
-                            Log New Purchase
+                            {t('logNewPurchase')}
                         </button>
                     </div>
                 </header>
@@ -80,7 +81,7 @@ export default function PurchasesPage() {
                         {loading ? (
                             <div className="flex flex-col justify-center items-center py-16 space-y-4 h-full">
                                 <div className="w-8 h-8 border-4 border-pos-accent border-t-transparent rounded-full animate-spin"></div>
-                                <p className="text-[10px] font-black uppercase tracking-widest text-black">Loading purchases...</p>
+                                <p className="text-[10px] font-black uppercase tracking-widest text-black">{t('processing')}</p>
                             </div>
                         ) : error ? (
                             <div className="p-16 text-center text-danger h-full flex flex-col justify-center">
@@ -90,20 +91,20 @@ export default function PurchasesPage() {
                         ) : purchases.length === 0 ? (
                             <div className="h-full text-center text-black flex flex-col items-center justify-center border-2 border-dashed border-card-border rounded-2xl mx-6 mb-6 py-20">
                                 <span className="text-5xl mb-4 opacity-20">📦</span>
-                                <p className="text-sm font-black uppercase tracking-widest text-foreground">No purchase records found.</p>
-                                <p className="text-[11px] font-bold text-black mt-2 max-w-xs">Click "Log New Purchase" to start tracking inventory additions.</p>
+                                <p className="text-sm font-black uppercase tracking-widest text-foreground">{t('noProductsFound')}</p>
+                                <p className="text-[11px] font-bold text-black mt-2 max-w-xs">{t('selectProductsStart')}</p>
                             </div>
                         ) : (
                             <div className="rounded-2xl border border-card-border overflow-hidden custom-scrollbar">
                                 <table className="min-w-full divide-y divide-card-border">
                                     <thead className="bg-sidebar">
                                         <tr>
-                                            <th scope="col" className="px-6 py-4 text-left text-[10px] font-black text-black uppercase tracking-widest">Date & Time</th>
-                                            <th scope="col" className="px-6 py-4 text-left text-[10px] font-black text-black uppercase tracking-widest">Supplier</th>
-                                            <th scope="col" className="px-6 py-4 text-left text-[10px] font-black text-black uppercase tracking-widest">Product Extracted</th>
-                                            <th scope="col" className="px-6 py-4 text-right text-[10px] font-black text-black uppercase tracking-widest">Unit Cost</th>
-                                            <th scope="col" className="px-6 py-4 text-center text-[10px] font-black text-black uppercase tracking-widest">Qty Added</th>
-                                            <th scope="col" className="px-6 py-4 text-right text-[10px] font-black text-black uppercase tracking-widest">Total Invoice</th>
+                                            <th scope="col" className="px-6 py-4 text-left text-[10px] font-black text-black uppercase tracking-widest">{t('dateTime')}</th>
+                                            <th scope="col" className="px-6 py-4 text-left text-[10px] font-black text-black uppercase tracking-widest">{t('supplier')}</th>
+                                            <th scope="col" className="px-6 py-4 text-left text-[10px] font-black text-black uppercase tracking-widest">{t('productExtracted')}</th>
+                                            <th scope="col" className="px-6 py-4 text-right text-[10px] font-black text-black uppercase tracking-widest">{t('unitCost')}</th>
+                                            <th scope="col" className="px-6 py-4 text-center text-[10px] font-black text-black uppercase tracking-widest">{t('qtyAdded')}</th>
+                                            <th scope="col" className="px-6 py-4 text-right text-[10px] font-black text-black uppercase tracking-widest">{t('totalInvoice')}</th>
                                         </tr>
                                     </thead>
                                     <tbody className="bg-card divide-y divide-card-border">
@@ -166,7 +167,11 @@ export default function PurchasesPage() {
                             <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
                                 <div>
                                     <p className="text-[10px] font-black uppercase tracking-widest text-black">
-                                        Showing <span className="text-foreground">{((page - 1) * limit) + 1}</span> to <span className="text-foreground">{Math.min(page * limit, total)}</span> of <span className="text-foreground">{total}</span> results
+                                        {t('showingXtoY', {
+                                            start: ((page - 1) * limit) + 1,
+                                            end: Math.min(page * limit, total),
+                                            total: total
+                                        })}
                                     </p>
                                 </div>
                                 <div>

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useLanguage } from '@/context/LanguageContext';
 import { Product } from '@/types';
 import ProductSearch from '@/components/ProductSearch';
 import { createProduct, getAllProducts, deleteProduct } from '@/services/productService';
@@ -11,6 +12,7 @@ import EditProductModal from '@/components/EditProductModal';
 type TabType = 'all' | 'add' | 'outofstock';
 
 export default function ProductsPage() {
+    const { t } = useLanguage();
     const router = useRouter();
     const [activeTab, setActiveTab] = useState<TabType>('all');
     const [refreshTrigger, setRefreshTrigger] = useState(0);
@@ -83,12 +85,12 @@ export default function ProductsPage() {
 
     // Handle Delete Out of Stock
     const handleDeleteOutOfStock = async (product: Product) => {
-        if (!window.confirm(`Delete "${product.name}" forever?`)) return;
+        if (!window.confirm(`${t('deletePermanent')} "${product.name}"?`)) return;
         try {
             await deleteProduct(product._id);
             setRefreshTrigger(prev => prev + 1); // Triggers re-fetch
         } catch (err: any) {
-            alert(err.message || "Failed to delete.");
+            alert(err.message || t('errorOccurred'));
         }
     };
 
@@ -99,8 +101,8 @@ export default function ProductsPage() {
                     <div className="flex items-center space-x-3">
                         <div className="w-10 h-10 sm:w-14 sm:h-14 bg-pos-accent rounded-xl flex items-center justify-center text-white font-black text-xl sm:text-2xl shadow-lg shadow-pos-accent/20">📦</div>
                         <div>
-                            <h1 className="text-xl sm:text-3xl font-black italic tracking-tighter uppercase text-foreground">Products</h1>
-                            <p className="text-[9px] sm:text-[11px] font-bold text-black uppercase tracking-widest mt-0.5">Inventory Management</p>
+                            <h1 className="text-xl sm:text-3xl font-black italic tracking-tighter uppercase text-foreground">{t('inventory')}</h1>
+                            <p className="text-[9px] sm:text-[11px] font-bold text-black uppercase tracking-widest mt-0.5">{t('inventoryManagement')}</p>
                         </div>
                     </div>
                 </header>
@@ -111,13 +113,13 @@ export default function ProductsPage() {
                             onClick={() => setActiveTab('all')}
                             className={`flex flex-1 items-center justify-center px-6 py-4 text-xs font-black uppercase tracking-widest whitespace-nowrap transition-all ${activeTab === 'all' ? 'text-pos-accent border-b-2 border-pos-accent bg-card' : 'text-black hover:text-foreground hover:bg-card-border'}`}
                         >
-                            <span className="mr-2 text-lg">📋</span> All Products
+                            <span className="mr-2 text-lg">📋</span> {t('allProducts')}
                         </button>
                         <button
                             onClick={() => setActiveTab('outofstock')}
                             className={`flex flex-1 items-center justify-center px-6 py-4 text-xs font-black uppercase tracking-widest whitespace-nowrap transition-all ${activeTab === 'outofstock' ? 'text-danger border-b-2 border-danger bg-card' : 'text-black hover:text-foreground hover:bg-card-border'}`}
                         >
-                            <span className="mr-2 text-lg">⚠️</span> Out of Stock
+                            <span className="mr-2 text-lg">⚠️</span> {t('outOfStock')}
                         </button>
                     </div>
 
@@ -144,7 +146,7 @@ export default function ProductsPage() {
                                 ) : outOfStockProducts.length === 0 ? (
                                     <div className="text-center py-20 bg-sidebar rounded-[32px] border border-sidebar-border mt-8">
                                         <span className="text-5xl opacity-40 block mb-4">👍</span>
-                                        <p className="font-black text-black uppercase tracking-widest text-sm">No products out of stock!</p>
+                                        <p className="font-black text-black uppercase tracking-widest text-sm">{t('noOutOfStock')}</p>
                                     </div>
                                 ) : (
                                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -170,7 +172,7 @@ export default function ProductsPage() {
                                                         onClick={() => handleDeleteOutOfStock(product)}
                                                         className="px-4 py-2 bg-danger/10 hover:bg-danger text-danger hover:text-white rounded-xl text-[10px] font-black uppercase tracking-widest transition-all w-full text-center flex items-center justify-center gap-2 group-hover:scale-[1.02]"
                                                     >
-                                                        <span>🗑️</span> Delete Permanently
+                                                        <span>🗑️</span> {t('deletePermanent')}
                                                     </button>
                                                 </div>
                                             </div>

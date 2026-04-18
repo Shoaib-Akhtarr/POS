@@ -11,6 +11,7 @@ import TransactionDetailsModal from '@/components/TransactionDetailsModal';
 import AddCustomerModal from '@/components/AddCustomerModal';
 
 export default function AllCustomersPage() {
+    const { t } = useLanguage();
     const [customers, setCustomers] = useState<Customer[]>([]);
     const [filteredCustomers, setFilteredCustomers] = useState<Customer[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
@@ -42,7 +43,7 @@ export default function AllCustomersPage() {
                 setFilteredCustomers(data);
             } catch (err: any) {
                 console.error('Error fetching customers:', err);
-                setError(err.message || 'Failed to load customers');
+                setError(err.message || t('errorOccurred'));
             } finally {
                 setLoading(false);
             }
@@ -116,8 +117,8 @@ export default function AllCustomersPage() {
                     <div className="flex items-center space-x-3">
                         <div className="w-10 h-10 sm:w-14 sm:h-14 bg-pos-accent rounded-xl flex items-center justify-center text-white font-black text-xl sm:text-2xl shadow-lg shadow-pos-accent/20">👥</div>
                         <div>
-                            <h1 className="text-xl sm:text-3xl font-black italic tracking-tighter uppercase text-foreground">Customers</h1>
-                            <p className="text-[9px] sm:text-[11px] font-bold text-black uppercase tracking-widest mt-0.5">Directory & Ledger</p>
+                            <h1 className="text-xl sm:text-3xl font-black italic tracking-tighter uppercase text-foreground">{t('customers')}</h1>
+                            <p className="text-[9px] sm:text-[11px] font-bold text-black uppercase tracking-widest mt-0.5">{t('directoryLedger')}</p>
                         </div>
                     </div>
                     <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
@@ -128,7 +129,7 @@ export default function AllCustomersPage() {
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                                 <path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" />
                             </svg>
-                            New Customer
+                            {t('newCustomer')}
                         </button>
                     </div>
                 </header>
@@ -143,7 +144,7 @@ export default function AllCustomersPage() {
                             </span>
                             <input
                                 type="text"
-                                placeholder="SEARCH BY NAME OR PHONE..."
+                                placeholder={t('searchCustomerPlace')}
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                                 className="block w-full pl-12 pr-4 py-3 border border-card-border rounded-xl leading-5 bg-background text-foreground font-bold placeholder-muted-foreground focus:outline-none focus:ring-4 focus:ring-pos-accent/10 focus:border-pos-accent transition-all text-sm uppercase tracking-wider"
@@ -155,7 +156,7 @@ export default function AllCustomersPage() {
                         {loading ? (
                             <div className="flex flex-col justify-center items-center py-16 space-y-4 bg-background">
                                 <div className="w-8 h-8 border-4 border-pos-accent border-t-transparent rounded-full animate-spin"></div>
-                                <p className="text-[10px] font-black uppercase tracking-widest text-black">Loading customers...</p>
+                                <p className="text-[10px] font-black uppercase tracking-widest text-black">{t('processing')}</p>
                             </div>
                         ) : error ? (
                             <div className="p-16 text-center text-danger bg-background">
@@ -166,7 +167,7 @@ export default function AllCustomersPage() {
                             <div className="p-16 text-center text-black bg-background flex flex-col items-center border-2 border-dashed border-card-border rounded-xl m-4">
                                 <span className="text-4xl mb-3 opacity-20">📭</span>
                                 <p className="text-[11px] font-black uppercase tracking-widest">
-                                    {searchTerm ? 'No customers match your search.' : 'No customers registered yet.'}
+                                    {searchTerm ? t('noProductsFound') : t('noProductsFound')}
                                 </p>
                             </div>
                         ) : (
@@ -179,18 +180,18 @@ export default function AllCustomersPage() {
                                             onClick={() => handleSort('name')}
                                         >
                                             <div className="flex items-center">
-                                                Customer Name {getSortIndicator('name')}
+                                                {t('customerLabel')} {getSortIndicator('name')}
                                             </div>
                                         </th>
-                                        <th scope="col" className="px-6 py-4 text-left text-[10px] font-black text-black uppercase tracking-widest hidden sm:table-cell">Phone</th>
-                                        <th scope="col" className="px-6 py-4 text-left text-[10px] font-black text-black uppercase tracking-widest hidden md:table-cell">Address</th>
+                                        <th scope="col" className="px-6 py-4 text-left text-[10px] font-black text-black uppercase tracking-widest hidden sm:table-cell">{t('phoneNumber')}</th>
+                                        <th scope="col" className="px-6 py-4 text-left text-[10px] font-black text-black uppercase tracking-widest hidden md:table-cell">{t('address')}</th>
                                         <th
                                             scope="col"
                                             className="px-6 py-4 text-right text-[10px] font-black text-black uppercase tracking-widest cursor-pointer hover:text-foreground transition-colors group/header"
                                             onClick={() => handleSort('totalDues')}
                                         >
                                             <div className="flex items-center justify-end">
-                                                Total Dues {getSortIndicator('totalDues')}
+                                                {t('totalOutstanding')} {getSortIndicator('totalDues')}
                                             </div>
                                         </th>
                                     </tr>
@@ -224,7 +225,7 @@ export default function AllCustomersPage() {
                     </div>
 
                     <div className="mt-6 flex justify-between items-center text-[10px] font-black text-black uppercase tracking-widest">
-                        <span>Total Customers: {filteredCustomers.length}</span>
+                        <span>{t('totalCustomers')}: {filteredCustomers.length}</span>
                     </div>
                 </div>
 

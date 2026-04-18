@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useLanguage } from '@/context/LanguageContext';
 import { Product } from '@/types';
 import { getAllProducts, deleteProduct } from '@/services/productService';
 
@@ -12,6 +13,7 @@ interface ProductSearchProps {
 }
 
 export default function ProductSearch({ onAddToCart, onEditProduct, refreshTrigger = 0, isManagerView = false }: ProductSearchProps) {
+  const { t } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('');
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
@@ -29,9 +31,9 @@ export default function ProductSearch({ onAddToCart, onEditProduct, refreshTrigg
     } catch (err: any) {
       console.error('Error fetching products:', err);
       if (err.message.includes('Network error')) {
-        setError('Connection error. Please check your internet.');
+        setError(t('connectionLost'));
       } else {
-        setError('Failed to load products.');
+        setError(t('errorOccurred'));
       }
     } finally {
       setLoading(false);
@@ -45,16 +47,16 @@ export default function ProductSearch({ onAddToCart, onEditProduct, refreshTrigg
   const handleDeleteProduct = async (product: Product) => {
     const stock = product.quantity || product.stock || 0;
     if (stock > 0) {
-      alert("Cannot delete product with remaining stock.");
+      alert(t('errorOccurred')); // Could add specific key
       return;
     }
-    if (!window.confirm(`Delete "${product.name}"?`)) return;
+    if (!window.confirm(`${t('deletePermanent')}?`)) return;
     try {
       setDeleteLoading(product._id);
       await deleteProduct(product._id);
       fetchProducts();
     } catch (err: any) {
-      alert(err.message || "Failed to delete.");
+      alert(err.message || t('errorOccurred'));
     } finally {
       setDeleteLoading(null);
     }
@@ -104,7 +106,7 @@ export default function ProductSearch({ onAddToCart, onEditProduct, refreshTrigg
           type="text"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Search products or scan barcode..."
+          placeholder={t('searchProductPlace')}
           className="w-full pl-12 pr-4 py-4 bg-card border border-card-border rounded-2xl focus:outline-none focus:ring-4 focus:ring-pos-accent/5 focus:border-pos-accent transition-all text-sm font-medium shadow-sm text-foreground"
         />
       </div>
@@ -120,7 +122,7 @@ export default function ProductSearch({ onAddToCart, onEditProduct, refreshTrigg
               : 'bg-card text-black border-card-border hover:border-pos-accent hover:text-pos-accent'
               }`}
           >
-            {cat}
+            {cat === 'All' ? t('allProducts') : cat}
           </button>
         ))}
       </div>
@@ -128,7 +130,7 @@ export default function ProductSearch({ onAddToCart, onEditProduct, refreshTrigg
       {loading && (
         <div className="flex flex-col items-center justify-center py-12 space-y-4">
           <div className="w-10 h-10 border-4 border-pos-accent border-t-transparent rounded-full animate-spin"></div>
-          <p className="text-xs font-black text-black uppercase tracking-widest">Finding Products...</p>
+          <p className="text-xs font-black text-black uppercase tracking-widest">{t('findingProducts')}</p>
         </div>
       )}
 
@@ -170,9 +172,9 @@ export default function ProductSearch({ onAddToCart, onEditProduct, refreshTrigg
 
                 <div className="flex items-center justify-between mt-auto pt-4 border-t border-card-border">
                   <div className="flex flex-col">
-                    <span className="text-[8px] font-black uppercase text-black tracking-widest">Stock Left</span>
+                    <span className="text-[8px] font-black uppercase text-black tracking-widest">{t('stockLeft')}</span>
                     <span className={`text-[11px] font-black ${stock < 5 ? 'text-danger' : 'text-foreground'}`}>
-                      {stock} Units
+                      {stock} {t('units')}
                     </span>
                   </div>
                   <div className="flex items-center space-x-2">
@@ -181,7 +183,7 @@ export default function ProductSearch({ onAddToCart, onEditProduct, refreshTrigg
                         onClick={() => onEditProduct(product)}
                         className="px-4 py-2 bg-card border border-card-border hover:border-pos-accent text-black hover:text-pos-accent rounded-xl text-[10px] font-black uppercase tracking-widest transition-all"
                       >
-                        Edit
+                        {t('edit')}
                       </button>
                     )}
                     <button
@@ -194,7 +196,7 @@ export default function ProductSearch({ onAddToCart, onEditProduct, refreshTrigg
                           : 'bg-slate-100 text-black cursor-not-allowed'
                         }`}
                     >
-                      {stock > 0 ? '+ Add' : 'Out'}
+                      {stock > 0 ? `+ ${t('add')}` : t('outOfStock')}
                     </button>
                   </div>
                 </div>
@@ -206,8 +208,8 @@ export default function ProductSearch({ onAddToCart, onEditProduct, refreshTrigg
             <div className="col-span-full py-16 flex flex-col items-center justify-center text-center space-y-4">
               <div className="text-5xl opacity-20">🔎</div>
               <div>
-                <p className="font-black text-black uppercase tracking-widest text-sm">No Products Found</p>
-                <p className="text-xs text-black mt-1">Try adjusted filters or search term</p>
+                <p className="font-black text-black uppercase tracking-widest text-sm">{t('noProductsFound')}</p>
+                <p className="text-xs text-black mt-1">{t('tryAdjustFilters')}</p>
               </div>
             </div>
           )

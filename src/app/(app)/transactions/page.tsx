@@ -8,6 +8,7 @@ import AuthenticatedLayout from '@/components/AuthenticatedLayout';
 import TransactionDetailsModal from '@/components/TransactionDetailsModal';
 
 export default function AllTransactionsPage() {
+    const { t } = useLanguage();
     const [sales, setSales] = useState<Sale[]>([]);
     const [total, setTotal] = useState(0);
     const [startDate, setStartDate] = useState('');
@@ -28,7 +29,7 @@ export default function AllTransactionsPage() {
             setTotal(data.total);
         } catch (err: any) {
             console.error('Error fetching sales:', err);
-            setError(err.message || 'Failed to load transactions');
+            setError(err.message || t('errorOccurred'));
         } finally {
             setLoading(false);
         }
@@ -46,7 +47,7 @@ export default function AllTransactionsPage() {
 
     const handleExportCSV = async () => {
         if (startDate && endDate && new Date(startDate) > new Date(endDate)) {
-            alert("Start date cannot be later than end date.");
+            alert(t('errorOccurred'));
             return;
         }
 
@@ -57,7 +58,7 @@ export default function AllTransactionsPage() {
             const allSales = data.sales;
 
             if (allSales.length === 0) {
-                alert("No transactions to export.");
+                alert(t('noProductsFound'));
                 return;
             }
 
@@ -75,7 +76,7 @@ export default function AllTransactionsPage() {
                     dateStr,
                     timeStr,
                     sale.receiptId,
-                    `"${sale.customerName || 'Walk-in'}"`,
+                    `"${sale.customerName || t('walkInCustomer')}"`,
                     `"${items.replace(/"/g, '""')}"`,
                     sale.totalAmount,
                     sale.amountPaid,
@@ -97,7 +98,7 @@ export default function AllTransactionsPage() {
             document.body.removeChild(link);
         } catch (err: any) {
             console.error('CSV Export Error:', err);
-            alert("Failed to export CSV: " + err.message);
+            alert(t('errorOccurred'));
         } finally {
             setExportLoading(false);
         }
@@ -105,7 +106,7 @@ export default function AllTransactionsPage() {
 
     const handlePrintAll = async () => {
         if (startDate && endDate && new Date(startDate) > new Date(endDate)) {
-            alert("Start date cannot be later than end date.");
+            alert(t('errorOccurred'));
             return;
         }
 
@@ -196,7 +197,7 @@ export default function AllTransactionsPage() {
 
         } catch (err: any) {
             console.error('Print Error:', err);
-            alert("Failed to prepare print: " + err.message);
+            alert(t('errorOccurred'));
         } finally {
             setExportLoading(false);
         }
@@ -223,13 +224,13 @@ export default function AllTransactionsPage() {
                     <div className="flex items-center space-x-4">
                         <div className="w-14 h-14 bg-pos-accent rounded-xl flex items-center justify-center text-white font-black text-2xl shadow-lg shadow-pos-accent/20">🧾</div>
                         <div>
-                            <h1 className="text-3xl font-black italic tracking-tighter uppercase text-foreground">All Transactions</h1>
-                            <p className="text-[11px] font-bold text-black uppercase tracking-widest mt-1">Review every sale record sorted by time.</p>
+                            <h1 className="text-3xl font-black italic tracking-tighter uppercase text-foreground">{t('allTransactions')}</h1>
+                            <p className="text-[11px] font-bold text-black uppercase tracking-widest mt-1">{t('reviewSaleRecords')}</p>
                         </div>
                     </div>
                     <div className="flex flex-col sm:flex-row items-end gap-3 w-full lg:w-auto bg-card p-4 rounded-2xl border border-card-border shadow-sm">
                         <div className="flex flex-col gap-1 w-full sm:w-auto">
-                            <label className="text-[9px] font-black uppercase tracking-widest text-black ml-1">From</label>
+                            <label className="text-[9px] font-black uppercase tracking-widest text-black ml-1">{t('from')}</label>
                             <input
                                 type="date"
                                 value={startDate}
@@ -238,7 +239,7 @@ export default function AllTransactionsPage() {
                             />
                         </div>
                         <div className="flex flex-col gap-1 w-full sm:w-auto">
-                            <label className="text-[9px] font-black uppercase tracking-widest text-black ml-1">To</label>
+                            <label className="text-[9px] font-black uppercase tracking-widest text-black ml-1">{t('to')}</label>
                             <input
                                 type="date"
                                 value={endDate}
@@ -287,7 +288,7 @@ export default function AllTransactionsPage() {
                         {loading ? (
                             <div className="flex flex-col justify-center items-center py-16 space-y-4">
                                 <div className="w-8 h-8 border-4 border-pos-accent border-t-transparent rounded-full animate-spin"></div>
-                                <p className="text-[10px] font-black uppercase tracking-widest text-black">Loading transactions...</p>
+                                <p className="text-[10px] font-black uppercase tracking-widest text-black">{t('processing')}</p>
                             </div>
                         ) : error ? (
                             <div className="p-16 text-center text-danger">
@@ -297,18 +298,18 @@ export default function AllTransactionsPage() {
                         ) : sales.length === 0 ? (
                             <div className="p-16 text-center text-black flex flex-col items-center border-2 border-dashed border-card-border rounded-2xl mx-6 mb-6">
                                 <span className="text-4xl mb-3 opacity-20">📭</span>
-                                <p className="text-[11px] font-black uppercase tracking-widest">No transactions found.</p>
+                                <p className="text-[11px] font-black uppercase tracking-widest">{t('noProductsFound')}</p>
                             </div>
                         ) : (
                             <div className="rounded-2xl border border-card-border overflow-hidden">
                                 <table className="min-w-full divide-y divide-card-border">
                                     <thead className="bg-sidebar">
                                         <tr>
-                                            <th scope="col" className="px-6 py-4 text-left text-[10px] font-black text-black uppercase tracking-widest">Date & Time</th>
-                                            <th scope="col" className="px-6 py-4 text-left text-[10px] font-black text-black uppercase tracking-widest">Receipt ID</th>
-                                            <th scope="col" className="px-6 py-4 text-left text-[10px] font-black text-black uppercase tracking-widest">Customer</th>
-                                            <th scope="col" className="px-6 py-4 text-right text-[10px] font-black text-black uppercase tracking-widest">Total Amount</th>
-                                            <th scope="col" className="px-6 py-4 text-center text-[10px] font-black text-black uppercase tracking-widest">Payment Method</th>
+                                            <th scope="col" className="px-6 py-4 text-left text-[10px] font-black text-black uppercase tracking-widest">{t('dateTime')}</th>
+                                            <th scope="col" className="px-6 py-4 text-left text-[10px] font-black text-black uppercase tracking-widest">{t('receiptId')}</th>
+                                            <th scope="col" className="px-6 py-4 text-left text-[10px] font-black text-black uppercase tracking-widest">{t('customerLabel')}</th>
+                                            <th scope="col" className="px-6 py-4 text-right text-[10px] font-black text-black uppercase tracking-widest">{t('totalAmount')}</th>
+                                            <th scope="col" className="px-6 py-4 text-center text-[10px] font-black text-black uppercase tracking-widest">{t('paymentMethod')}</th>
                                         </tr>
                                     </thead>
                                     <tbody className="bg-card divide-y divide-card-border">
@@ -325,9 +326,9 @@ export default function AllTransactionsPage() {
                                                     {sale.receiptId}
                                                 </td>
                                                 <td className="px-6 py-4 whitespace-nowrap text-xs font-bold text-foreground">
-                                                    <div className="group-hover:text-pos-accent transition-colors">{sale.customerName || 'Walk-in Customer'}</div>
+                                                    <div className="group-hover:text-pos-accent transition-colors">{sale.customerName || t('walkInCustomer')}</div>
                                                     {sale.paymentMethod === 'Credit' && (
-                                                        <span className="text-[10px] text-danger font-black uppercase tracking-widest mt-1 block">Credit Account</span>
+                                                        <span className="text-[10px] text-danger font-black uppercase tracking-widest mt-1 block">{t('khata')}</span>
                                                     )}
                                                 </td>
                                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-right font-black text-foreground">
@@ -335,7 +336,7 @@ export default function AllTransactionsPage() {
                                                 </td>
                                                 <td className="px-6 py-4 whitespace-nowrap text-center">
                                                     <span className={`inline-flex items-center px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest ${sale.paymentMethod === 'Cash' ? 'bg-success/10 text-success border border-success/20' : 'bg-[#4D90FE]/10 text-[#4D90FE] border border-[#4D90FE]/20'}`}>
-                                                        {sale.paymentMethod}
+                                                        {sale.paymentMethod === 'Cash' ? t('cash') : t('khata')}
                                                     </span>
                                                 </td>
                                             </tr>
@@ -367,7 +368,11 @@ export default function AllTransactionsPage() {
                             <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
                                 <div>
                                     <p className="text-[10px] font-black uppercase tracking-widest text-black">
-                                        Showing <span className="text-foreground">{((page - 1) * limit) + 1}</span> to <span className="text-foreground">{Math.min(page * limit, total)}</span> of <span className="text-foreground">{total}</span> results
+                                        {t('showingXtoY', {
+                                            start: ((page - 1) * limit) + 1,
+                                            end: Math.min(page * limit, total),
+                                            total: total
+                                        })}
                                     </p>
                                 </div>
                                 <div>

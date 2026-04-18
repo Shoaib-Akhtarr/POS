@@ -3,6 +3,7 @@
 import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useTheme } from 'next-themes';
+import { useLanguage } from '@/context/LanguageContext';
 import AuthenticatedLayout from '@/components/AuthenticatedLayout';
 import ProductSearch from '@/components/ProductSearch';
 import Cart from '@/components/Cart';
@@ -21,6 +22,7 @@ import { updateProductQuantity } from '@/services/productService';
 import { saveOfflineSale, updateOfflineProductQuantity } from '@/services/offlineService';
 
 function POSContent() {
+  const { t } = useLanguage();
   const [cart, setCart] = useState<{ product: Product; quantity: number }[]>([]);
   const [customerName, setCustomerName] = useState<string>('');
   const [selectedCustomer, setSelectedCustomer] = useState<Customer | null>(null);
@@ -147,7 +149,7 @@ function POSContent() {
       })),
       totalAmount: total,
       discount: parseFloat(discountAmount) || 0,
-      customerName: customerName || (selectedCustomer ? selectedCustomer.name : 'Walk-in Customer'),
+      customerName: customerName || (selectedCustomer ? selectedCustomer.name : t('walkInCustomer')),
       customer: selectedCustomer ? selectedCustomer._id : undefined,
       previousDues: previousDues,
       amountPaid: paid,
@@ -169,7 +171,7 @@ function POSContent() {
           const newQty = (item.product.quantity || item.product.stock || 0) - item.quantity;
           updateOfflineProductQuantity(item.product._id, newQty);
         });
-        alert('Sale saved locally (Offline).');
+        alert(t('saleOffline'));
       } else {
         const response = await createSale(saleData);
         finalReceiptId = response.receiptId || saleData.receiptId;
@@ -188,10 +190,10 @@ function POSContent() {
       console.error('Error saving sale:', error);
       if (error.message.includes('Network Error') || !navigator.onLine) {
         saveOfflineSale(saleData);
-        alert('Connection lost. Sale saved locally.');
+        alert(t('connectionLost'));
         setCompletedSaleData({ ...saleData });
       } else {
-        alert(error.message || 'Error saving sale.');
+        alert(error.message || t('errorOccurred'));
       }
     } finally {
       setSaleLoading(false);
@@ -253,15 +255,15 @@ function POSContent() {
             <div className="flex-1 overflow-y-auto p-4 lg:p-6 space-y-8 custom-scrollbar">
               <div className="space-y-4">
                 <div className="flex justify-between items-center px-1">
-                  <h2 className="text-lg font-bold uppercase tracking-widest text-foreground italic">Current Order</h2>
-                  <span className="text-[10px] font-bold text-pos-accent bg-pos-accent/10 px-2 py-1 rounded-md">{cart.reduce((acc, curr) => acc + curr.quantity, 0)} Items</span>
+                  <h2 className="text-lg font-bold uppercase tracking-widest text-foreground italic">{t('currentOrder')}</h2>
+                  <span className="text-[10px] font-bold text-pos-accent bg-pos-accent/10 px-2 py-1 rounded-md">{cart.reduce((acc, curr) => acc + curr.quantity, 0)} {t('itemsLabel' as any) || 'Items'}</span>
                 </div>
                 <div className="bg-background rounded-2xl border border-card-border overflow-hidden min-h-[200px] shadow-sm">
                   <Cart cart={cart} onRemove={removeFromCart} onUpdateQuantity={updateQuantity} total={calculateTotal()} />
                 </div>
               </div>
               <div className="space-y-4 pt-4 border-t border-card-border">
-                <p className="text-[10px] font-black text-black uppercase tracking-[3px] px-1">Select Customer</p>
+                <p className="text-[10px] font-black text-black uppercase tracking-[3px] px-1">{t('customerLabel')}</p>
                 <CustomerInfo
                   customerName={customerName}
                   setCustomerName={setCustomerName}
@@ -271,11 +273,11 @@ function POSContent() {
                     if (!c) { setPaymentMethod('Cash'); setAmountPaid(calculateTotal().toString()); }
                     else if (paymentMethod === 'Cash') setAmountPaid(calculateTotal().toString());
                   }}
-                  onShowHistory={() => selectedCustomer ? setShowHistory(true) : alert("Please select a customer first.")}
+                  onShowHistory={() => selectedCustomer ? setShowHistory(true) : alert(t('selectCustomerFirst' as any) || 'Please select a customer first.')}
                 />
               </div>
               <div className="space-y-4 pt-4 border-t border-card-border">
-                <p className="text-[10px] font-black text-black uppercase tracking-[3px] px-1">Payment Method</p>
+                <p className="text-[10px] font-black text-black uppercase tracking-[3px] px-1">{t('paymentMethod')}</p>
                 <PaymentMethod 
                   paymentMethod={paymentMethod} 
                   setPaymentMethod={setPaymentMethod} 
@@ -291,14 +293,14 @@ function POSContent() {
             </div>
             <div className="p-4 lg:p-6 border-t border-sidebar-border bg-sidebar shadow-[0_-4px_32px_rgba(0,0,0,0.05)]">
               <div className="flex justify-between items-center mb-6 px-1">
-                <div className="flex flex-col"><span className="text-[10px] font-black text-black uppercase tracking-widest">Grand Total</span><span className="text-3xl font-black text-foreground tracking-tighter">Rs. {calculateTotal().toLocaleString()}</span></div>
+                <div className="flex flex-col"><span className="text-[10px] font-black text-black uppercase tracking-widest">{t('grandTotal')}</span><span className="text-3xl font-black text-foreground tracking-tighter">Rs. {calculateTotal().toLocaleString()}</span></div>
               </div>
               <button 
                 onClick={handleCompleteSale} 
                 disabled={cart.length === 0 || saleLoading} 
                 className={`w-full py-4 rounded-xl font-black uppercase tracking-widest text-white shadow-lg transition-all transform active:scale-95 ${cart.length === 0 || saleLoading ? 'bg-muted/10 text-black cursor-not-allowed border border-card-border' : 'bg-emerald-500 hover:bg-emerald-600 shadow-emerald-500/20 hover:shadow-emerald-500/40'}`}
               >
-                {saleLoading ? 'Processing...' : 'Complete Sale'}
+                {saleLoading ? t('processing') : t('completeSale' as any) || 'Complete Sale'}
               </button>
             </div>
           </aside>

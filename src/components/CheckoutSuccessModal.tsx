@@ -1,7 +1,6 @@
-'use client';
-
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useLanguage } from '@/context/LanguageContext';
 import { Customer } from '@/types';
 
 interface CheckoutSuccessModalProps {
@@ -18,6 +17,7 @@ export default function CheckoutSuccessModal({
   selectedCustomer
 }: CheckoutSuccessModalProps) {
   const router = useRouter();
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -46,10 +46,10 @@ export default function CheckoutSuccessModal({
           </div>
           
           <h2 className="text-2xl font-black italic tracking-tighter uppercase text-foreground mb-2">
-            Transaction Complete!
+            {t('transactionComplete')}
           </h2>
           <p className="text-[11px] font-bold text-black uppercase tracking-widest mb-8">
-            Receipt generated for <span className="text-pos-accent">{customerName}</span>
+            {t('receiptGeneratedFor', { name: customerName })}
           </p>
 
           <div className="space-y-3">
@@ -64,21 +64,21 @@ export default function CheckoutSuccessModal({
               className="w-full py-4 bg-pos-accent text-white rounded-2xl font-black uppercase text-[11px] tracking-[2px] shadow-lg shadow-pos-accent/20 hover:bg-blue-600 transition-all active:scale-95 flex items-center justify-center gap-3"
             >
               <span className="text-lg">👥</span>
-              Customer Record Book
+              {t('customerRecordBook')}
             </button>
             
             <button
               onClick={onClose}
               className="w-full py-4 bg-card border border-card-border text-foreground rounded-2xl font-black uppercase text-[11px] tracking-[2px] hover:bg-muted/10 transition-all active:scale-95"
             >
-              New Sale (POS)
+              {t('newSalePOS')}
             </button>
           </div>
         </div>
         
         <div className="bg-sidebar p-4 text-center border-t border-card-border">
           <p className="text-[9px] font-black text-black uppercase tracking-[3px]">
-            Press ESC or click anywhere to dismiss
+            {t('dismissMessage')}
           </p>
         </div>
       </div>

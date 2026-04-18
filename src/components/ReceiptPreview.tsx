@@ -67,7 +67,7 @@ export default function ReceiptPreview({
     try {
       // Generate the receipt content in ESC/POS format
       const receiptContent = generateReceiptContent(
-        'KAROBAR SAHULAT',
+        t('shopName'),
         receiptId,
         receiptDate,
         customerName || null,
@@ -118,12 +118,12 @@ export default function ReceiptPreview({
       } else {
         console.error('Failed to print receipt');
         // Still complete the sale even if printing fails
-        alert('Failed to print receipt, but sale was completed successfully.');
+        alert(t('errorOccurred' as any) || 'Failed to print receipt, but sale was completed successfully.');
         onPrint();
       }
     } catch (error) {
       console.error('Error printing receipt:', error);
-      alert('An error occurred while printing the receipt. Sale was completed successfully.');
+      alert(t('errorOccurred' as any) || 'An error occurred while printing the receipt. Sale was completed successfully.');
       // Still call onPrint to complete the sale
       onPrint();
     } finally {
@@ -134,7 +134,7 @@ export default function ReceiptPreview({
   const handleConnectBluetooth = async () => {
     if (!isWebBluetoothSupported()) {
       setPrinterStatus('error');
-      alert('Web Bluetooth is not supported in your browser. Please use Chrome, Edge, or Opera on a secure connection (HTTPS).');
+      alert(t('btNotSupported' as any) || 'Web Bluetooth is not supported in your browser.');
       return;
     }
 
@@ -145,22 +145,22 @@ export default function ReceiptPreview({
         setBluetoothDevice(devices[0]);
         setPrinterType('bluetooth');
         setPrinterStatus('connected');
-        alert(`Connected to Bluetooth printer: ${devices[0].name || 'Unknown'}`);
+        alert(`${t('connectedStatus')} : ${devices[0].name || 'Unknown'}`);
       } else {
         setPrinterStatus('error');
-        alert('No Bluetooth printers found. Make sure your printer is turned on and in pairing mode.');
+        alert(t('errorOccurred' as any) || 'No Bluetooth printers found.');
       }
     } catch (error) {
       console.error('Error connecting to Bluetooth printer:', error);
       setPrinterStatus('error');
-      alert('Failed to connect to Bluetooth printer. Make sure your printer is turned on and in pairing mode.');
+      alert(t('errorOccurred' as any) || 'Failed to connect to Bluetooth printer.');
     }
   };
 
   const handleSelectUSB = () => {
     setPrinterType('usb');
     setPrinterStatus('connected');
-    alert('USB printer selected. Make sure your printer is connected via USB.');
+    alert(t('connectedStatus' as any) || 'USB printer selected.');
   };
 
   return (
@@ -196,7 +196,7 @@ export default function ReceiptPreview({
                 <span className={`inline-block w-1.5 h-1.5 rounded-full mr-1.5 ${printerStatus === 'connected' || printerType === 'usb' ? 'bg-emerald-500' :
                   printerStatus === 'connecting' ? 'bg-amber-500' :
                     printerStatus === 'error' ? 'bg-rose-500' :
-                      'bg-slate-500'
+                       'bg-slate-500'
                   }`}></span>
                 {t(`${printerStatus}Status` as any)}
                 {printerType && ` (${printerType.toUpperCase()})`}
@@ -213,7 +213,7 @@ export default function ReceiptPreview({
                     : 'bg-indigo-50 text-indigo-700 hover:bg-indigo-100 border border-indigo-100'
                     }`}
                 >
-                  {isWebBluetoothSupported() ? t('connectBluetooth') : t('btNotSupported')}
+                  {isWebBluetoothSupported() ? t('connectBluetooth') : t('btNotSupported' as any) || 'BT Not Supported'}
                 </button>
                 <button
                   onClick={handleSelectUSB}
@@ -230,8 +230,8 @@ export default function ReceiptPreview({
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
                 {printerType === 'bluetooth' && bluetoothDevice
-                  ? `Active: ${bluetoothDevice.name || 'Unknown Device'}`
-                  : 'Active: USB Printer'}
+                  ? `${t('connectedStatus')}: ${bluetoothDevice.name || 'Unknown Device'}`
+                  : `${t('connectedStatus')}: USB Printer`}
               </div>
             )}
           </div>
@@ -242,16 +242,16 @@ export default function ReceiptPreview({
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-100 via-gray-200 to-gray-100"></div>
 
             <div className="text-center mb-6">
-              <h3 className="font-bold text-xl tracking-tight text-black mb-1">KAROBAR SAHULAT</h3>
-              <p className="text-black">Shop #123, Main Market</p>
-              <p className="text-black">Phone: 0300-1234567</p>
+              <h3 className="font-bold text-xl tracking-tight text-black mb-1">{t('shopName')}</h3>
+              <p className="text-black">{t('shopAddress')}</p>
+              <p className="text-black">{t('shopPhone')}</p>
             </div>
 
             <div className="space-y-1 mb-6 py-4 border-y border-dashed border-gray-300">
               <div className="flex justify-between"><span className="text-black">{t('receiptLabel')}:</span> <span className="font-bold">{receiptId}</span></div>
               <div className="flex justify-between"><span className="text-black">{t('dateLabel')}:</span> <span>{receiptDate}</span></div>
               {customerName && <div className="flex justify-between"><span className="text-black">{t('customerLabel')}:</span> <span className="font-bold">{customerName}</span></div>}
-              <div className="flex justify-between"><span className="text-black">{t('paymentLabel')}:</span> <span className="font-bold">{paymentMethod}</span></div>
+              <div className="flex justify-between"><span className="text-black">{t('paymentLabel')}:</span> <span className="font-bold">{paymentMethod === 'Cash' ? t('cash') : t('khata')}</span></div>
             </div>
 
             <div className="space-y-2 mb-6">

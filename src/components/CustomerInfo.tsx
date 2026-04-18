@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useLanguage } from '@/context/LanguageContext';
 import { Customer } from '@/types';
 import { searchCustomers } from '@/services/customerService';
 import AddCustomerModal from './AddCustomerModal';
@@ -14,6 +15,7 @@ interface CustomerInfoProps {
 }
 
 export default function CustomerInfo({ customerName, setCustomerName, selectedCustomer, setSelectedCustomer, onShowHistory }: CustomerInfoProps) {
+  const { t } = useLanguage();
   const [suggestions, setSuggestions] = useState<Customer[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
@@ -80,13 +82,13 @@ export default function CustomerInfo({ customerName, setCustomerName, selectedCu
                 setShowSuggestions(true);
               }}
               onFocus={() => setShowSuggestions(true)}
-              placeholder="Search customer by name or phone..."
+              placeholder={t('searchCustomerPlace')}
               className="w-full pl-12 pr-4 py-4 bg-card border border-card-border rounded-xl focus:outline-none focus:ring-4 focus:ring-pos-accent/5 focus:border-pos-accent transition-all text-sm font-medium shadow-sm text-foreground"
             />
             {showSuggestions && customerName.trim() !== '' && (
               <div className="absolute z-50 w-full mt-2 bg-card border border-card-border rounded-xl shadow-xl overflow-hidden animate-in fade-in zoom-in duration-200">
                 {isSearching ? (
-                  <div className="p-4 text-center text-[10px] font-black uppercase text-black tracking-widest">Searching...</div>
+                  <div className="p-4 text-center text-[10px] font-black uppercase text-black tracking-widest">{t('processing')}</div>
                 ) : suggestions.length > 0 ? (
                   <ul className="max-h-60 overflow-y-auto">
                     {suggestions.map((customer) => (
@@ -101,9 +103,9 @@ export default function CustomerInfo({ customerName, setCustomerName, selectedCu
                             <p className="text-[10px] font-bold text-black">{customer.phone}</p>
                           </div>
                           <div className="text-right">
-                            <p className="text-[10px] font-black uppercase tracking-widest text-black">Status</p>
+                            <p className="text-[10px] font-black uppercase tracking-widest text-black">{t('status') || 'Status'}</p>
                             <p className={`text-xs font-black ${customer.totalDues < 0 ? 'text-danger' : 'text-success'}`}>
-                              {customer.totalDues < 0 ? `Rs. ${Math.abs(customer.totalDues).toLocaleString()} (Due)` : 'Clear'}
+                              {customer.totalDues < 0 ? `Rs. ${Math.abs(customer.totalDues).toLocaleString()} (${t('balanceDue')})` : t('balanceClear')}
                             </p>
                           </div>
                         </div>
@@ -131,7 +133,7 @@ export default function CustomerInfo({ customerName, setCustomerName, selectedCu
                   <span className="text-[10px] font-bold text-black">{selectedCustomer.phone || 'No phone'}</span>
                   <span className="text-[8px] text-black/30">•</span>
                   <span className={`text-[10px] font-black ${selectedCustomer.totalDues < 0 ? 'text-danger' : 'text-success'}`}>
-                    {selectedCustomer.totalDues < 0 ? `Due: Rs. ${Math.abs(selectedCustomer.totalDues).toLocaleString()}` : 'Balance Clear'}
+                    {selectedCustomer.totalDues < 0 ? `${t('balanceDue')}: Rs. ${Math.abs(selectedCustomer.totalDues).toLocaleString()}` : t('balanceClear')}
                   </span>
                 </div>
               </div>

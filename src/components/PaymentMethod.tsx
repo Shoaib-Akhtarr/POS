@@ -1,4 +1,4 @@
-'use client';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface PaymentMethodProps {
   paymentMethod: 'Cash' | 'Credit';
@@ -23,6 +23,7 @@ export default function PaymentMethod({
   isCustomerSelected,
   previousDues = 0
 }: PaymentMethodProps) {
+  const { t } = useLanguage();
 
   const handleMethodChange = (method: 'Cash' | 'Credit') => {
     setPaymentMethod(method);
@@ -47,7 +48,7 @@ export default function PaymentMethod({
         >
           <span className="text-2xl mb-1">💵</span>
           <span className={`text-[10px] font-black uppercase tracking-widest ${paymentMethod === 'Cash' ? 'text-pos-accent' : 'text-black'}`}>
-            Cash
+            {t('cash')}
           </span>
           {paymentMethod === 'Cash' && (
             <div className="absolute top-2 right-2 w-2 h-2 bg-pos-accent rounded-full"></div>
@@ -68,14 +69,14 @@ export default function PaymentMethod({
         >
           <span className="text-2xl mb-1">📓</span>
           <span className={`text-[10px] font-black uppercase tracking-widest ${paymentMethod === 'Credit' ? 'text-pos-accent' : 'text-black'}`}>
-            Khata
+            {t('khata')}
           </span>
           {paymentMethod === 'Credit' && (
             <div className="absolute top-2 right-2 w-2 h-2 bg-pos-accent rounded-full"></div>
           )}
           {!isCustomerSelected && (
             <div className="absolute inset-0 flex items-center justify-center bg-background/10 rounded-xl">
-              <span className="text-[7px] font-black text-black bg-card px-1 py-0.5 rounded shadow-sm border border-card-border uppercase tracking-tighter">Select Customer</span>
+              <span className="text-[7px] font-black text-black bg-card px-1 py-0.5 rounded shadow-sm border border-card-border uppercase tracking-tighter">{t('selectCustomerFirst')}</span>
             </div>
           )}
         </button>
@@ -85,7 +86,7 @@ export default function PaymentMethod({
         {setDiscountAmount && (
           <div className="relative group mb-8">
             <label className="absolute -top-2 left-3 bg-card px-1 text-[8px] font-black text-black uppercase tracking-widest z-10">
-              Discount (Rs)
+              {t('discountLabel')} (Rs)
             </label>
             <div className="relative">
               <span className="absolute left-4 top-1/2 -translate-y-1/2 text-black font-bold text-sm">Rs.</span>
@@ -114,7 +115,7 @@ export default function PaymentMethod({
 
         <div>
           <div className="flex justify-between items-center mb-2 px-1">
-            <label className="text-[10px] font-black uppercase tracking-widest text-black">Paying Now (Rs)</label>
+            <label className="text-[10px] font-black uppercase tracking-widest text-black">{t('payingNow')} (Rs)</label>
             <span className="text-[9px] font-bold text-pos-accent/60 uppercase tracking-tighter">
               Max: Rs. {(total + (previousDues < 0 ? Math.abs(previousDues) : 0)).toLocaleString()}
             </span>
@@ -134,14 +135,14 @@ export default function PaymentMethod({
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
                   </svg>
-                  <p className="text-[9px] font-black uppercase tracking-widest leading-none">Exceeds Outstanding Balance</p>
+                  <p className="text-[9px] font-black uppercase tracking-widest leading-none">{t('exceedsBalance')}</p>
                 </div>
                 <button 
                   type="button"
                   onClick={() => setAmountPaid((total + (previousDues < 0 ? Math.abs(previousDues) : 0)).toString())}
                   className="text-[8px] font-black uppercase py-1 px-2 bg-danger text-white rounded-lg self-start hover:bg-danger/90 transition-all active:scale-95 shadow-sm"
                 >
-                  Auto-Adjust to Max
+                  {t('autoAdjust')}
                 </button>
               </div>
             )}
@@ -151,7 +152,7 @@ export default function PaymentMethod({
         {paymentMethod === 'Credit' && (
           <div className="p-4 bg-pos-accent/5 rounded-xl border border-pos-accent/10">
             <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-widest">
-              <span className="text-black">Remaining to Khata</span>
+              <span className="text-black">{t('remainingKhata')}</span>
               <span className="text-pos-accent">
                 Rs. {Math.abs(Math.min(0, previousDues - total + (parseFloat(amountPaid) || 0))).toLocaleString()}
               </span>

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useLanguage } from '@/context/LanguageContext';
 import { changePassword } from '@/services/authService';
 
 export default function ChangePasswordForm() {
+    const { t } = useLanguage();
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -15,22 +17,22 @@ export default function ChangePasswordForm() {
         setSuccess('');
 
         if (newPassword !== confirmPassword) {
-            return setError('New passwords do not match');
+            return setError(t('passwordsDontMatch'));
         }
 
         if (newPassword.length < 6) {
-            return setError('New password must be at least 6 characters');
+            return setError(t('minCharPlaceholder' as any) || 'New password must be at least 6 characters');
         }
 
         try {
             setLoading(true);
             await changePassword(currentPassword, newPassword);
-            setSuccess('Password changed successfully');
+            setSuccess(t('passwordChangedSuccess'));
             setCurrentPassword('');
             setNewPassword('');
             setConfirmPassword('');
         } catch (err: any) {
-            setError(err.message || 'Failed to change password');
+            setError(err.message || t('errorOccurred'));
         } finally {
             setLoading(false);
         }
@@ -42,7 +44,7 @@ export default function ChangePasswordForm() {
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8V7a4 4 0 00-8 0v4h8z" />
                 </svg>
-                <h3 className="text-xs font-semibold tracking-wide uppercase text-black">Security Credentials</h3>
+                <h3 className="text-xs font-semibold tracking-wide uppercase text-black">{t('securityCredentials')}</h3>
             </div>
 
             <div className="bg-card border border-card-border rounded-xl p-6 relative overflow-hidden transition-all duration-300 shadow-sm">
@@ -50,7 +52,7 @@ export default function ChangePasswordForm() {
                     <div className="absolute inset-0 bg-background/80 backdrop-blur-sm z-10 flex items-center justify-center">
                         <div className="flex flex-col items-center">
                             <div className="w-6 h-6 border-2 border-pos-accent border-t-transparent rounded-full animate-spin"></div>
-                            <span className="text-xs font-medium mt-3 text-pos-accent tracking-wide uppercase">Validating Protocol...</span>
+                            <span className="text-xs font-medium mt-3 text-pos-accent tracking-wide uppercase">{t('processing')}</span>
                         </div>
                     </div>
                 )}
@@ -70,10 +72,10 @@ export default function ChangePasswordForm() {
 
                 <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="space-y-1.5">
-                        <label className="text-sm font-medium text-foreground/80">Current Password</label>
+                        <label className="text-sm font-medium text-foreground/80">{t('currentPassword')}</label>
                         <input
                             type="password"
-                            placeholder="Enter your old password"
+                            placeholder={t('oldPasswordPlaceholder')}
                             value={currentPassword}
                             onChange={(e) => setCurrentPassword(e.target.value)}
                             required
@@ -83,10 +85,10 @@ export default function ChangePasswordForm() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <div className="space-y-1.5">
-                            <label className="text-sm font-medium text-foreground/80">New Password</label>
+                            <label className="text-sm font-medium text-foreground/80">{t('newPassword')}</label>
                             <input
                                 type="password"
-                                placeholder="Min. 6 characters"
+                                placeholder={t('minCharPlaceholder' as any)}
                                 value={newPassword}
                                 onChange={(e) => setNewPassword(e.target.value)}
                                 required
@@ -94,10 +96,10 @@ export default function ChangePasswordForm() {
                             />
                         </div>
                         <div className="space-y-1.5">
-                            <label className="text-sm font-medium text-foreground/80">Confirm Password</label>
+                            <label className="text-sm font-medium text-foreground/80">{t('confirmPassword')}</label>
                             <input
                                 type="password"
-                                placeholder="Re-type new password"
+                                placeholder={t('retypePlaceholder')}
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
                                 required
@@ -115,7 +117,7 @@ export default function ChangePasswordForm() {
                                     : 'bg-pos-accent text-white hover:opacity-90 shadow-md border border-transparent active:scale-95'
                                 }`}
                         >
-                            {loading ? 'Processing...' : 'Update Password'}
+                            {loading ? t('processing') : t('updatePassword')}
                         </button>
                     </div>
                 </form>

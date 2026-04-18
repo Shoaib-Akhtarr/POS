@@ -1,5 +1,4 @@
-'use client';
-
+import { useLanguage } from '@/context/LanguageContext';
 import { CartItem } from '@/types';
 
 interface CartProps {
@@ -10,14 +9,15 @@ interface CartProps {
 }
 
 export default function Cart({ cart, onRemove, onUpdateQuantity, total }: CartProps) {
+  const { t } = useLanguage();
   return (
     <div className="flex flex-col h-full bg-card">
       {cart.length === 0 ? (
         <div className="flex-1 flex flex-col items-center justify-center py-12 px-4 text-center space-y-4 opacity-40 text-foreground">
           <div className="text-6xl">🛒</div>
           <div>
-            <p className="font-black text-[10px] uppercase tracking-[3px]">Your Cart is Empty</p>
-            <p className="text-[10px] font-medium mt-1">Select products to start an order</p>
+            <p className="font-black text-[10px] uppercase tracking-[3px]">{t('cartEmpty')}</p>
+            <p className="text-[10px] font-medium mt-1">{t('selectProductsStart')}</p>
           </div>
         </div>
       ) : (

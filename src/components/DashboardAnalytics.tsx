@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useLanguage } from '@/context/LanguageContext';
 import {
     AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
     PieChart, Pie, Cell, Legend
@@ -10,6 +11,7 @@ import { Info, ExternalLink, TrendingUp, TrendingDown, Activity } from 'lucide-r
 import { useTheme } from 'next-themes';
 
 export default function DashboardAnalytics() {
+    const { t } = useLanguage();
     const [data, setData] = useState<any>(null);
     const [loading, setLoading] = useState(true);
     const { theme } = useTheme();
@@ -51,16 +53,16 @@ export default function DashboardAnalytics() {
                     <div className="flex justify-between items-start">
                         <div className="space-y-1">
                             <div className="flex items-center space-x-2 text-black">
-                                <span className="text-xs font-semibold">Point of Sale Trends</span>
+                                <span className="text-xs font-semibold">{t('posTrends')}</span>
                                 <Info size={14} className="cursor-help" />
                                 <span className="text-[10px] font-bold text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded-full">+ 2.4% WoW</span>
                             </div>
                             <h2 className="text-2xl font-bold tracking-tight text-foreground">
-                                Rs. {(data.summary.totalRevenue / 1000).toFixed(2)}k sold this week, Rs. {((data.summary.totalRevenue * 1.05) / 1000).toFixed(2)}k expected next week
+                                Rs. {(data.summary.totalRevenue / 1000).toFixed(2)}k {t('soldWeek')}, Rs. {((data.summary.totalRevenue * 1.05) / 1000).toFixed(2)}k {t('expectedNextWeek')}
                             </h2>
                         </div>
                         <button className="flex items-center space-x-1 text-xs font-bold text-black hover:text-foreground transition-colors group">
-                            <span>Explore</span>
+                            <span>{t('explore')}</span>
                             <ExternalLink size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                         </button>
                     </div>
@@ -116,30 +118,30 @@ export default function DashboardAnalytics() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {[
                     {
-                        label: 'Total Sale',
+                        label: t('totalSale'),
                         value: `Rs. ${(data.summary.totalRevenue / 1000).toFixed(1)}k`,
-                        sub: '+ 7% Growth',
+                        sub: `+ 7% ${t('growth')}`,
                         icon: <Activity size={20} className="text-primary" />,
                         trend: 'up'
                     },
                     {
-                        label: 'Low Selling',
+                        label: t('lowSelling'),
                         value: data.summary.lowSellingCount || 0,
-                        sub: 'Unsold this week',
+                        sub: t('unsoldWeek'),
                         icon: <TrendingDown size={20} className="text-danger" />,
                         trend: 'down'
                     },
                     {
-                        label: 'Most Selling',
+                        label: t('mostSelling'),
                         value: data.summary.mostSellingCount || 0,
-                        sub: 'Sold this week',
+                        sub: t('soldThisWeek'),
                         icon: <TrendingUp size={20} className="text-success" />,
                         trend: 'up'
                     },
                     {
-                        label: 'Low in Stock',
+                        label: t('lowStock'),
                         value: data.summary.lowStockCount || 0,
-                        sub: 'Under 5 units',
+                        sub: t('under5Units'),
                         icon: <div className="p-1 rounded bg-amber-500/10"><Info size={20} className="text-amber-500" /></div>,
                         trend: 'neutral'
                     }
