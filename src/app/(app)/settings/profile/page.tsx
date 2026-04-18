@@ -16,7 +16,7 @@ export default function ProfilePage() {
     const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
     const [activeTab, setActiveTab] = useState<'general' | 'security' | 'shop' | 'language'>('general');
     const { logout } = useAuth();
-    const { t, language, setLanguage, dir } = useLanguage();
+    const { t, language, setLanguage } = useLanguage();
     const [formData, setFormData] = useState({
         name: '',
         phoneNumber: '',
@@ -228,7 +228,7 @@ export default function ProfilePage() {
                             </div>
                         )}
                         {activeTab === 'language' && (
-                            <div className="bg-sidebar border border-sidebar-border rounded-[2rem] p-8 lg:p-10 shadow-sm transition-all duration-500">
+                            <div className="bg-sidebar border border-sidebar-border rounded-[2rem] p-8 lg:p-10 shadow-sm transition-all duration-500 text-left">
                                 <h3 className="text-xl font-black italic text-foreground mb-8 flex items-center gap-3">
                                     {t('selectLanguage')}
                                     <div className="h-px flex-1 bg-card-border"></div>
@@ -238,12 +238,12 @@ export default function ProfilePage() {
                                         onClick={() => setLanguage('en')}
                                         className={`p-6 rounded-[2rem] border transition-all flex items-center justify-between group ${language === 'en' ? 'bg-pos-accent text-white border-pos-accent shadow-xl shadow-pos-accent/20' : 'bg-background text-foreground border-card-border hover:border-pos-accent'}`}
                                     >
-                                        <div className="flex items-center gap-4">
+                                        <div className="flex items-center gap-4 text-left">
                                             <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-2xl ${language === 'en' ? 'bg-white/20' : 'bg-pos-accent/10'}`}>
                                                 🇺🇸
                                             </div>
                                             <div className="text-left">
-                                                <p className="font-black italic uppercase tracking-widest text-[10px] opacity-70">Region: International</p>
+                                                <p className="font-black italic uppercase tracking-widest text-[10px] opacity-70">Region: Default</p>
                                                 <p className="text-xl font-black tracking-tight">{t('english')}</p>
                                             </div>
                                         </div>
@@ -254,12 +254,12 @@ export default function ProfilePage() {
                                         onClick={() => setLanguage('ur')}
                                         className={`p-6 rounded-[2rem] border transition-all flex items-center justify-between group ${language === 'ur' ? 'bg-pos-accent text-white border-pos-accent shadow-xl shadow-pos-accent/20' : 'bg-background text-foreground border-card-border hover:border-pos-accent'}`}
                                     >
-                                        <div className="flex items-center gap-4">
+                                        <div className="flex items-center gap-4 text-left">
                                             <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-2xl ${language === 'ur' ? 'bg-white/20' : 'bg-pos-accent/10'}`}>
                                                 🇵🇰
                                             </div>
                                             <div className="text-left">
-                                                <p className="font-black italic uppercase tracking-widest text-[10px] opacity-70">Region: Pakistan</p>
+                                                <p className="font-black italic uppercase tracking-widest text-[10px] opacity-70">Region: Urdu</p>
                                                 <p className="text-xl font-black tracking-tight">{t('urdu')}</p>
                                             </div>
                                         </div>

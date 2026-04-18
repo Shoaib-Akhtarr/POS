@@ -7,17 +7,15 @@ interface LanguageContextType {
     language: Language;
     setLanguage: (lang: Language) => void;
     t: (key: TranslationKey) => string;
-    dir: 'ltr' | 'rtl';
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
+    // Default to 'en' for SSR and initial hydration
     const [language, setLanguageState] = useState<Language>('en');
-    const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
-        setIsMounted(true);
         const savedLanguage = localStorage.getItem('language') as Language;
         if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'ur')) {
             setLanguageState(savedLanguage);
@@ -33,25 +31,9 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
         return translations[language][key] || key;
     };
 
-    const dir = language === 'ur' ? 'rtl' : 'ltr';
-
-    useEffect(() => {
-        if (isMounted) {
-            document.documentElement.dir = dir;
-            document.documentElement.lang = language;
-        }
-    }, [dir, language, isMounted]);
-
-    // Prevent hydration mismatch
-    if (!isMounted) {
-        return <>{children}</>;
-    }
-
     return (
-        <LanguageContext.Provider value={{ language, setLanguage, t, dir }}>
-            <div dir={dir}>
-                {children}
-            </div>
+        <LanguageContext.Provider value={{ language, setLanguage, t }}>
+            {children}
         </LanguageContext.Provider>
     );
 };
