@@ -70,6 +70,8 @@ export const translations = {
         noProductsFound: "No Products Found",
         noOutOfStock: "No products out of stock!",
         tryAdjustFilters: "Try adjusted filters or search term",
+        downloadCSV: "Download CSV",
+        exportAllPDF: "Export All PDF",
 
         // Receipt & Shop
         receiptPreview: "Receipt Preview",
@@ -179,7 +181,9 @@ export const translations = {
         updatePassword: "Update Password",
         oldPasswordPlaceholder: "Enter your old password",
         minCharPlaceholder: "Min. 6 characters",
-        retypePlaceholder: "Re-type new password"
+        retypePlaceholder: "Re-type new password",
+        startDate: "Start Date",
+        endDate: "End Date"
     },
     ur: {
         // Navigation
@@ -252,6 +256,8 @@ export const translations = {
         noProductsFound: "کوئی مصنوعات نہیں ملیں",
         noOutOfStock: "اسٹاک سے باہر کوئی مصنوعات نہیں ہیں!",
         tryAdjustFilters: "فلٹرز یا تلاش کی اصطلاح کو تبدیل کرنے کی کوشش کریں",
+        downloadCSV: "CSV ڈاؤن لوڈ کریں",
+        exportAllPDF: "PDF ایکسپورٹ کریں",
 
         // Receipt & Shop
         receiptPreview: "رسید کا معائنہ",
@@ -361,7 +367,9 @@ export const translations = {
         updatePassword: "پاس ورڈ اپ ڈیٹ کریں",
         oldPasswordPlaceholder: "اپنا پرانا پاس ورڈ درج کریں",
         minCharPlaceholder: "کم از کم 6 حروف",
-        retypePlaceholder: "نیا پاس ورڈ دوبارہ ٹائپ کریں"
+        retypePlaceholder: "نیا پاس ورڈ دوبارہ ٹائپ کریں",
+        startDate: "تاریخ شروع",
+        endDate: "تاریخ ختم"
     }
 };
 
