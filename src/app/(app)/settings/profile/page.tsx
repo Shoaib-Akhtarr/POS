@@ -226,6 +226,7 @@ export default function ProfilePage() {
                                     </div>
                                 </div>
                             </div>
+                        )}
                         {activeTab === 'language' && (
                             <div className="bg-sidebar border border-sidebar-border rounded-[2rem] p-8 lg:p-10 shadow-sm transition-all duration-500">
                                 <h3 className="text-xl font-black italic text-foreground mb-8 flex items-center gap-3">
